@@ -1,0 +1,63 @@
+name: Dev
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [latest]
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        id: setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+
+      - name: Load cached vendor
+        id: cached-composer-dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: vendor-dev-${{ runner.os }}-${{ steps.setup-php.outputs.php-version }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install PHP dependencies
+        if: steps.cached-composer-dependencies.outputs.cache-hit != 'true'
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Format with Pint
+        run: vendor/bin/pint --test
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: node_modules-dev-${{ runner.os }}-${{ steps.setup-node.outputs.node-version }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node_modules-dev-${{ runner.os }}-${{ steps.setup-node.outputs.node-version }}-
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Format with Prettier
+        run: npm run format:check
