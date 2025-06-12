@@ -24,7 +24,7 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-200">Jumlah
                                     Siswa</label>
                                 <input type="number" name="students_count" id="students_count"
-                                    value="{{ old('students_count', $statistic->students_count) }}"
+                                    value="{{ old('students_count', $statistic->students_count ?? 0) }}"
                                     class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white"
                                     required>
                                 @error('students_count')
@@ -37,7 +37,7 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-200">Jumlah
                                     Guru</label>
                                 <input type="number" name="teachers_count" id="teachers_count"
-                                    value="{{ old('teachers_count', $statistic->teachers_count) }}"
+                                    value="{{ old('teachers_count', $statistic->teachers_count ?? 0) }}"
                                     class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white"
                                     required>
                                 @error('teachers_count')
@@ -50,7 +50,7 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-200">Jumlah
                                     Staf</label>
                                 <input type="number" name="staff_count" id="staff_count"
-                                    value="{{ old('staff_count', $statistic->staff_count) }}"
+                                    value="{{ old('staff_count', $statistic->staff_count ?? 0) }}"
                                     class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white"
                                     required>
                                 @error('staff_count')
@@ -63,7 +63,7 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-200">Jumlah
                                     Alumni</label>
                                 <input type="number" name="alumni_count" id="alumni_count"
-                                    value="{{ old('alumni_count', $statistic->alumni_count) }}"
+                                    value="{{ old('alumni_count', $statistic->alumni_count ?? 0) }}"
                                     class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white"
                                     required>
                                 @error('alumni_count')
