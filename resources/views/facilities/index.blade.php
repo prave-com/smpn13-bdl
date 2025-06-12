@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="md:py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -47,7 +47,7 @@
                             <tbody>
                                 @foreach ($facilities as $facility)
                                     <tr>
-                                        <td class="px-4 py-2 border-b">{{ $facility->name }}</td>
+                                        <td class="px-4 py-2 border-b">{{ Str::limit($facility->name, 50) }}</td>
                                         <td class="px-4 py-2 border-b">{{ Str::limit($facility->description, 50) }}</td>
                                         <td class="px-4 py-2 border-b">
                                             <img src="{{ route('facilities.image.show', $facility) }}"

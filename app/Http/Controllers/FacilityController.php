@@ -60,17 +60,18 @@ class FacilityController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-        if ($request->hasFile('image')) {
-            Storage::delete('facilities/'.$facility->image);
-
-            $imagePath = $request->file('image')->store('facilities');
-            $facility->update(['image' => basename($imagePath)]);
-        }
-
-        $facility->update([
+        $updateData = [
             'name' => $request->name,
             'description' => $request->description,
-        ]);
+        ];
+
+        if ($request->hasFile('image')) {
+            Storage::delete('facilities/'.$facility->image);
+            $imagePath = $request->file('image')->store('facilities');
+            $updateData['image'] = basename($imagePath);
+        }
+
+        $facility->update($updateData);
 
         return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil diperbarui.');
     }
