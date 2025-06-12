@@ -24,7 +24,7 @@ class StatisticController extends Controller
         ]);
 
         $statistic = Statistic::first();
-        $statistic->update($request->all());
+        $statistic->update($request->validated());
 
         return redirect()->route('statistics.edit')->with('success', 'Statistics data has been successfully updated!');
     }
