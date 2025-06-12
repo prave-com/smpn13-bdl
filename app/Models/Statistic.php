@@ -23,13 +23,15 @@ class Statistic extends Model
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'students_count' => 'integer',
-            'teachers_count' => 'integer',
-            'staff_count' => 'integer',
-            'alumni_count' => 'integer',
-        ];
-    }
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'students_count' => 'integer',
+        'teachers_count' => 'integer',
+        'staff_count' => 'integer',
+        'alumni_count' => 'integer',
+    ];
 }
