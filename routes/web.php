@@ -19,7 +19,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('statistics', StatisticController::class)->only(['edit', 'update']);
+    Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');
+    Route::post('/statistics', [StatisticController::class, 'update'])->name('statistics.update');
 });
 
 require __DIR__.'/auth.php';

@@ -16,7 +16,7 @@ class StatisticController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'students_count' => 'required|integer|min:0',
             'teachers_count' => 'required|integer|min:0',
             'staff_count' => 'required|integer|min:0',
@@ -24,7 +24,7 @@ class StatisticController extends Controller
         ]);
 
         $statistic = Statistic::first();
-        $statistic->update($request->validated());
+        $statistic->update($validated);
 
         return redirect()->route('statistics.edit')->with('success', 'Statistics data has been successfully updated!');
     }
