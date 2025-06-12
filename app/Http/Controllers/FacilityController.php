@@ -89,12 +89,12 @@ class FacilityController extends Controller
     {
         $path = 'facilities/'.$facility->image;
 
-        if (Storage::disk('local')->exists($path)) {
+        if (Storage::exists($path)) {
             $headers = [
-                'Content-Type' => File::mimeType(Storage::disk('local')->path($path)),
+                'Content-Type' => File::mimeType(Storage::path($path)),
             ];
 
-            return response()->file(Storage::disk('local')->path($path), $headers);
+            return response()->file(Storage::path($path), $headers);
         }
 
         abort(404);
