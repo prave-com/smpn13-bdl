@@ -19,11 +19,6 @@ class Statistic extends Model
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
