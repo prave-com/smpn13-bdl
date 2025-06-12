@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('content');
+            $table->text('content');
             $table->foreignId('news_category_id')->constrained()->restrictOnDelete();
             $table->timestamp('published_at');
             $table->timestamps();
