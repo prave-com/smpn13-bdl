@@ -14,7 +14,7 @@ class NewsImage extends Model
      */
     protected $fillable = [
         'news_id',
-        'image_url',
+        'image',
     ];
 
     public function news(): BelongsTo
