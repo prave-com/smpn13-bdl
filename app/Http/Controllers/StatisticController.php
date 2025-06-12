@@ -9,7 +9,7 @@ class StatisticController extends Controller
 {
     public function edit()
     {
-        $statistic = Statistic::first();
+        $statistic = Statistic::firstOrCreate([]);
 
         return view('statistics.edit', compact('statistic'));
     }
