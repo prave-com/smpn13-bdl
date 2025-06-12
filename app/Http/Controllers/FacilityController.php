@@ -6,7 +6,6 @@ use App\Models\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FacilityController extends Controller
 {
@@ -85,7 +84,7 @@ class FacilityController extends Controller
         return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dihapus.');
     }
 
-    public function showImage(Facility $facility): StreamedResponse
+    public function showImage(Facility $facility)
     {
         $path = 'facilities/'.$facility->image;
 
@@ -94,7 +93,7 @@ class FacilityController extends Controller
                 'Content-Type' => File::mimeType(Storage::disk('local')->path($path)),
             ];
 
-            return Storage::download($path, $facility->image, $headers);
+            return response()->file(Storage::disk('local')->path($path), $headers);
         }
 
         abort(404);
