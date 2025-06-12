@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->integer('students_count');
-            $table->integer('teachers_count');
-            $table->integer('staff_count');
-            $table->integer('alumni_count');
+            $table->unsignedInteger('students_count');
+            $table->unsignedInteger('teachers_count');
+            $table->unsignedInteger('staff_count');
+            $table->unsignedInteger('alumni_count');
             $table->timestamps();
         });
     }
