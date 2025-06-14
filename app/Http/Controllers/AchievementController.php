@@ -13,6 +13,7 @@ class AchievementController extends Controller
     {
         $search = $request->input('search');
         $achievements = Achievement::where('name', 'like', "%{$search}%")
+            ->orWhere('description', 'like', "%{$search}%")
             ->paginate(10);
 
         return view('achievements.index', compact('achievements', 'search'));
