@@ -10,97 +10,75 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if (session('success'))
-                        <div class="bg-green-500 text-white p-4 rounded-lg mb-6 shadow-md" role="alert">
+                        <div class="bg-green-500 text-white p-2 rounded mb-4">
                             {{ session('success') }}
                         </div>
                     @endif
 
-                    <div class="mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <form action="{{ route('facilities.index') }}" method="GET" class="w-full md:w-1/2 lg:w-1/3">
+                    <div class="mb-4 gap-2 flex flex-col-reverse md:flex-row justify-between items-center">
+                        <form action="{{ route('facilities.index') }}" method="GET" class="w-full max-w-sm">
                             <div class="flex items-center space-x-2">
                                 <input type="text" name="search" value="{{ request()->search }}"
                                     placeholder="Cari fasilitas..."
-                                    class="block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500">
+                                    class="block w-full px-4 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white">
                                 <button type="submit"
-                                    class="flex-shrink-0 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-600 transition duration-150 ease-in-out">
-                                    <i class="fa fa-search px-1"></i>
+                                    class="bg-gray-200 p-2 rounded-md hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500">
+                                    <i class="fa fa-search text-gray-700 dark:text-gray-200 px-2"></i>
                                 </button>
                             </div>
                         </form>
                         <a href="{{ route('facilities.create') }}"
-                            class="w-full md:w-auto bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 flex items-center justify-center space-x-2 transition duration-150 ease-in-out">
+                            class="w-full md:w-fit bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline flex items-center justify-center space-x-2">
                             <i class="fa fa-plus"></i>
                             <span>Tambah Fasilitas Baru</span>
                         </a>
                     </div>
 
-                    {{-- Responsive Table Wrapper --}}
-                    <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead
-                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
                                 <tr>
-                                    <th scope="col" class="px-6 py-3">Nama</th>
-                                    <th scope="col" class="px-6 py-3 hidden md:table-cell">Deskripsi</th>
-                                    <th scope="col" class="px-6 py-3">Gambar</th>
-                                    <th scope="col" class="px-6 py-3 text-center">Aksi</th>
+                                    <th class="px-4 py-2 border-b text-left">Nama</th>
+                                    <th class="px-4 py-2 border-b text-left">Deskripsi</th>
+                                    <th class="px-4 py-2 border-b text-left">Gambar</th>
+                                    <th class="px-4 py-2 border-b text-left">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($facilities as $facility)
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td
-                                            class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-normal break-words">
-                                            {{ $facility->name }}
-                                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 md:hidden">
-                                                {{ Str::limit($facility->description, 70) }}</p>
-                                        </td>
-                                        <td class="px-6 py-4 hidden md:table-cell whitespace-normal break-words">
-                                            {{ Str::limit($facility->description, 100) }}
-                                        </td>
-                                        <td class="px-6 py-4">
+                                @foreach ($facilities as $facility)
+                                    <tr>
+                                        <td class="px-4 py-2 border-b">{{ Str::limit($facility->name, 50) }}</td>
+                                        <td class="px-4 py-2 border-b">{{ Str::limit($facility->description, 50) }}</td>
+                                        <td class="px-4 py-2 border-b">
                                             <img src="{{ route('facilities.image.show', $facility) }}"
                                                 alt="{{ $facility->name }}"
-                                                class="w-16 h-16 md:w-24 md:h-24 object-cover rounded-md shadow-sm">
+                                                class="w-16 h-16 md:w-24 md:h-24 object-cover">
                                         </td>
-                                        <td class="px-6 py-4 text-center">
-                                            <div
-                                                class="flex flex-col space-y-2 items-center md:flex-row md:space-y-0 md:space-x-2">
-                                                <a href="{{ route('facilities.edit', $facility) }}"
-                                                    class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition duration-150 ease-in-out flex items-center space-x-1">
-                                                    <i class="fa fa-edit"></i>
-                                                    <span>Edit</span>
-                                                </a>
-                                                <form action="{{ route('facilities.destroy', $facility) }}"
-                                                    method="POST" class="inline-block"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus fasilitas ini? Tindakan ini tidak dapat dibatalkan.')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition duration-150 ease-in-out flex items-center space-x-1">
-                                                        <i class="fa fa-trash"></i>
-                                                        <span>Hapus</span>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                        <td class="px-4 py-2 border-b">
+                                            <a href="{{ route('facilities.edit', $facility) }}"
+                                                class="text-blue-500 hover:text-blue-700 flex items-center space-x-1">
+                                                <i class="fa fa-edit"></i>
+                                                <span>Edit</span>
+                                            </a>
+                                            <form action="{{ route('facilities.destroy', $facility) }}" method="POST"
+                                                class="inline-block"
+                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus fasilitas ini?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="text-red-500 hover:text-red-700 flex items-center space-x-1">
+                                                    <i class="fa fa-trash"></i>
+                                                    <span>Hapus</span>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4"
-                                            class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
-                                            Tidak ada fasilitas yang ditemukan.
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="mt-6">
-                        {{ $facilities->links() }}
-                    </div>
+                    {{ $facilities->links() }}
                 </div>
             </div>
         </div>
