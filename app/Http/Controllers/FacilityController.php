@@ -14,7 +14,8 @@ class FacilityController extends Controller
         $search = $request->input('search');
         $facilities = Facility::where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
-            ->paginate(10);
+            ->paginate(10)
+            ->appends($request->only('search'));
 
         return view('facilities.index', compact('facilities', 'search'));
     }

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class GalleryCategoryController extends Controller
 {
@@ -14,7 +12,8 @@ class GalleryCategoryController extends Controller
         $search = $request->input('search');
         $galleryCategories = GalleryCategory::where('name', 'like', "%{$search}%")
             ->orWhere('slug', 'like', "%{$search}%")
-            ->paginate(10);
+            ->paginate(10)
+            ->appends($request->only('search'));
 
         return view('gallery-categories.index', compact('galleryCategories', 'search'));
     }
@@ -53,7 +52,7 @@ class GalleryCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:App\Models\GalleryCategory,slug|regex:/^[a-z0-9-]+$/',
+            'slug' => 'required|string|max:255|unique:App\Models\GalleryCategory,slug,'.$galleryCategory->id.'|regex:/^[a-z0-9-]+$/',
         ]);
 
         $galleryCategory->update([
@@ -66,25 +65,8 @@ class GalleryCategoryController extends Controller
 
     public function destroy(GalleryCategory $galleryCategory)
     {
-        Storage::delete('galleryCategories/'.$galleryCategory->image);
-
         $galleryCategory->delete();
 
         return redirect()->route('gallery-categories.index')->with('success', 'Kategori galeri berhasil dihapus.');
-    }
-
-    public function showImage(GalleryCategory $galleryCategory)
-    {
-        $path = 'galleryCategories/'.$galleryCategory->image;
-
-        if (Storage::exists($path)) {
-            $headers = [
-                'Content-Type' => File::mimeType(Storage::path($path)),
-            ];
-
-            return response()->file(Storage::path($path), $headers);
-        }
-
-        abort(404);
     }
 }
