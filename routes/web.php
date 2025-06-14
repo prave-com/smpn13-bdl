@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticController;
@@ -11,6 +12,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/achievements/{achievement}/image', [AchievementController::class, 'showImage'])->name('achievements.image.show');
+Route::get('/extracurriculars/{extracurricular}/image', [ExtracurricularController::class, 'showImage'])->name('extracurriculars.image.show');
 Route::get('/facilities/{facility}/image', [FacilityController::class, 'showImage'])->name('facilities.image.show');
 
 Route::get('/dashboard', function () {
@@ -25,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('achievements', AchievementController::class);
+    Route::resource('extracurriculars', ExtracurricularController::class);
     Route::resource('facilities', FacilityController::class);
 
     Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');
