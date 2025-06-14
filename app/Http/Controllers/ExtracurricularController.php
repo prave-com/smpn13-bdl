@@ -14,7 +14,8 @@ class ExtracurricularController extends Controller
         $search = $request->input('search');
         $extracurriculars = Extracurricular::where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
-            ->paginate(10);
+            ->paginate(10)
+            ->appends($request->only('search'));
 
         return view('extracurriculars.index', compact('extracurriculars', 'search'));
     }

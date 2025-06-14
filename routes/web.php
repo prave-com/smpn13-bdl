@@ -3,6 +3,7 @@
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\GalleryCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('achievements', AchievementController::class);
     Route::resource('extracurriculars', ExtracurricularController::class);
     Route::resource('facilities', FacilityController::class);
+    Route::resource('gallery-categories', GalleryCategoryController::class);
 
     Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');
     Route::post('/statistics', [StatisticController::class, 'update'])->name('statistics.update');
