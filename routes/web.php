@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticController;
@@ -8,6 +9,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/achievements/{achievement}/image', [AchievementController::class, 'showImage'])->name('achievements.image.show');
+Route::get('/facilities/{facility}/image', [FacilityController::class, 'showImage'])->name('facilities.image.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -20,7 +24,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/facilities/{facility}/image', [FacilityController::class, 'showImage'])->name('facilities.image.show');
+    Route::resource('achievements', AchievementController::class);
     Route::resource('facilities', FacilityController::class);
 
     Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');

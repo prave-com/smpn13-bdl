@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Facility;
+use App\Models\Achievement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class FacilityController extends Controller
+class AchievementController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $facilities = Facility::where('name', 'like', "%{$search}%")
+        $achievements = Achievement::where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(10);
 
-        return view('facilities.index', compact('facilities', 'search'));
+        return view('achievements.index', compact('achievements', 'search'));
     }
 
     public function create()
     {
-        return view('facilities.create');
+        return view('achievements.create');
     }
 
     public function store(Request $request)
@@ -32,28 +32,28 @@ class FacilityController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-        $imagePath = $request->file('image')->store('facilities');
+        $imagePath = $request->file('image')->store('achievements');
 
-        Facility::create([
+        Achievement::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => basename($imagePath),
         ]);
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dibuat.');
+        return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil dibuat.');
     }
 
-    public function show(Facility $facility)
+    public function show(Achievement $achievement)
     {
-        return view('facilities.show', compact('facility'));
+        return view('achievements.show', compact('achievement'));
     }
 
-    public function edit(Facility $facility)
+    public function edit(Achievement $achievement)
     {
-        return view('facilities.edit', compact('facility'));
+        return view('achievements.edit', compact('achievement'));
     }
 
-    public function update(Request $request, Facility $facility)
+    public function update(Request $request, Achievement $achievement)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -67,28 +67,28 @@ class FacilityController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            Storage::delete('facilities/'.$facility->image);
-            $imagePath = $request->file('image')->store('facilities');
+            Storage::delete('achievements/'.$achievement->image);
+            $imagePath = $request->file('image')->store('achievements');
             $updateData['image'] = basename($imagePath);
         }
 
-        $facility->update($updateData);
+        $achievement->update($updateData);
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil diperbarui.');
+        return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil diperbarui.');
     }
 
-    public function destroy(Facility $facility)
+    public function destroy(Achievement $achievement)
     {
-        Storage::delete('facilities/'.$facility->image);
+        Storage::delete('achievements/'.$achievement->image);
 
-        $facility->delete();
+        $achievement->delete();
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dihapus.');
+        return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil dihapus.');
     }
 
-    public function showImage(Facility $facility)
+    public function showImage(Achievement $achievement)
     {
-        $path = 'facilities/'.$facility->image;
+        $path = 'achievements/'.$achievement->image;
 
         if (Storage::exists($path)) {
             $headers = [
