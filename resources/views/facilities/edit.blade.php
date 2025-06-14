@@ -123,4 +123,3 @@
         });
     </script>
 </x-app-layout>
-
