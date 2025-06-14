@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\NewsCategory;
+use Illuminate\Http\Request;
+
+class NewsCategoryController extends Controller
+{
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $newsCategories = NewsCategory::where('name', 'like', "%{$search}%")
+            ->orWhere('slug', 'like', "%{$search}%")
+            ->paginate(10)
+            ->appends($request->only('search'));
+
+        return view('news-categories.index', compact('newsCategories', 'search'));
+    }
+
+    public function create()
+    {
+        return view('news-categories.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:App\Models\NewsCategory,slug|regex:/^[a-z0-9-]+$/',
+        ]);
+
+        NewsCategory::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
+        ]);
+
+        return redirect()->route('news-categories.index')->with('success', 'Kategori berita berhasil dibuat.');
+    }
+
+    public function show(NewsCategory $newsCategory)
+    {
+        return view('news-categories.show', compact('newsCategory'));
+    }
+
+    public function edit(NewsCategory $newsCategory)
+    {
+        return view('news-categories.edit', compact('newsCategory'));
+    }
+
+    public function update(Request $request, NewsCategory $newsCategory)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:App\Models\NewsCategory,slug,'.$newsCategory->id.'|regex:/^[a-z0-9-]+$/',
+        ]);
+
+        $newsCategory->update([
+            'name' => $request->name,
+            'slug' => $request->slug,
+        ]);
+
+        return redirect()->route('news-categories.index')->with('success', 'Kategori berita berhasil diperbarui.');
+    }
+
+    public function destroy(NewsCategory $newsCategory)
+    {
+        $newsCategory->delete();
+
+        return redirect()->route('news-categories.index')->with('success', 'Kategori berita berhasil dihapus.');
+    }
+}
