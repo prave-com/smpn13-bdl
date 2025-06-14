@@ -33,7 +33,7 @@
                             <input type="text" name="slug" id="slug"
                                 value="{{ old('slug', $galleryCategory->slug) }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
-                                required autofocus>
+                                required autofocus readonly>
                             @error('slug')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -48,4 +48,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function slugify(text) {
+            return text
+                .toString()
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9 -]/g, '')
+                .trim()
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+        }
+
+        document.getElementById('name').addEventListener('input', function() {
+            const name = this.value;
+            const slugField = document.getElementById('slug');
+            slugField.value = slugify(name);
+        });
+    </script>
 </x-app-layout>
