@@ -27,10 +27,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('/achievements', AchievementController::class);
-    Route::resource('/extracurriculars', ExtracurricularController::class);
-    Route::resource('/facilities', FacilityController::class);
-    Route::resource('/gallery-categories', GalleryCategoryController::class);
+    Route::resource('achievements', AchievementController::class);
+    Route::resource('extracurriculars', ExtracurricularController::class);
+    Route::resource('facilities', FacilityController::class);
+    Route::resource('gallery-categories', GalleryCategoryController::class);
 
     Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');
     Route::post('/statistics', [StatisticController::class, 'update'])->name('statistics.update');
