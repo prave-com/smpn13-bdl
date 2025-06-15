@@ -43,7 +43,7 @@
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
                                 Ekstrakurikuler</label>
                             <input type="file" name="image" id="image" class="hidden" {{-- Keep hidden --}}
-                                onchange="previewImage(event)"> {{-- No 'required' for edit form --}}
+                                onchange="previewImage(event)" accept="image/*"> {{-- No 'required' for edit form --}}
 
                             <div class="mt-1">
                                 <img id="image-preview"
