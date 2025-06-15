@@ -6,6 +6,7 @@ use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\GalleryCategoryController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ Route::get('/', function () {
 Route::get('/achievements/{achievement}/image', [AchievementController::class, 'showImage'])->name('achievements.image.show');
 Route::get('/extracurriculars/{extracurricular}/image', [ExtracurricularController::class, 'showImage'])->name('extracurriculars.image.show');
 Route::get('/facilities/{facility}/image', [FacilityController::class, 'showImage'])->name('facilities.image.show');
+Route::get('/staff/{staff}/image', [StaffController::class, 'showImage'])->name('staff.image.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('facilities', FacilityController::class);
     Route::resource('gallery-categories', GalleryCategoryController::class);
     Route::resource('news-categories', NewsCategoryController::class);
+    Route::resource('staff', StaffController::class);
 
     Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');
     Route::post('/statistics', [StatisticController::class, 'update'])->name('statistics.update');

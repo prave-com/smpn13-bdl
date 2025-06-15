@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Buat Prestasi
+            Buat Staff
         </h2>
     </x-slot>
 
@@ -9,13 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('achievements.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('staff.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-6">
                             <label for="name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Prestasi</label>
+                                Staff</label>
                             <input type="text" name="name" id="name" maxlength="255"
                                 value="{{ old('name') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
@@ -26,36 +26,37 @@
                         </div>
 
                         <div class="mb-6">
-                            <label for="description"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Deskripsi</label>
-                            <textarea name="description" id="description" rows="4"
+                            <label for="position"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Posisi</label>
+                            <input type="text" name="position" id="position" maxlength="255"
+                                value="{{ old('position') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
-                                required>{{ old('description') }}</textarea>
-                            @error('description')
+                                required autofocus>
+                            @error('position')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-6">
-                            <label for="image"
+                            <label for="avatar"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
-                                Prestasi</label>
-                            <input type="file" name="image" id="image" class="hidden" {{-- Keep hidden --}}
+                                Staff</label>
+                            <input type="file" name="avatar" id="avatar" class="hidden" {{-- Keep hidden --}}
                                 required onchange="previewImage(event)" accept="image/*">
 
                             <div class="mt-1">
                                 <img id="image-preview" src="#" alt="Pratinjau Gambar"
                                     class="hidden w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500"
-                                    onclick="document.getElementById('image').click()">
+                                    onclick="document.getElementById('avatar').click()">
 
                                 <div id="image-placeholder"
                                     class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400"
-                                    onclick="document.getElementById('image').click()">
+                                    onclick="document.getElementById('avatar').click()">
                                     <span class="text-lg">Klik untuk memilih gambar</span>
                                 </div>
                             </div>
 
-                            @error('image')
+                            @error('avatar')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>

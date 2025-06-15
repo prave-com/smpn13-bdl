@@ -43,17 +43,17 @@
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
                                 Ekstrakurikuler</label>
                             <input type="file" name="image" id="image" class="hidden" {{-- Keep hidden --}}
-                                onchange="previewImage(event)"> {{-- No 'required' for edit form --}}
+                                onchange="previewImage(event)" accept="image/*"> {{-- No 'required' for edit form --}}
 
                             <div class="mt-1">
                                 <img id="image-preview"
                                     src="{{ route('extracurriculars.image.show', $extracurricular) }}"
                                     alt="Pratinjau Gambar"
-                                    class="w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500 {{ $extracurricular->image_path ? '' : 'hidden' }}"
+                                    class="w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500 {{ $extracurricular->image ? '' : 'hidden' }}"
                                     onclick="document.getElementById('image').click()">
 
                                 <div id="image-placeholder"
-                                    class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400 {{ $extracurricular->image_path ? 'hidden' : '' }}"
+                                    class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400 {{ $extracurricular->image ? 'hidden' : '' }}"
                                     onclick="document.getElementById('image').click()">
                                     <span class="text-lg">Klik untuk memilih gambar</span>
                                 </div>
@@ -92,9 +92,9 @@
                 reader.readAsDataURL(file);
             } else {
                 // If no new file is selected, revert to the current image or show placeholder
-                // This assumes $extracurricular->image_path is available from the blade
+                // This assumes $extracurricular->image is available from the blade
                 const currentImagePath =
-                    "{{ $extracurricular->image_path ? asset('storage/' . $extracurricular->image_path) : '' }}";
+                    "{{ $extracurricular->image ? route('extracurriculars.image.show', $extracurricular) : '' }}";
 
                 if (currentImagePath) {
                     imagePreview.src = currentImagePath;
