@@ -39,11 +39,6 @@ class ExternalServiceLinkController extends Controller
         return redirect()->route('external-service-links.index')->with('success', 'Link layanan eksternal berhasil dibuat.');
     }
 
-    public function show(ExternalServiceLink $externalServiceLink)
-    {
-        return view('external-service-links.show', compact('externalServiceLink'));
-    }
-
     public function edit(ExternalServiceLink $externalServiceLink)
     {
         return view('external-service-links.edit', compact('externalServiceLink'));

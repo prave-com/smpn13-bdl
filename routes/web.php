@@ -31,13 +31,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('achievements', AchievementController::class);
-    Route::resource('external-service-links', ExternalServiceLinkController::class);
-    Route::resource('extracurriculars', ExtracurricularController::class);
-    Route::resource('facilities', FacilityController::class);
-    Route::resource('gallery-categories', GalleryCategoryController::class);
-    Route::resource('news-categories', NewsCategoryController::class);
-    Route::resource('staff', StaffController::class);
+    Route::resource('achievements', AchievementController::class)->except(['show']);
+    Route::resource('external-service-links', ExternalServiceLinkController::class)->except(['show']);
+    Route::resource('extracurriculars', ExtracurricularController::class)->except(['show']);
+    Route::resource('facilities', FacilityController::class)->except(['show']);
+    Route::resource('gallery-categories', GalleryCategoryController::class)->except(['show']);
+    Route::resource('news-categories', NewsCategoryController::class)->except(['show']);
+    Route::resource('staff', StaffController::class)->except(['show']);
 
     Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');
     Route::post('/statistics', [StatisticController::class, 'update'])->name('statistics.update');

@@ -39,11 +39,6 @@ class NewsCategoryController extends Controller
         return redirect()->route('news-categories.index')->with('success', 'Kategori berita berhasil dibuat.');
     }
 
-    public function show(NewsCategory $newsCategory)
-    {
-        return view('news-categories.show', compact('newsCategory'));
-    }
-
     public function edit(NewsCategory $newsCategory)
     {
         return view('news-categories.edit', compact('newsCategory'));

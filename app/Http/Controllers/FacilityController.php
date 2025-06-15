@@ -45,11 +45,6 @@ class FacilityController extends Controller
         return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dibuat.');
     }
 
-    public function show(Facility $facility)
-    {
-        return view('facilities.show', compact('facility'));
-    }
-
     public function edit(Facility $facility)
     {
         return view('facilities.edit', compact('facility'));

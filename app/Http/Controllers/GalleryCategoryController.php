@@ -39,11 +39,6 @@ class GalleryCategoryController extends Controller
         return redirect()->route('gallery-categories.index')->with('success', 'Kategori galeri berhasil dibuat.');
     }
 
-    public function show(GalleryCategory $galleryCategory)
-    {
-        return view('gallery-categories.show', compact('galleryCategory'));
-    }
-
     public function edit(GalleryCategory $galleryCategory)
     {
         return view('gallery-categories.edit', compact('galleryCategory'));
