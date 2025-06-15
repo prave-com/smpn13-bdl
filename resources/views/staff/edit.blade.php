@@ -60,7 +60,7 @@
 
                             <p class="text-gray-500 text-xs mt-2 dark:text-gray-400">Biarkan kosong jika tidak ingin
                                 mengubah gambar.</p>
-                            @error('image')
+                            @error('avatar')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
