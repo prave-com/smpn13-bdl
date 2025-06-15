@@ -38,20 +38,20 @@
                         </div>
 
                         <div class="mb-6">
-                            <label for="image"
+                            <label for="avatar"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
                                 Staff</label>
-                            <input type="file" name="image" id="image" class="hidden" {{-- Keep hidden --}}
+                            <input type="file" name="avatar" id="avatar" class="hidden" {{-- Keep hidden --}}
                                 required onchange="previewImage(event)">
 
                             <div class="mt-1">
                                 <img id="image-preview" src="#" alt="Pratinjau Gambar"
                                     class="hidden w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500"
-                                    onclick="document.getElementById('image').click()">
+                                    onclick="document.getElementById('avatar').click()">
 
                                 <div id="image-placeholder"
                                     class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400"
-                                    onclick="document.getElementById('image').click()">
+                                    onclick="document.getElementById('avatar').click()">
                                     <span class="text-lg">Klik untuk memilih gambar</span>
                                 </div>
                             </div>
