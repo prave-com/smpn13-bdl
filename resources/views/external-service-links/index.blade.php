@@ -46,29 +46,39 @@
                             <tbody>
                                 @foreach ($externalServiceLinks as $externalServiceLink)
                                     <tr>
-                                        <td class="px-4 py-2 border-b">{{ Str::limit($externalServiceLink->name, 50) }}
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($externalServiceLink->name, 25) }}
                                         </td>
-                                        <td class="px-4 py-2 border-b">
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
+                                            {{ Str::limit($externalServiceLink->name, 50) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($externalServiceLink->url, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($externalServiceLink->url, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
-                                            <a href="{{ route('external-service-links.edit', $externalServiceLink) }}"
-                                                class="text-blue-500 hover:text-blue-700 flex items-center space-x-1">
-                                                <i class="fa fa-edit"></i>
-                                                <span>Edit</span>
-                                            </a>
-                                            <form
-                                                action="{{ route('external-service-links.destroy', $externalServiceLink) }}"
-                                                method="POST" class="inline-block"
-                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus link layanan eksternal ini?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-500 hover:text-red-700 flex items-center space-x-1">
-                                                    <i class="fa fa-trash"></i>
-                                                    <span>Hapus</span>
-                                                </button>
-                                            </form>
+                                            <div
+                                                class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-1 md:space-y-0">
+                                                <a href="{{ route('external-service-links.edit', $externalServiceLink) }}"
+                                                    class="text-yellow-500 hover:text-yellow-700 flex items-center space-x-1">
+                                                    <i class="fa fa-edit"></i>
+                                                    <span>Edit</span>
+                                                </a>
+                                                <form
+                                                    action="{{ route('external-service-links.destroy', $externalServiceLink) }}"
+                                                    method="POST" class="inline-block"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus link layanan eksternal ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="text-red-500 hover:text-red-700 flex items-center space-x-1">
+                                                        <i class="fa fa-trash"></i>
+                                                        <span>Hapus</span>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

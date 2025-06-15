@@ -47,32 +47,37 @@
                             <tbody>
                                 @foreach ($extracurriculars as $extracurricular)
                                     <tr>
-                                        <td class="px-4 py-2 border-b">{{ Str::limit($extracurricular->name, 50) }}</td>
-                                        <td class="px-4 py-2 border-b">
+                                        <td class="px-4 py-2 border-b break-all">
+                                            {{ Str::limit($extracurricular->name, 50) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all">
                                             {{ Str::limit($extracurricular->description, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <img src="{{ route('extracurriculars.image.show', $extracurricular) }}"
                                                 alt="{{ $extracurricular->name }}"
-                                                class="w-16 h-16 md:w-24 md:h-24 object-cover">
+                                                class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
                                         </td>
                                         <td class="px-4 py-2 border-b">
-                                            <a href="{{ route('extracurriculars.edit', $extracurricular) }}"
-                                                class="text-blue-500 hover:text-blue-700 flex items-center space-x-1">
-                                                <i class="fa fa-edit"></i>
-                                                <span>Edit</span>
-                                            </a>
-                                            <form action="{{ route('extracurriculars.destroy', $extracurricular) }}"
-                                                method="POST" class="inline-block"
-                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus ekstrakurikuler ini?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-500 hover:text-red-700 flex items-center space-x-1">
-                                                    <i class="fa fa-trash"></i>
-                                                    <span>Hapus</span>
-                                                </button>
-                                            </form>
+                                            <div
+                                                class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-1 md:space-y-0">
+                                                <a href="{{ route('extracurriculars.edit', $extracurricular) }}"
+                                                    class="text-yellow-500 hover:text-yellow-700 flex items-center space-x-1">
+                                                    <i class="fa fa-edit"></i>
+                                                    <span>Edit</span>
+                                                </a>
+                                                <form action="{{ route('extracurriculars.destroy', $extracurricular) }}"
+                                                    method="POST" class="inline-block"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus ekstrakurikuler ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="text-red-500 hover:text-red-700 flex items-center space-x-1">
+                                                        <i class="fa fa-trash"></i>
+                                                        <span>Hapus</span>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
