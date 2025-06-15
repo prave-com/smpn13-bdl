@@ -10,9 +10,10 @@ class NewsCategoryController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $newsCategories = NewsCategory::where('name', 'like', "%{$search}%")
-            ->orWhere('slug', 'like', "%{$search}%")
-            ->paginate(10)
+        $newsCategories = NewsCategory::when($search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('slug', 'like', "%{$search}%");
+        })->paginate(10)
             ->appends($request->only('search'));
 
         return view('news-categories.index', compact('newsCategories', 'search'));

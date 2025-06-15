@@ -12,9 +12,10 @@ class StaffController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $staff = Staff::where('name', 'like', "%{$search}%")
-            ->orWhere('position', 'like', "%{$search}%")
-            ->paginate(10)
+        $staff = Staff::when($search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('position', 'like', "%{$search}%");
+        })->paginate(10)
             ->appends($request->only('search'));
 
         return view('staff.index', compact('staff', 'search'));
