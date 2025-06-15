@@ -5,6 +5,7 @@ use App\Http\Controllers\ExternalServiceLinkController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\GalleryCategoryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaffController;
@@ -18,6 +19,7 @@ Route::get('/', function () {
 Route::get('/achievements/{achievement}/image', [AchievementController::class, 'showImage'])->name('achievements.image.show');
 Route::get('/extracurriculars/{extracurricular}/image', [ExtracurricularController::class, 'showImage'])->name('extracurriculars.image.show');
 Route::get('/facilities/{facility}/image', [FacilityController::class, 'showImage'])->name('facilities.image.show');
+Route::get('/galleries/{gallery}/image', [GalleryController::class, 'showImage'])->name('galleries.image.show');
 Route::get('/staff/{staff}/image', [StaffController::class, 'showImage'])->name('staff.image.show');
 
 Route::get('/dashboard', function () {
@@ -36,6 +38,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('extracurriculars', ExtracurricularController::class)->except(['show']);
     Route::resource('facilities', FacilityController::class)->except(['show']);
     Route::resource('gallery-categories', GalleryCategoryController::class)->except(['show']);
+    Route::resource('gallery-categories.galleries', GalleryController::class)
+        ->scoped([
+            'gallery_category' => 'slug',
+        ])
+        ->shallow()
+        ->only(['index', 'store', 'destroy']);
     Route::resource('news-categories', NewsCategoryController::class)->except(['show']);
     Route::resource('staff', StaffController::class)->except(['show']);
 

@@ -46,27 +46,41 @@
                             <tbody>
                                 @foreach ($galleryCategories as $galleryCategory)
                                     <tr>
-                                        <td class="px-4 py-2 border-b">{{ Str::limit($galleryCategory->name, 50) }}</td>
-                                        <td class="px-4 py-2 border-b">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($galleryCategory->name, 25) }}</td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
+                                            {{ Str::limit($galleryCategory->name, 50) }}</td>
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($galleryCategory->slug, 25) }}
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($galleryCategory->slug, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
-                                            <a href="{{ route('gallery-categories.edit', $galleryCategory) }}"
-                                                class="text-blue-500 hover:text-blue-700 flex items-center space-x-1">
-                                                <i class="fa fa-edit"></i>
-                                                <span>Edit</span>
-                                            </a>
-                                            <form action="{{ route('gallery-categories.destroy', $galleryCategory) }}"
-                                                method="POST" class="inline-block"
-                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori galeri ini?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-500 hover:text-red-700 flex items-center space-x-1">
-                                                    <i class="fa fa-trash"></i>
-                                                    <span>Hapus</span>
-                                                </button>
-                                            </form>
+                                            <div
+                                                class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-1 md:space-y-0">
+                                                <a href="{{ route('gallery-categories.galleries.index', $galleryCategory) }}"
+                                                    class="text-blue-500 hover:text-blue-700 flex items-center space-x-1">
+                                                    <i class="fa fa-image"></i>
+                                                    <span>View</span>
+                                                </a>
+                                                <a href="{{ route('gallery-categories.edit', $galleryCategory) }}"
+                                                    class="text-yellow-500 hover:text-yellow-700 flex items-center space-x-1">
+                                                    <i class="fa fa-edit"></i>
+                                                    <span>Edit</span>
+                                                </a>
+                                                <form
+                                                    action="{{ route('gallery-categories.destroy', $galleryCategory) }}"
+                                                    method="POST" class="inline-block"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori galeri ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="text-red-500 hover:text-red-700 flex items-center space-x-1">
+                                                        <i class="fa fa-trash"></i>
+                                                        <span>Hapus</span>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
