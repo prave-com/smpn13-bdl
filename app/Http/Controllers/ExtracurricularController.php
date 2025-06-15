@@ -45,11 +45,6 @@ class ExtracurricularController extends Controller
         return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dibuat.');
     }
 
-    public function show(Extracurricular $extracurricular)
-    {
-        return view('extracurriculars.show', compact('extracurricular'));
-    }
-
     public function edit(Extracurricular $extracurricular)
     {
         return view('extracurriculars.edit', compact('extracurricular'));

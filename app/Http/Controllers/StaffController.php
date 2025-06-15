@@ -45,11 +45,6 @@ class StaffController extends Controller
         return redirect()->route('staff.index')->with('success', 'Staff berhasil dibuat.');
     }
 
-    public function show(Staff $staff)
-    {
-        return view('staff.show', compact('staff'));
-    }
-
     public function edit(Staff $staff)
     {
         return view('staff.edit', compact('staff'));

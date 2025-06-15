@@ -45,11 +45,6 @@ class AchievementController extends Controller
         return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil dibuat.');
     }
 
-    public function show(Achievement $achievement)
-    {
-        return view('achievements.show', compact('achievement'));
-    }
-
     public function edit(Achievement $achievement)
     {
         return view('achievements.edit', compact('achievement'));
