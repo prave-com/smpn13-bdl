@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\ExternalServiceLinkController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\GalleryCategoryController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('achievements', AchievementController::class);
+    Route::resource('external-service-links', ExternalServiceLinkController::class);
     Route::resource('extracurriculars', ExtracurricularController::class);
     Route::resource('facilities', FacilityController::class);
     Route::resource('gallery-categories', GalleryCategoryController::class);
