@@ -67,13 +67,13 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('dashboard')">
+                <x-dropdown-link :href="route('facilities.index')">
                     Fasilitas dan Layanan
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('dashboard')">
+                <x-dropdown-link :href="route('achievements.index')">
                     Prestasi
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('dashboard')">
+                <x-dropdown-link :href="route('extracurriculars.index')">
                     Ekstrakurikuler
                 </x-dropdown-link>
             </div>
@@ -104,13 +104,13 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('dashboard')">
+                <x-dropdown-link :href="route('staff.index')">
                     Guru dan Pegawai
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('dashboard')">
+                <x-dropdown-link :href="route('external-service-links.index')">
                     Link Layanan Eksternal
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('dashboard')">
+                <x-dropdown-link :href="route('gallery-categories.index')">
                     Galeri
                 </x-dropdown-link>
             </div>
