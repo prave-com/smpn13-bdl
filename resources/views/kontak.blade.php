@@ -26,11 +26,11 @@
                 <div class="space-y-6 animate-fade-in delay-150">
                     <div>
                         <h2 class="text-xl font-semibold text-green-700 dark:text-green-300">📍 Alamat Sekolah</h2>
-                        <p class="text-gray-800 dark:text-gray-200">
+                        <address class="text-gray-800 dark:text-gray-200 not-italic">
                             Jl. Marga No.57, Beringin Raya,<br>
                             Kec. Kemiling, Kota Bandar Lampung,<br>
                             Lampung 35155
-                        </p>
+                        </address>
                     </div>
 
                     <div>
@@ -53,7 +53,7 @@
                     <div>
                         <h2 class="text-xl font-semibold text-green-700 dark:text-green-300">🌐 Website</h2>
                         <p class="text-gray-800 dark:text-gray-200">
-                            <a href="https://smpn13-bdl.sch.id" target="_blank"
+                            <a href="https://smpn13-bdl.sch.id" target="_blank" rel="noopener noreferrer"
                                 class="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 underline">
                                 smpn13-bdl.sch.id
                             </a>
@@ -65,30 +65,33 @@
                         <h2 class="text-xl font-semibold text-green-700 dark:text-green-300">📱 Media Sosial</h2>
                         <ul class="space-y-2 mt-2 text-gray-800 dark:text-gray-200">
                             <li>
-                                <i class="fa fa-instagram text-pink-500 mr-2"></i>
+                                <i class="fa fa-instagram text-pink-500 mr-2" aria-hidden="true"></i>
                                 <a href="https://www.instagram.com/smpn13_bdl/" target="_blank"
+                                    rel="noopener noreferrer"
                                     class="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 underline">
                                     @smpn13_bdl
                                 </a>
                             </li>
                             <li>
-                                <i class="fa fa-facebook text-blue-600 mr-2"></i>
+                                <i class="fa fa-facebook text-blue-600 mr-2" aria-hidden="true"></i>
                                 <a href="https://www.facebook.com/people/Spantiglas-Balam/pfbid0mTGWWgYCpFAzkfPJq7FxQcNTmGuJih8HsMvnWQR7n4GKgtq2EZQc1ewSD2LvuLhcl/"
-                                    target="_blank"
+                                    target="_blank" rel="noopener noreferrer"
                                     class="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 underline">
                                     Spantiglas-Balam
                                 </a>
                             </li>
                             <li>
-                                <i class="fa fa-youtube-play text-red-600 mr-2"></i>
+                                <i class="fa fa-youtube-play text-red-600 mr-2" aria-hidden="true"></i>
                                 <a href="https://www.youtube.com/@SMPN13BandarLampung" target="_blank"
+                                    rel="noopener noreferrer"
                                     class="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 underline">
                                     @SMPN13BandarLampung
                                 </a>
                             </li>
                             <li>
-                                <i class="fa fa-music text-black dark:text-white mr-2"></i>
+                                <i class="fa fa-music text-black dark:text-white mr-2" aria-hidden="true"></i>
                                 <a href="https://www.tiktok.com/@spantiglasbalam" target="_blank"
+                                    rel="noopener noreferrer"
                                     class="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 underline">
                                     @spantiglasbalam
                                 </a>
@@ -103,7 +106,8 @@
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.1526401300034!2d105.201577!3d-5.393698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40d06d0b4f4143%3A0x84d0512b675ea2db!2sSMP%20Negeri%2013%20Bandar%20Lampung!5e0!3m2!1sid!2sid!4v1750231294709!5m2!1sid!2sid"
                             class="w-full h-full border-0" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Peta lokasi  SMP Negeri 13 Bandar Lampung">
                         </iframe>
                     </div>
                 </div>
