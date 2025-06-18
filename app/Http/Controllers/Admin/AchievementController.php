@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Extracurricular;
+use App\Http\Controllers\Controller;
+use App\Models\Achievement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class ExtracurricularController extends Controller
+class AchievementController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $extracurriculars = Extracurricular::when($search, function ($query, $search) {
+        $achievements = Achievement::when($search, function ($query, $search) {
             $query->where('name', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%");
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('extracurriculars.index', compact('extracurriculars', 'search'));
+        return view('achievements.index', compact('achievements', 'search'));
     }
 
     public function create()
     {
-        return view('extracurriculars.create');
+        return view('achievements.create');
     }
 
     public function store(Request $request)
@@ -34,23 +35,23 @@ class ExtracurricularController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-        $imagePath = $request->file('image')->store('extracurriculars');
+        $imagePath = $request->file('image')->store('achievements');
 
-        Extracurricular::create([
+        Achievement::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => basename($imagePath),
         ]);
 
-        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dibuat.');
+        return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil dibuat.');
     }
 
-    public function edit(Extracurricular $extracurricular)
+    public function edit(Achievement $achievement)
     {
-        return view('extracurriculars.edit', compact('extracurricular'));
+        return view('achievements.edit', compact('achievement'));
     }
 
-    public function update(Request $request, Extracurricular $extracurricular)
+    public function update(Request $request, Achievement $achievement)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -64,28 +65,28 @@ class ExtracurricularController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            Storage::delete('extracurriculars/'.$extracurricular->image);
-            $imagePath = $request->file('image')->store('extracurriculars');
+            Storage::delete('achievements/'.$achievement->image);
+            $imagePath = $request->file('image')->store('achievements');
             $updateData['image'] = basename($imagePath);
         }
 
-        $extracurricular->update($updateData);
+        $achievement->update($updateData);
 
-        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil diperbarui.');
+        return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil diperbarui.');
     }
 
-    public function destroy(Extracurricular $extracurricular)
+    public function destroy(Achievement $achievement)
     {
-        Storage::delete('extracurriculars/'.$extracurricular->image);
+        Storage::delete('achievements/'.$achievement->image);
 
-        $extracurricular->delete();
+        $achievement->delete();
 
-        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dihapus.');
+        return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil dihapus.');
     }
 
-    public function showImage(Extracurricular $extracurricular)
+    public function showImage(Achievement $achievement)
     {
-        $path = 'extracurriculars/'.$extracurricular->image;
+        $path = 'achievements/'.$achievement->image;
 
         if (Storage::exists($path)) {
             $headers = [

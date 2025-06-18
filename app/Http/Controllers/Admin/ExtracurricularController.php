@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Facility;
+use App\Http\Controllers\Controller;
+use App\Models\Extracurricular;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class FacilityController extends Controller
+class ExtracurricularController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $facilities = Facility::when($search, function ($query, $search) {
+        $extracurriculars = Extracurricular::when($search, function ($query, $search) {
             $query->where('name', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%");
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('facilities.index', compact('facilities', 'search'));
+        return view('extracurriculars.index', compact('extracurriculars', 'search'));
     }
 
     public function create()
     {
-        return view('facilities.create');
+        return view('extracurriculars.create');
     }
 
     public function store(Request $request)
@@ -34,23 +35,23 @@ class FacilityController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-        $imagePath = $request->file('image')->store('facilities');
+        $imagePath = $request->file('image')->store('extracurriculars');
 
-        Facility::create([
+        Extracurricular::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => basename($imagePath),
         ]);
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dibuat.');
+        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dibuat.');
     }
 
-    public function edit(Facility $facility)
+    public function edit(Extracurricular $extracurricular)
     {
-        return view('facilities.edit', compact('facility'));
+        return view('extracurriculars.edit', compact('extracurricular'));
     }
 
-    public function update(Request $request, Facility $facility)
+    public function update(Request $request, Extracurricular $extracurricular)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -64,28 +65,28 @@ class FacilityController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            Storage::delete('facilities/'.$facility->image);
-            $imagePath = $request->file('image')->store('facilities');
+            Storage::delete('extracurriculars/'.$extracurricular->image);
+            $imagePath = $request->file('image')->store('extracurriculars');
             $updateData['image'] = basename($imagePath);
         }
 
-        $facility->update($updateData);
+        $extracurricular->update($updateData);
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil diperbarui.');
+        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil diperbarui.');
     }
 
-    public function destroy(Facility $facility)
+    public function destroy(Extracurricular $extracurricular)
     {
-        Storage::delete('facilities/'.$facility->image);
+        Storage::delete('extracurriculars/'.$extracurricular->image);
 
-        $facility->delete();
+        $extracurricular->delete();
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dihapus.');
+        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dihapus.');
     }
 
-    public function showImage(Facility $facility)
+    public function showImage(Extracurricular $extracurricular)
     {
-        $path = 'facilities/'.$facility->image;
+        $path = 'extracurriculars/'.$extracurricular->image;
 
         if (Storage::exists($path)) {
             $headers = [
