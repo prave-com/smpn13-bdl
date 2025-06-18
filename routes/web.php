@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\AchievementController;
-use App\Http\Controllers\ExternalServiceLinkController;
-use App\Http\Controllers\ExtracurricularController;
-use App\Http\Controllers\FacilityController;
-use App\Http\Controllers\GalleryCategoryController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\Admin\AchievementController as AdminAchievementController;
+use App\Http\Controllers\Admin\ExternalServiceLinkController as AdminExternalServiceLinkController;
+use App\Http\Controllers\Admin\ExtracurricularController as AdminExtracurricularController;
+use App\Http\Controllers\Admin\FacilityController as AdminFacilityController;
+use App\Http\Controllers\Admin\GalleryCategoryController as AdminGalleryCategoryController;
+use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\NewsCategoryController as AdminNewsCategoryController;
+use App\Http\Controllers\Admin\StaffController as AdminStaffController;
+use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StaffController;
-use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,11 +24,11 @@ Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 
-Route::get('/achievements/{achievement}/image', [AchievementController::class, 'showImage'])->name('achievements.image.show');
-Route::get('/extracurriculars/{extracurricular}/image', [ExtracurricularController::class, 'showImage'])->name('extracurriculars.image.show');
-Route::get('/facilities/{facility}/image', [FacilityController::class, 'showImage'])->name('facilities.image.show');
-Route::get('/galleries/{gallery}/image', [GalleryController::class, 'showImage'])->name('galleries.image.show');
-Route::get('/staff/{staff}/image', [StaffController::class, 'showImage'])->name('staff.image.show');
+Route::get('/achievements/{achievement}/image', [AdminAchievementController::class, 'showImage'])->name('achievements.image.show');
+Route::get('/extracurriculars/{extracurricular}/image', [AdminExtracurricularController::class, 'showImage'])->name('extracurriculars.image.show');
+Route::get('/facilities/{facility}/image', [AdminFacilityController::class, 'showImage'])->name('facilities.image.show');
+Route::get('/galleries/{gallery}/image', [AdminGalleryController::class, 'showImage'])->name('galleries.image.show');
+Route::get('/staff/{staff}/image', [AdminStaffController::class, 'showImage'])->name('staff.image.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,22 +41,22 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('achievements', AchievementController::class)->except(['show']);
-    Route::resource('external-service-links', ExternalServiceLinkController::class)->except(['show']);
-    Route::resource('extracurriculars', ExtracurricularController::class)->except(['show']);
-    Route::resource('facilities', FacilityController::class)->except(['show']);
-    Route::resource('gallery-categories', GalleryCategoryController::class)->except(['show']);
-    Route::resource('gallery-categories.galleries', GalleryController::class)
+    Route::resource('achievements', AdminAchievementController::class)->except(['show']);
+    Route::resource('external-service-links', AdminExternalServiceLinkController::class)->except(['show']);
+    Route::resource('extracurriculars', AdminExtracurricularController::class)->except(['show']);
+    Route::resource('facilities', AdminFacilityController::class)->except(['show']);
+    Route::resource('gallery-categories', AdminGalleryCategoryController::class)->except(['show']);
+    Route::resource('gallery-categories.galleries', AdminGalleryController::class)
         ->scoped([
             'gallery_category' => 'slug',
         ])
         ->shallow()
         ->only(['index', 'store', 'destroy']);
-    Route::resource('news-categories', NewsCategoryController::class)->except(['show']);
-    Route::resource('staff', StaffController::class)->except(['show']);
+    Route::resource('news-categories', AdminNewsCategoryController::class)->except(['show']);
+    Route::resource('staff', AdminStaffController::class)->except(['show']);
 
-    Route::get('/statistics', [StatisticController::class, 'edit'])->name('statistics.edit');
-    Route::post('/statistics', [StatisticController::class, 'update'])->name('statistics.update');
+    Route::get('/statistics', [AdminStatisticController::class, 'edit'])->name('statistics.edit');
+    Route::post('/statistics', [AdminStatisticController::class, 'update'])->name('statistics.update');
 });
 
 require __DIR__.'/auth.php';
