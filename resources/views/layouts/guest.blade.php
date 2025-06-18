@@ -7,6 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="description"
+        content="SMPN 13 Bandar Lampung Menumbuhkan sikap ulet, gigih serta siap berkompetisi meraih prestasi belajar.">
+    <meta name="keywords" content="SMPN 13 Bandar Lampung, Sekolah Menengah Pertama, Pendidikan, Lampung">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

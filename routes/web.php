@@ -20,6 +20,10 @@ Route::get('/visi-misi', function () {
     return view('visi-misi');
 })->name('visi-misi');
 
+Route::get('/kontak', function () {
+    return view('kontak');
+})->name('kontak');
+
 Route::get('/achievements/{achievement}/image', [AchievementController::class, 'showImage'])->name('achievements.image.show');
 Route::get('/extracurriculars/{extracurricular}/image', [ExtracurricularController::class, 'showImage'])->name('extracurriculars.image.show');
 Route::get('/facilities/{facility}/image', [FacilityController::class, 'showImage'])->name('facilities.image.show');
