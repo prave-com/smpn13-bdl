@@ -54,9 +54,42 @@
                                             {{ Str::limit($facility->description, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
-                                            <img src="{{ route('facilities.image.show', $facility) }}"
-                                                alt="{{ $facility->name }}"
-                                                class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                            <div class="flex flex-wrap flex-col gap-2 md:flex-row">
+                                                {{-- Gambar 1 --}}
+                                                @if ($facility->image1)
+                                                    <img src="{{ asset('storage/' . $facility->image1) }}"
+                                                        alt="Gambar 1"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                                @endif
+
+                                                {{-- Gambar 2 --}}
+                                                @if ($facility->image2)
+                                                    <img src="{{ asset('storage/' . $facility->image2) }}"
+                                                        alt="Gambar 2"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                                @endif
+
+                                                {{-- Gambar 3 --}}
+                                                @if ($facility->image3)
+                                                    <img src="{{ asset('storage/' . $facility->image3) }}"
+                                                        alt="Gambar 3"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                                @endif
+
+                                                {{-- Gambar 4 --}}
+                                                @if ($facility->image4)
+                                                    <img src="{{ asset('storage/' . $facility->image4) }}"
+                                                        alt="Gambar 4"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                                @endif
+
+                                                {{-- Gambar 5 --}}
+                                                @if ($facility->image5)
+                                                    <img src="{{ asset('storage/' . $facility->image5) }}"
+                                                        alt="Gambar 5"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <div

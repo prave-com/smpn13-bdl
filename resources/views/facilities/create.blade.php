@@ -14,8 +14,9 @@
 
                         <div class="mb-6">
                             <label for="name"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Fasilitas</label>
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                                Nama Fasilitas <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="name" id="name" maxlength="255"
                                 value="{{ old('name') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
@@ -29,36 +30,59 @@
                             <label for="description"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Deskripsi</label>
                             <textarea name="description" id="description" rows="4"
-                                class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
-                                required>{{ old('description') }}</textarea>
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500">{{ old('description') }}</textarea>
                             @error('description')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
+                        {{-- Gambar 1 --}}
                         <div class="mb-6">
-                            <label for="image"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
-                                Fasilitas</label>
-                            <input type="file" name="image" id="image" class="hidden" {{-- Keep hidden --}}
-                                required onchange="previewImage(event)" accept="image/*">
-
+                            <label for="image1"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                                Gambar Fasilitas 1 <span class="text-red-500">*</span>
+                            </label>
+                            <input type="file" name="image1" id="image1" class="hidden" required
+                                onchange="previewImage(event, 'image1')">
                             <div class="mt-1">
-                                <img id="image-preview" src="#" alt="Pratinjau Gambar"
+                                <img id="image1-preview" src="#" alt="Pratinjau Gambar 1"
                                     class="hidden w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500"
-                                    onclick="document.getElementById('image').click()">
-
-                                <div id="image-placeholder"
+                                    onclick="document.getElementById('image1').click()">
+                                <div id="image1-placeholder"
                                     class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400"
-                                    onclick="document.getElementById('image').click()">
+                                    onclick="document.getElementById('image1').click()">
                                     <span class="text-lg">Klik untuk memilih gambar</span>
                                 </div>
                             </div>
-
-                            @error('image')
+                            @error('image1')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        {{-- Gambar 2 --}}
+                        @foreach (['image2', 'image3', 'image4', 'image5'] as $image)
+                            <div class="mb-6">
+                                <label for="{{ $image }}"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
+                                    Fasilitas {{ $loop->index + 2 }}</label>
+                                <input type="file" name="{{ $image }}" id="{{ $image }}" class="hidden"
+                                    onchange="previewImage(event, '{{ $image }}')" accept="image/*">
+                                <div class="mt-1">
+                                    <img id="{{ $image }}-preview" src="#"
+                                        alt="Pratinjau {{ $image }}"
+                                        class="hidden w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500"
+                                        onclick="document.getElementById('{{ $image }}').click()">
+                                    <div id="{{ $image }}-placeholder"
+                                        class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400"
+                                        onclick="document.getElementById('{{ $image }}').click()">
+                                        <span class="text-lg">Klik untuk memilih gambar</span>
+                                    </div>
+                                </div>
+                                @error($image)
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        @endforeach
 
                         <div class="flex justify-end mt-8">
                             <button type="submit"
@@ -71,9 +95,9 @@
     </div>
 
     <script>
-        function previewImage(event) {
-            const imagePreview = document.getElementById('image-preview');
-            const imagePlaceholder = document.getElementById('image-placeholder');
+        function previewImage(event, imageId) {
+            const imagePreview = document.getElementById(imageId + '-preview');
+            const imagePlaceholder = document.getElementById(imageId + '-placeholder');
             const file = event.target.files[0];
 
             if (file) {
