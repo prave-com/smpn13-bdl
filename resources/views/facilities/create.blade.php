@@ -43,7 +43,7 @@
                                 Gambar Fasilitas 1 <span class="text-red-500">*</span>
                             </label>
                             <input type="file" name="image1" id="image1" class="hidden" required
-                                onchange="previewImage(event, 'image1')">
+                                onchange="previewImage(event, 'image1')" accept="image/*">
                             <div class="mt-1">
                                 <img id="image1-preview" src="#" alt="Pratinjau Gambar 1"
                                     class="hidden w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500"
