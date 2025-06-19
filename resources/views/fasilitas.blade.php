@@ -39,7 +39,8 @@
                                     <div class="m-1">
                                         <img src="{{ asset('storage/' . $facility->$imgField) }}"
                                             alt="{{ $facility->name }}"
-                                            class="max-w-full h-auto max-h-[400px] rounded-md hover:scale-105 transition-transform duration-300">
+                                            class="max-w-full h-auto max-h-[400px] rounded-md hover:scale-105 transition-transform duration-300"
+                                            loading="lazy">
                                     </div>
                                 @endif
                             @endforeach
