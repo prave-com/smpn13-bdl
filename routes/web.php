@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\NewsCategoryController as AdminNewsCategoryController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
+use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +21,14 @@ Route::get('/visi-misi', function () {
     return view('visi-misi');
 })->name('visi-misi');
 
+Route::get('/fasilitas', [FacilityController::class, 'index'])->name('facilities.index');
+
 Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 
 Route::get('/achievements/{achievement}/image', [AdminAchievementController::class, 'showImage'])->name('achievements.image.show');
 Route::get('/extracurriculars/{extracurricular}/image', [AdminExtracurricularController::class, 'showImage'])->name('extracurriculars.image.show');
-Route::get('/facilities/{facility}/image', [AdminFacilityController::class, 'showImage'])->name('facilities.image.show');
 Route::get('/galleries/{gallery}/image', [AdminGalleryController::class, 'showImage'])->name('galleries.image.show');
 Route::get('/staff/{staff}/image', [AdminStaffController::class, 'showImage'])->name('staff.image.show');
 
