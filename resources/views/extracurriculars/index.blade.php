@@ -54,9 +54,47 @@
                                             {{ Str::limit($extracurricular->description, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
-                                            <img src="{{ route('extracurriculars.image.show', $extracurricular) }}"
-                                                alt="{{ $extracurricular->name }}"
-                                                class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                            <div class="flex flex-wrap flex-col gap-2 md:flex-row">
+                                                {{-- Gambar 1 --}}
+                                                @if ($extracurricular->image1)
+                                                    <img src="{{ asset('storage/' . $extracurricular->image1) }}"
+                                                        alt="{{ $extracurricular->name }} Gambar 1"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded"
+                                                        loading="lazy">
+                                                @endif
+
+                                                {{-- Gambar 2 --}}
+                                                @if ($extracurricular->image2)
+                                                    <img src="{{ asset('storage/' . $extracurricular->image2) }}"
+                                                        alt="{{ $extracurricular->name }} Gambar 2"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded"
+                                                        loading="lazy">
+                                                @endif
+
+                                                {{-- Gambar 3 --}}
+                                                @if ($extracurricular->image3)
+                                                    <img src="{{ asset('storage/' . $extracurricular->image3) }}"
+                                                        alt="{{ $extracurricular->name }} Gambar 3"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded"
+                                                        loading="lazy">
+                                                @endif
+
+                                                {{-- Gambar 4 --}}
+                                                @if ($extracurricular->image4)
+                                                    <img src="{{ asset('storage/' . $extracurricular->image4) }}"
+                                                        alt="{{ $extracurricular->name }} Gambar 4"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded"
+                                                        loading="lazy">
+                                                @endif
+
+                                                {{-- Gambar 5 --}}
+                                                @if ($extracurricular->image5)
+                                                    <img src="{{ asset('storage/' . $extracurricular->image5) }}"
+                                                        alt="{{ $extracurricular->name }} Gambar 5"
+                                                        class="w-16 h-16 md:w-24 md:h-24 object-cover rounded"
+                                                        loading="lazy">
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <div
@@ -66,7 +104,8 @@
                                                     <i class="fa fa-edit"></i>
                                                     <span>Edit</span>
                                                 </a>
-                                                <form action="{{ route('extracurriculars.destroy', $extracurricular) }}"
+                                                <form
+                                                    action="{{ route('extracurriculars.destroy', $extracurricular) }}"
                                                     method="POST" class="inline-block"
                                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus ekstrakurikuler ini?')">
                                                     @csrf

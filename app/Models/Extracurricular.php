@@ -14,6 +14,10 @@ class Extracurricular extends Model
     protected $fillable = [
         'name',
         'description',
-        'image',
+        'image1',
+        'image2',
+        'image3',
+        'image4',
+        'image5',
     ];
 }
