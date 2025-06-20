@@ -17,12 +17,12 @@ class GalleryCategoryController extends Controller
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('gallery-categories.index', compact('galleryCategories', 'search'));
+        return view('admin.gallery-categories.index', compact('galleryCategories', 'search'));
     }
 
     public function create()
     {
-        return view('gallery-categories.create');
+        return view('admin.gallery-categories.create');
     }
 
     public function store(Request $request)
@@ -37,12 +37,12 @@ class GalleryCategoryController extends Controller
             'slug' => $request->slug,
         ]);
 
-        return redirect()->route('gallery-categories.index')->with('success', 'Kategori galeri berhasil dibuat.');
+        return redirect()->route('admin.gallery-categories.index')->with('success', 'Kategori galeri berhasil dibuat.');
     }
 
     public function edit(GalleryCategory $galleryCategory)
     {
-        return view('gallery-categories.edit', compact('galleryCategory'));
+        return view('admin.gallery-categories.edit', compact('galleryCategory'));
     }
 
     public function update(Request $request, GalleryCategory $galleryCategory)
@@ -57,13 +57,13 @@ class GalleryCategoryController extends Controller
             'slug' => $request->slug,
         ]);
 
-        return redirect()->route('gallery-categories.index')->with('success', 'Kategori galeri berhasil diperbarui.');
+        return redirect()->route('admin.gallery-categories.index')->with('success', 'Kategori galeri berhasil diperbarui.');
     }
 
     public function destroy(GalleryCategory $galleryCategory)
     {
         $galleryCategory->delete();
 
-        return redirect()->route('gallery-categories.index')->with('success', 'Kategori galeri berhasil dihapus.');
+        return redirect()->route('admin.gallery-categories.index')->with('success', 'Kategori galeri berhasil dihapus.');
     }
 }

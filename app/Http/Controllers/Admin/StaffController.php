@@ -18,12 +18,12 @@ class StaffController extends Controller
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('staff.index', compact('staff', 'search'));
+        return view('admin.staff.index', compact('staff', 'search'));
     }
 
     public function create()
     {
-        return view('staff.create');
+        return view('admin.staff.create');
     }
 
     public function store(Request $request)
@@ -42,12 +42,12 @@ class StaffController extends Controller
             'avatar' => $imagePath,
         ]);
 
-        return redirect()->route('staff.index')->with('success', 'Staff berhasil dibuat.');
+        return redirect()->route('admin.staff.index')->with('success', 'Staff berhasil dibuat.');
     }
 
     public function edit(Staff $staff)
     {
-        return view('staff.edit', compact('staff'));
+        return view('admin.staff.edit', compact('staff'));
     }
 
     public function update(Request $request, Staff $staff)
@@ -73,7 +73,7 @@ class StaffController extends Controller
 
         $staff->update($updateData);
 
-        return redirect()->route('staff.index')->with('success', 'Staff berhasil diperbarui.');
+        return redirect()->route('admin.staff.index')->with('success', 'Staff berhasil diperbarui.');
     }
 
     public function destroy(Staff $staff)
@@ -84,6 +84,6 @@ class StaffController extends Controller
 
         $staff->delete();
 
-        return redirect()->route('staff.index')->with('success', 'Staff berhasil dihapus.');
+        return redirect()->route('admin.staff.index')->with('success', 'Staff berhasil dihapus.');
     }
 }

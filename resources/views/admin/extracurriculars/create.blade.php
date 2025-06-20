@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Edit Ekstrakurikuler
+            Buat Ekstrakurikuler
         </h2>
     </x-slot>
 
@@ -9,17 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('extracurriculars.update', $extracurricular) }}" method="POST"
+                    <form action="{{ route('admin.extracurriculars.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
 
                         <div class="mb-6">
                             <label for="name"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Ekstrakurikuler <span class="text-red-500">*</span></label>
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                                Nama Ekstrakurikuler <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="name" id="name" maxlength="255"
-                                value="{{ old('name', $extracurricular->name) }}"
+                                value="{{ old('name') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                                 required autofocus>
                             @error('name')
@@ -31,7 +31,7 @@
                             <label for="description"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Deskripsi</label>
                             <textarea name="description" id="description" rows="4"
-                                class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500">{{ old('description', $extracurricular->description) }}</textarea>
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500">{{ old('description') }}</textarea>
                             @error('description')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -40,19 +40,17 @@
                         {{-- Gambar 1 --}}
                         <div class="mb-6">
                             <label for="image1"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
-                                Ekstrakurikuler
-                                1 <span class="text-red-500">*</span></label>
-                            <input type="file" name="image1" id="image1" class="hidden"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                                Gambar Ekstrakurikuler 1 <span class="text-red-500">*</span>
+                            </label>
+                            <input type="file" name="image1" id="image1" class="hidden" required
                                 onchange="previewImage(event, 'image1')" accept="image/*">
                             <div class="mt-1">
-                                <img id="image1-preview"
-                                    src="{{ $extracurricular->image1 ? asset('storage/' . $extracurricular->image1) : '#' }}"
-                                    alt="Pratinjau {{ $extracurricular->name }} Gambar 1"
-                                    class="w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500 {{ $extracurricular->image1 ? '' : 'hidden' }}"
-                                    loading="lazy" onclick="document.getElementById('image1').click()">
+                                <img id="image1-preview" src="#" alt="Pratinjau Gambar 1"
+                                    class="hidden w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500"
+                                    onclick="document.getElementById('image1').click()">
                                 <div id="image1-placeholder"
-                                    class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400 {{ $extracurricular->image1 ? 'hidden' : '' }}"
+                                    class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400"
                                     onclick="document.getElementById('image1').click()">
                                     <span class="text-lg">Klik untuk memilih gambar</span>
                                 </div>
@@ -62,24 +60,21 @@
                             @enderror
                         </div>
 
-                        {{-- Gambar 2 - Gambar 5 --}}
+                        {{-- Gambar 2 --}}
                         @foreach (['image2', 'image3', 'image4', 'image5'] as $image)
                             <div class="mb-6">
                                 <label for="{{ $image }}"
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
                                     Ekstrakurikuler {{ $loop->index + 2 }}</label>
-                                <input type="file" name="{{ $image }}" id="{{ $image }}"
-                                    class="hidden" onchange="previewImage(event, '{{ $image }}')"
-                                    accept="image/*">
+                                <input type="file" name="{{ $image }}" id="{{ $image }}" class="hidden"
+                                    onchange="previewImage(event, '{{ $image }}')" accept="image/*">
                                 <div class="mt-1">
-                                    <img id="{{ $image }}-preview"
-                                        src="{{ $extracurricular->{$image} ? asset('storage/' . $extracurricular->{$image}) : '#' }}"
-                                        alt="Pratinjau {{ $extracurricular->name }} {{ $image }}"
-                                        class="w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500 {{ $extracurricular->{$image} ? '' : 'hidden' }}"
-                                        loading="lazy"
+                                    <img id="{{ $image }}-preview" src="#"
+                                        alt="Pratinjau {{ $image }}"
+                                        class="hidden w-full md:w-64 h-48 object-cover rounded-lg cursor-pointer shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 border-dashed border-transparent focus:border-blue-500"
                                         onclick="document.getElementById('{{ $image }}').click()">
                                     <div id="{{ $image }}-placeholder"
-                                        class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400 {{ $extracurricular->{$image} ? 'hidden' : '' }}"
+                                        class="w-full md:w-64 h-48 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer text-gray-500 dark:text-gray-400 text-center transition duration-300 ease-in-out hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-400 dark:hover:text-blue-400"
                                         onclick="document.getElementById('{{ $image }}').click()">
                                         <span class="text-lg">Klik untuk memilih gambar</span>
                                     </div>

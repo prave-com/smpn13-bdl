@@ -18,12 +18,12 @@ class FacilityController extends Controller
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('facilities.index', compact('facilities', 'search'));
+        return view('admin.facilities.index', compact('facilities', 'search'));
     }
 
     public function create()
     {
-        return view('facilities.create');
+        return view('admin.facilities.create');
     }
 
     public function store(Request $request)
@@ -54,12 +54,12 @@ class FacilityController extends Controller
             'image5' => $imagePath5,
         ]);
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dibuat.');
+        return redirect()->route('admin.facilities.index')->with('success', 'Fasilitas berhasil dibuat.');
     }
 
     public function edit(Facility $facility)
     {
-        return view('facilities.edit', compact('facility'));
+        return view('admin.facilities.edit', compact('facility'));
     }
 
     public function update(Request $request, Facility $facility)
@@ -121,7 +121,7 @@ class FacilityController extends Controller
 
         $facility->update($updateData);
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil diperbarui.');
+        return redirect()->route('admin.facilities.index')->with('success', 'Fasilitas berhasil diperbarui.');
     }
 
     public function destroy(Facility $facility)
@@ -146,6 +146,6 @@ class FacilityController extends Controller
 
         $facility->delete();
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil dihapus.');
+        return redirect()->route('admin.facilities.index')->with('success', 'Fasilitas berhasil dihapus.');
     }
 }

@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="p-4">
-        <form method="POST" action="{{ route('gallery-categories.galleries.store', $galleryCategory->slug) }}"
+        <form method="POST" action="{{ route('admin.gallery-categories.galleries.store', $galleryCategory->slug) }}"
             enctype="multipart/form-data">
             @csrf
             <input type="file" name="images[]" multiple required
@@ -17,10 +17,10 @@
         <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             @forelse($galleries as $gallery)
                 <div class="relative group">
-                    <img src="{{ route('galleries.image.show', $gallery) }}" alt="Gallery Image"
+                    <img src="{{ route('admin.galleries.image.show', $gallery) }}" alt="Gallery Image"
                         class="rounded-lg w-full h-32 object-cover">
 
-                    <form method="POST" action="{{ route('galleries.destroy', $gallery) }}"
+                    <form method="POST" action="{{ route('admin.gallery-categories.galleries.destroy', $gallery) }}"
                         class="absolute top-1 right-1 hidden group-hover:block">
                         @csrf
                         @method('DELETE')

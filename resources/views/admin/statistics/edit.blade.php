@@ -16,7 +16,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('statistics.update') }}" method="POST">
+                    <form action="{{ route('admin.statistics.update') }}" method="POST">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="mb-4">

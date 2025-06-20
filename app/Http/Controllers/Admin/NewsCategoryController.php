@@ -17,12 +17,12 @@ class NewsCategoryController extends Controller
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('news-categories.index', compact('newsCategories', 'search'));
+        return view('admin.news-categories.index', compact('newsCategories', 'search'));
     }
 
     public function create()
     {
-        return view('news-categories.create');
+        return view('admin.news-categories.create');
     }
 
     public function store(Request $request)
@@ -37,12 +37,12 @@ class NewsCategoryController extends Controller
             'slug' => $request->slug,
         ]);
 
-        return redirect()->route('news-categories.index')->with('success', 'Kategori berita berhasil dibuat.');
+        return redirect()->route('admin.news-categories.index')->with('success', 'Kategori berita berhasil dibuat.');
     }
 
     public function edit(NewsCategory $newsCategory)
     {
-        return view('news-categories.edit', compact('newsCategory'));
+        return view('admin.news-categories.edit', compact('newsCategory'));
     }
 
     public function update(Request $request, NewsCategory $newsCategory)
@@ -57,13 +57,13 @@ class NewsCategoryController extends Controller
             'slug' => $request->slug,
         ]);
 
-        return redirect()->route('news-categories.index')->with('success', 'Kategori berita berhasil diperbarui.');
+        return redirect()->route('admin.news-categories.index')->with('success', 'Kategori berita berhasil diperbarui.');
     }
 
     public function destroy(NewsCategory $newsCategory)
     {
         $newsCategory->delete();
 
-        return redirect()->route('news-categories.index')->with('success', 'Kategori berita berhasil dihapus.');
+        return redirect()->route('admin.news-categories.index')->with('success', 'Kategori berita berhasil dihapus.');
     }
 }

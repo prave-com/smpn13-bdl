@@ -16,7 +16,7 @@
                     @endif
 
                     <div class="mb-4 gap-2 flex flex-col-reverse md:flex-row justify-between items-center">
-                        <form action="{{ route('facilities.index') }}" method="GET" class="w-full max-w-sm">
+                        <form action="{{ route('admin.facilities.index') }}" method="GET" class="w-full max-w-sm">
                             <div class="flex items-center space-x-2">
                                 <input type="text" name="search" value="{{ request()->search }}"
                                     placeholder="Cari fasilitas..."
@@ -27,7 +27,7 @@
                                 </button>
                             </div>
                         </form>
-                        <a href="{{ route('facilities.create') }}"
+                        <a href="{{ route('admin.facilities.create') }}"
                             class="w-full md:w-fit bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline flex items-center justify-center space-x-2">
                             <i class="fa fa-plus"></i>
                             <span>Tambah Fasilitas Baru</span>
@@ -99,12 +99,12 @@
                                         <td class="px-4 py-2 border-b">
                                             <div
                                                 class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-1 md:space-y-0">
-                                                <a href="{{ route('facilities.edit', $facility) }}"
+                                                <a href="{{ route('admin.facilities.edit', $facility) }}"
                                                     class="text-yellow-500 hover:text-yellow-700 flex items-center space-x-1">
                                                     <i class="fa fa-edit"></i>
                                                     <span>Edit</span>
                                                 </a>
-                                                <form action="{{ route('facilities.destroy', $facility) }}"
+                                                <form action="{{ route('admin.facilities.destroy', $facility) }}"
                                                     method="POST" class="inline-block"
                                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus fasilitas ini?')">
                                                     @csrf
