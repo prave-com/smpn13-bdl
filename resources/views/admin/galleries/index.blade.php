@@ -17,7 +17,7 @@
         <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             @forelse($galleries as $gallery)
                 <div class="relative group">
-                    <img src="{{ route('admin.galleries.image.show', $gallery) }}" alt="Gallery Image"
+                    <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image"
                         class="rounded-lg w-full h-32 object-cover">
 
                     <form method="POST" action="{{ route('admin.gallery-categories.galleries.destroy', $gallery) }}"

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
 use App\Http\Controllers\ExternalServiceLinkController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
@@ -21,16 +22,18 @@ Route::get('/', function () {
 
 Route::get('/visi-misi', function () {
     return view('visi-misi');
-})->name('visi-misi');
+})->name('vision-mission');
 
-Route::get('/fasilitas', [FacilityController::class, 'index'])->name('fasilitas.index');
-Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('ekstrakurikuler.index');
-Route::get('/guru-pegawai', [StaffController::class, 'index'])->name('guru-pegawai.index');
-Route::get('/link-layanan-eksternal', [ExternalServiceLinkController::class, 'index'])->name('link-layanan-eksternal.index');
+Route::get('/fasilitas', [FacilityController::class, 'index'])->name('facility.index');
+Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('extracurriculars.index');
+Route::get('/guru-pegawai', [StaffController::class, 'index'])->name('staff.index');
+Route::get('/link-layanan-eksternal', [ExternalServiceLinkController::class, 'index'])->name('external-service-links.index');
+Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/galeri/{galleryCategory:slug}', [GalleryController::class, 'show'])->name('gallery.show');
 
 Route::get('/kontak', function () {
     return view('kontak');
-})->name('kontak');
+})->name('contact');
 
 Route::get('/galleries/{gallery}/image', [AdminGalleryController::class, 'showImage'])->name('admin.galleries.image.show');
 

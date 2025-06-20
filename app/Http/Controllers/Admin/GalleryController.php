@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
@@ -25,10 +24,10 @@ class GalleryController extends Controller
         ]);
 
         foreach ($request->file('images') as $image) {
-            $imagePath = $image->store('galleries');
+            $imagePath = $image->store('galleries', 'public');
 
             $galleryCategory->galleries()->create([
-                'image' => basename($imagePath),
+                'image' => $imagePath,
             ]);
         }
 
@@ -37,25 +36,10 @@ class GalleryController extends Controller
 
     public function destroy(Gallery $gallery)
     {
-        Storage::delete('galleries/'.$gallery->image);
+        Storage::disk('public')->delete($gallery->image);
 
         $gallery->delete();
 
         return back();
-    }
-
-    public function showImage(Gallery $gallery)
-    {
-        $path = 'galleries/'.$gallery->image;
-
-        if (Storage::exists($path)) {
-            $headers = [
-                'Content-Type' => File::mimeType(Storage::path($path)),
-            ];
-
-            return response()->file(Storage::path($path), $headers);
-        }
-
-        abort(404);
     }
 }
