@@ -27,7 +27,8 @@
                     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden text-center p-3">
                         <img src="{{ $person->avatar ? asset('storage/' . $person->avatar) : asset('images/avatar.png') }}"
                             alt="{{ $person->name }}"
-                            class="w-full aspect-[3/4] object-cover object-top rounded-md mb-3 dark:bg-white">
+                            class="w-full aspect-[3/4] object-cover object-top rounded-md mb-3 dark:bg-white"
+                            loading="lazy">
                         <div class="text-sm font-semibold text-gray-800 dark:text-white">
                             {{ $person->name }}
                         </div>
