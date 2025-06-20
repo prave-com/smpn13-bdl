@@ -17,7 +17,8 @@
                         <div class="mb-6">
                             <label for="name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Link Layanan Eksternal</label>
+                                Link Layanan Eksternal <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="name" id="name" maxlength="255"
                                 value="{{ old('name', $externalServiceLink->name) }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
@@ -29,7 +30,9 @@
 
                         <div class="mb-6">
                             <label for="url"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">URL</label>
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                                URL <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="url" id="url" maxlength="255"
                                 value="{{ old('url', $externalServiceLink->url) }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"

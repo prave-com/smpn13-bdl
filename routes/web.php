@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\NewsCategoryController as AdminNewsCategoryController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
+use App\Http\Controllers\ExternalServiceLinkController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,7 @@ Route::get('/visi-misi', function () {
 Route::get('/fasilitas', [FacilityController::class, 'index'])->name('fasilitas.index');
 Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('ekstrakurikuler.index');
 Route::get('/guru-pegawai', [StaffController::class, 'index'])->name('guru-pegawai.index');
+Route::get('/link-layanan-eksternal', [ExternalServiceLinkController::class, 'index'])->name('link-layanan-eksternal.index');
 
 Route::get('/kontak', function () {
     return view('kontak');
