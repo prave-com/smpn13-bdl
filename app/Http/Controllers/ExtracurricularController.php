@@ -11,6 +11,6 @@ class ExtracurricularController extends Controller
     {
         $extracurriculars = Extracurricular::all();
 
-        return view('ekstrakurikuler', compact('admin.extracurriculars'));
+        return view('ekstrakurikuler', compact('extracurriculars'));
     }
 }
