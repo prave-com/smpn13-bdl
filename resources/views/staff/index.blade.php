@@ -52,9 +52,10 @@
                                         <td class="px-4 py-2 border-b break-all">{{ Str::limit($member->position, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
-                                            <img src="{{ route('staff.image.show', $member) }}"
-                                                alt="{{ $member->name }}"
-                                                class="w-16 h-16 md:w-24 md:h-24 object-cover rounded">
+                                            <img src="{{ $member->avatar ? asset('storage/' . $member->avatar) : asset('images/avatar.png') }}"
+                                                alt="avatar {{ $member->name }}"
+                                                class="dark:bg-white w-16 h-16 md:w-24 md:h-24 object-cover rounded"
+                                                loading="lazy">
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <div

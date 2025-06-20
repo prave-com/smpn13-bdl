@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,13 +24,13 @@ Route::get('/visi-misi', function () {
 
 Route::get('/fasilitas', [FacilityController::class, 'index'])->name('fasilitas.index');
 Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('ekstrakurikuler.index');
+Route::get('/guru-pegawai', [StaffController::class, 'index'])->name('guru-pegawai.index');
 
 Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 
 Route::get('/galleries/{gallery}/image', [AdminGalleryController::class, 'showImage'])->name('galleries.image.show');
-Route::get('/staff/{staff}/image', [AdminStaffController::class, 'showImage'])->name('staff.image.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

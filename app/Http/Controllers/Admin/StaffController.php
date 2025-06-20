@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Staff;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class StaffController extends Controller
@@ -32,15 +31,15 @@ class StaffController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-        $imagePath = $request->file('avatar')->store('staff');
+        $imagePath = $request->hasFile('avatar') ? $request->file('avatar')->store('staff', 'public') : null;
 
         Staff::create([
             'name' => $request->name,
             'position' => $request->position,
-            'avatar' => basename($imagePath),
+            'avatar' => $imagePath,
         ]);
 
         return redirect()->route('staff.index')->with('success', 'Staff berhasil dibuat.');
@@ -65,9 +64,11 @@ class StaffController extends Controller
         ];
 
         if ($request->hasFile('avatar')) {
-            Storage::delete('staff/'.$staff->avatar);
-            $imagePath = $request->file('avatar')->store('staff');
-            $updateData['avatar'] = basename($imagePath);
+            if ($staff->avatar) {
+                Storage::disk('public')->delete($staff->avatar);
+            }
+            $imagePath = $request->file('avatar')->store('staff', 'public');
+            $updateData['avatar'] = $imagePath;
         }
 
         $staff->update($updateData);
@@ -77,25 +78,12 @@ class StaffController extends Controller
 
     public function destroy(Staff $staff)
     {
-        Storage::delete('staff/'.$staff->avatar);
+        if ($staff->avatar) {
+            Storage::disk('public')->delete($staff->avatar);
+        }
 
         $staff->delete();
 
         return redirect()->route('staff.index')->with('success', 'Staff berhasil dihapus.');
-    }
-
-    public function showImage(Staff $staff)
-    {
-        $path = 'staff/'.$staff->avatar;
-
-        if (Storage::exists($path)) {
-            $headers = [
-                'Content-Type' => File::mimeType(Storage::path($path)),
-            ];
-
-            return response()->file(Storage::path($path), $headers);
-        }
-
-        abort(404);
     }
 }

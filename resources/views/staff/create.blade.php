@@ -15,7 +15,8 @@
                         <div class="mb-6">
                             <label for="name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Staff</label>
+                                Staff <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="name" id="name" maxlength="255"
                                 value="{{ old('name') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
@@ -27,7 +28,9 @@
 
                         <div class="mb-6">
                             <label for="position"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Posisi</label>
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                                Posisi <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="position" id="position" maxlength="255"
                                 value="{{ old('position') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
@@ -42,7 +45,7 @@
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
                                 Staff</label>
                             <input type="file" name="avatar" id="avatar" class="hidden" {{-- Keep hidden --}}
-                                required onchange="previewImage(event)" accept="image/*">
+                                onchange="previewImage(event)" accept="image/*">
 
                             <div class="mt-1">
                                 <img id="image-preview" src="#" alt="Pratinjau Gambar"
