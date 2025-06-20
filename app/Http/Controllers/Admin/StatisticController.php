@@ -12,7 +12,7 @@ class StatisticController extends Controller
     {
         $statistic = Statistic::firstOrCreate([]);
 
-        return view('statistics.edit', compact('statistic'));
+        return view('admin.statistics.edit', compact('statistic'));
     }
 
     public function update(Request $request)
@@ -27,6 +27,6 @@ class StatisticController extends Controller
         $statistic = Statistic::first();
         $statistic->update($validated);
 
-        return redirect()->route('statistics.edit')->with('success', 'Statistics data has been successfully updated!');
+        return redirect()->route('admin.statistics.edit')->with('success', 'Statistics data has been successfully updated!');
     }
 }

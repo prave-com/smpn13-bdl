@@ -17,12 +17,12 @@ class ExternalServiceLinkController extends Controller
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('external-service-links.index', compact('externalServiceLinks', 'search'));
+        return view('admin.external-service-links.index', compact('externalServiceLinks', 'search'));
     }
 
     public function create()
     {
-        return view('external-service-links.create');
+        return view('admin.external-service-links.create');
     }
 
     public function store(Request $request)
@@ -37,12 +37,12 @@ class ExternalServiceLinkController extends Controller
             'url' => $request->url,
         ]);
 
-        return redirect()->route('external-service-links.index')->with('success', 'Link layanan eksternal berhasil dibuat.');
+        return redirect()->route('admin.external-service-links.index')->with('success', 'Link layanan eksternal berhasil dibuat.');
     }
 
     public function edit(ExternalServiceLink $externalServiceLink)
     {
-        return view('external-service-links.edit', compact('externalServiceLink'));
+        return view('admin.external-service-links.edit', compact('externalServiceLink'));
     }
 
     public function update(Request $request, ExternalServiceLink $externalServiceLink)
@@ -57,13 +57,13 @@ class ExternalServiceLinkController extends Controller
             'url' => $request->url,
         ]);
 
-        return redirect()->route('external-service-links.index')->with('success', 'Link layanan eksternal berhasil diperbarui.');
+        return redirect()->route('admin.external-service-links.index')->with('success', 'Link layanan eksternal berhasil diperbarui.');
     }
 
     public function destroy(ExternalServiceLink $externalServiceLink)
     {
         $externalServiceLink->delete();
 
-        return redirect()->route('external-service-links.index')->with('success', 'Link layanan eksternal berhasil dihapus.');
+        return redirect()->route('admin.external-service-links.index')->with('success', 'Link layanan eksternal berhasil dihapus.');
     }
 }

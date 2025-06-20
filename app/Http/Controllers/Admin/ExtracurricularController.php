@@ -18,12 +18,12 @@ class ExtracurricularController extends Controller
         })->paginate(10)
             ->appends($request->only('search'));
 
-        return view('extracurriculars.index', compact('extracurriculars', 'search'));
+        return view('admin.extracurriculars.index', compact('extracurriculars', 'search'));
     }
 
     public function create()
     {
-        return view('extracurriculars.create');
+        return view('admin.extracurriculars.create');
     }
 
     public function store(Request $request)
@@ -54,12 +54,12 @@ class ExtracurricularController extends Controller
             'image5' => $imagePath5,
         ]);
 
-        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dibuat.');
+        return redirect()->route('admin.extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dibuat.');
     }
 
     public function edit(Extracurricular $extracurricular)
     {
-        return view('extracurriculars.edit', compact('extracurricular'));
+        return view('admin.extracurriculars.edit', compact('extracurricular'));
     }
 
     public function update(Request $request, Extracurricular $extracurricular)
@@ -121,7 +121,7 @@ class ExtracurricularController extends Controller
 
         $extracurricular->update($updateData);
 
-        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil diperbarui.');
+        return redirect()->route('admin.extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil diperbarui.');
     }
 
     public function destroy(Extracurricular $extracurricular)
@@ -146,6 +146,6 @@ class ExtracurricularController extends Controller
 
         $extracurricular->delete();
 
-        return redirect()->route('extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dihapus.');
+        return redirect()->route('admin.extracurriculars.index')->with('success', 'Ekstrakurikuler berhasil dihapus.');
     }
 }

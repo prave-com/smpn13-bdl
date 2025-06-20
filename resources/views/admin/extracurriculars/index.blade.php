@@ -16,7 +16,7 @@
                     @endif
 
                     <div class="mb-4 gap-2 flex flex-col-reverse md:flex-row justify-between items-center">
-                        <form action="{{ route('extracurriculars.index') }}" method="GET" class="w-full max-w-sm">
+                        <form action="{{ route('admin.extracurriculars.index') }}" method="GET" class="w-full max-w-sm">
                             <div class="flex items-center space-x-2">
                                 <input type="text" name="search" value="{{ request()->search }}"
                                     placeholder="Cari ekstrakurikuler..."
@@ -27,7 +27,7 @@
                                 </button>
                             </div>
                         </form>
-                        <a href="{{ route('extracurriculars.create') }}"
+                        <a href="{{ route('admin.extracurriculars.create') }}"
                             class="w-full md:w-fit bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline flex items-center justify-center space-x-2">
                             <i class="fa fa-plus"></i>
                             <span>Tambah Ekstrakurikuler Baru</span>
@@ -99,13 +99,13 @@
                                         <td class="px-4 py-2 border-b">
                                             <div
                                                 class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-1 md:space-y-0">
-                                                <a href="{{ route('extracurriculars.edit', $extracurricular) }}"
+                                                <a href="{{ route('admin.extracurriculars.edit', $extracurricular) }}"
                                                     class="text-yellow-500 hover:text-yellow-700 flex items-center space-x-1">
                                                     <i class="fa fa-edit"></i>
                                                     <span>Edit</span>
                                                 </a>
                                                 <form
-                                                    action="{{ route('extracurriculars.destroy', $extracurricular) }}"
+                                                    action="{{ route('admin.extracurriculars.destroy', $extracurricular) }}"
                                                     method="POST" class="inline-block"
                                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus ekstrakurikuler ini?')">
                                                     @csrf

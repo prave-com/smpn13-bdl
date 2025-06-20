@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Buat Kategori Galeri
+            Edit Kategori Berita
         </h2>
     </x-slot>
 
@@ -9,15 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('gallery-categories.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.news-categories.update', $newsCategory) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <div class="mb-6">
                             <label for="name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Kategori Galeri</label>
+                                Kategori Berita</label>
                             <input type="text" name="name" id="name" maxlength="255"
-                                value="{{ old('name') }}"
+                                value="{{ old('name', $newsCategory->name) }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                                 required autofocus>
                             @error('name')
@@ -28,7 +30,8 @@
                         <div class="mb-6">
                             <label for="slug"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Slug</label>
-                            <input type="text" name="slug" id="slug" value="{{ old('slug') }}"
+                            <input type="text" name="slug" id="slug"
+                                value="{{ old('slug', $newsCategory->slug) }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                                 required autofocus readonly>
                             @error('slug')

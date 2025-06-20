@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Buat Link Layanan Eksternal
+            Buat Kategori Berita
         </h2>
     </x-slot>
 
@@ -9,15 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('external-service-links.store') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('admin.news-categories.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-6">
                             <label for="name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Link Layanan Eksternal <span class="text-red-500">*</span>
-                            </label>
+                                Kategori Berita</label>
                             <input type="text" name="name" id="name" maxlength="255"
                                 value="{{ old('name') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
@@ -28,15 +26,12 @@
                         </div>
 
                         <div class="mb-6">
-                            <label for="url"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                                URL <span class="text-red-500">*</span>
-                            </label>
-                            <input type="text" name="url" id="url" maxlength="255"
-                                value="{{ old('url') }}"
+                            <label for="slug"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Slug</label>
+                            <input type="text" name="slug" id="slug" value="{{ old('slug') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
-                                required autofocus>
-                            @error('url')
+                                required autofocus readonly>
+                            @error('slug')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -50,4 +45,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function slugify(text) {
+            return text
+                .toString()
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9 -]/g, '')
+                .trim()
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+        }
+
+        document.getElementById('name').addEventListener('input', function() {
+            const name = this.value;
+            const slugField = document.getElementById('slug');
+            slugField.value = slugify(name);
+        });
+    </script>
 </x-app-layout>

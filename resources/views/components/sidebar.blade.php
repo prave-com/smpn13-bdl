@@ -42,10 +42,10 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('facilities.index')">
+                <x-dropdown-link :href="route('admin.facilities.index')">
                     Fasilitas dan Layanan
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('extracurriculars.index')">
+                <x-dropdown-link :href="route('admin.extracurriculars.index')">
                     Ekstrakurikuler
                 </x-dropdown-link>
             </div>
@@ -71,17 +71,17 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('staff.index')">
+                <x-dropdown-link :href="route('admin.staff.index')">
                     Guru dan Pegawai
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('external-service-links.index')">
+                <x-dropdown-link :href="route('admin.external-service-links.index')">
                     Link Layanan Eksternal
                 </x-dropdown-link>
             </div>
         </div>
 
         {{-- Galeri Link --}}
-        <x-sidebar-link :href="route('gallery-categories.index')" :active="request()->routeIs('gallery-categories.index')">
+        <x-sidebar-link :href="route('admin.gallery-categories.index')" :active="request()->routeIs('gallery-categories.index')">
             <x-slot name="icon">
                 <i class="fa fa-picture-o w-5 h-5"></i>
             </x-slot>
@@ -89,7 +89,7 @@
         </x-sidebar-link>
 
         {{-- Statistik Link --}}
-        <x-sidebar-link :href="route('statistics.edit')" :active="request()->routeIs('statistics.edit')">
+        <x-sidebar-link :href="route('admin.statistics.edit')" :active="request()->routeIs('statistics.edit')">
             <x-slot name="icon">
                 <i class="fa fa-bar-chart w-5 h-5"></i>
             </x-slot>

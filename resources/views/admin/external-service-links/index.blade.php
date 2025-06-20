@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Kategori Berita
+            Link Layanan Eksternal
         </h2>
     </x-slot>
 
@@ -16,10 +16,11 @@
                     @endif
 
                     <div class="mb-4 gap-2 flex flex-col-reverse md:flex-row justify-between items-center">
-                        <form action="{{ route('news-categories.index') }}" method="GET" class="w-full max-w-sm">
+                        <form action="{{ route('admin.external-service-links.index') }}" method="GET"
+                            class="w-full max-w-sm">
                             <div class="flex items-center space-x-2">
                                 <input type="text" name="search" value="{{ request()->search }}"
-                                    placeholder="Cari kategori berita..."
+                                    placeholder="Cari link layanan eksternal..."
                                     class="block w-full px-4 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white">
                                 <button type="submit"
                                     class="bg-gray-200 p-2 rounded-md hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500">
@@ -27,10 +28,10 @@
                                 </button>
                             </div>
                         </form>
-                        <a href="{{ route('news-categories.create') }}"
+                        <a href="{{ route('admin.external-service-links.create') }}"
                             class="w-full md:w-fit bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline flex items-center justify-center space-x-2">
                             <i class="fa fa-plus"></i>
-                            <span>Tambah Kategori Berita Baru</span>
+                            <span>Tambah Link Layanan Eksternal Baru</span>
                         </a>
                     </div>
 
@@ -39,30 +40,37 @@
                             <thead>
                                 <tr>
                                     <th class="px-4 py-2 border-b text-left">Nama</th>
-                                    <th class="px-4 py-2 border-b text-left">Slug</th>
+                                    <th class="px-4 py-2 border-b text-left">URL</th>
                                     <th class="px-4 py-2 border-b text-left">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($newsCategories as $newsCategory)
+                                @foreach ($externalServiceLinks as $externalServiceLink)
                                     <tr>
-                                        <td class="px-4 py-2 border-b break-all">
-                                            {{ Str::limit($newsCategory->name, 50) }}
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($externalServiceLink->name, 25) }}
                                         </td>
-                                        <td class="px-4 py-2 border-b break-all">
-                                            {{ Str::limit($newsCategory->slug, 50) }}
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
+                                            {{ Str::limit($externalServiceLink->name, 50) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($externalServiceLink->url, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
+                                            {{ Str::limit($externalServiceLink->url, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <div
                                                 class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-1 md:space-y-0">
-                                                <a href="{{ route('news-categories.edit', $newsCategory) }}"
+                                                <a href="{{ route('admin.external-service-links.edit', $externalServiceLink) }}"
                                                     class="text-yellow-500 hover:text-yellow-700 flex items-center space-x-1">
                                                     <i class="fa fa-edit"></i>
                                                     <span>Edit</span>
                                                 </a>
-                                                <form action="{{ route('news-categories.destroy', $newsCategory) }}"
+                                                <form
+                                                    action="{{ route('admin.external-service-links.destroy', $externalServiceLink) }}"
                                                     method="POST" class="inline-block"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori berita ini?')">
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus link layanan eksternal ini?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
@@ -79,7 +87,7 @@
                         </table>
                     </div>
 
-                    {{ $newsCategories->links() }}
+                    {{ $externalServiceLinks->links() }}
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ class GalleryController extends Controller
     {
         $galleries = $galleryCategory->galleries()->latest()->get();
 
-        return view('galleries.index', compact('galleryCategory', 'galleries'));
+        return view('admin.galleries.index', compact('galleryCategory', 'galleries'));
     }
 
     public function store(Request $request, GalleryCategory $galleryCategory)
@@ -32,7 +32,7 @@ class GalleryController extends Controller
             ]);
         }
 
-        return redirect()->route('gallery-categories.galleries.index', $galleryCategory->slug);
+        return redirect()->route('admin.gallery-categories.galleries.index', $galleryCategory->slug);
     }
 
     public function destroy(Gallery $gallery)
