@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AchievementController as AdminAchievementController;
 use App\Http\Controllers\Admin\ExternalServiceLinkController as AdminExternalServiceLinkController;
 use App\Http\Controllers\Admin\ExtracurricularController as AdminExtracurricularController;
 use App\Http\Controllers\Admin\FacilityController as AdminFacilityController;
@@ -29,7 +28,6 @@ Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 
-Route::get('/achievements/{achievement}/image', [AdminAchievementController::class, 'showImage'])->name('achievements.image.show');
 Route::get('/galleries/{gallery}/image', [AdminGalleryController::class, 'showImage'])->name('galleries.image.show');
 Route::get('/staff/{staff}/image', [AdminStaffController::class, 'showImage'])->name('staff.image.show');
 
@@ -44,7 +42,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('achievements', AdminAchievementController::class)->except(['show']);
     Route::resource('external-service-links', AdminExternalServiceLinkController::class)->except(['show']);
     Route::resource('extracurriculars', AdminExtracurricularController::class)->except(['show']);
     Route::resource('facilities', AdminFacilityController::class)->except(['show']);
