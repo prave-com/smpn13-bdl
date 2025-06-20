@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@smpn13-bandarlampung.sch.id',
+            'email' => 'admin@smpn13-bdl.sch.id',
             'password' => Hash::make(env('APP_KEY')),
             'email_verified_at' => now(),
         ]);

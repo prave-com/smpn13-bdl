@@ -53,10 +53,15 @@
                             <div class="swiper-pagination mt-2"></div>
                         </div>
 
-                        <!-- Nama Ekstrakurikuler -->
+                        <!-- Nama & Deskripsi Ekstrakurikuler -->
                         <h2 class="mt-4 text-lg font-semibold text-gray-800 dark:text-white uppercase tracking-wide">
                             {{ $extracurricular->name }}
                         </h2>
+                        @if (!empty($extracurricular->description))
+                            <p class="mt-2 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-sm leading-relaxed">
+                                {!! nl2br(e($extracurricular->description)) !!}
+                            </p>
+                        @endif
                     </div>
                 @endforeach
             </div>
