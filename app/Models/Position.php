@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Staff extends Model
+class Position extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,11 +13,11 @@ class Staff extends Model
      */
     protected $fillable = [
         'name',
-        'avatar',
+        'ordering',
     ];
 
-    public function positions()
+    public function staff()
     {
-        return $this->belongsToMany(Position::class);
+        return $this->belongsToMany(Staff::class);
     }
 }

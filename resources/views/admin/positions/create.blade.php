@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Edit Link Layanan Eksternal
+            Buat Posisi
         </h2>
     </x-slot>
 
@@ -9,18 +9,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('admin.external-service-links.update', $externalServiceLink) }}"
-                        method="POST">
+                    <form action="{{ route('admin.positions.store') }}" method="POST">
                         @csrf
-                        @method('PUT')
 
                         <div class="mb-6">
                             <label for="name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Link Layanan Eksternal <span class="text-red-500">*</span>
+                                Posisi <span class="text-red-500">*</span>
                             </label>
                             <input type="text" name="name" id="name" maxlength="255"
-                                value="{{ old('name', $externalServiceLink->name) }}"
+                                value="{{ old('name') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                                 required autofocus>
                             @error('name')
@@ -29,15 +27,15 @@
                         </div>
 
                         <div class="mb-6">
-                            <label for="url"
+                            <label for="ordering"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                                URL <span class="text-red-500">*</span>
+                                Urutan <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" name="url" id="url" maxlength="255"
-                                value="{{ old('url', $externalServiceLink->url) }}"
+                            <input type="number" name="ordering" id="ordering" min="0" max="255"
+                                value="{{ old('ordering') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                                 required autofocus>
-                            @error('url')
+                            @error('ordering')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>

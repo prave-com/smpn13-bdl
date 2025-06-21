@@ -15,7 +15,8 @@
                         <div class="mb-6">
                             <label for="name"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Nama
-                                Prestasi</label>
+                                Prestasi <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="name" id="name" maxlength="255"
                                 value="{{ old('name') }}"
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
@@ -28,7 +29,8 @@
                         <div class="mb-6">
                             <label for="attachment"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Lampiran
-                                Prestasi</label>
+                                Prestasi <span class="text-red-500">*</span>
+                            </label>
                             <input type="file" name="attachment" id="attachment"
                                 class="mt-1 block w-full text-sm text-gray-700 dark:text-gray-100 file:bg-blue-600 file:text-white file:rounded file:border-0 file:px-4 file:py-2 dark:file:bg-blue-500"
                                 required accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.odt">

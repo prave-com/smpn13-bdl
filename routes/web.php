@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\FacilityController as AdminFacilityController;
 use App\Http\Controllers\Admin\GalleryCategoryController as AdminGalleryCategoryController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\NewsCategoryController as AdminNewsCategoryController;
+use App\Http\Controllers\Admin\PositionController as AdminPositionController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
 use App\Http\Controllers\ExternalServiceLinkController;
@@ -65,6 +66,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->shallow()
         ->only(['index', 'store', 'destroy'])->names('admin.gallery-categories.galleries');
     Route::resource('news-categories', AdminNewsCategoryController::class)->except(['show'])->names('admin.news-categories');
+    Route::resource('positions', AdminPositionController::class)->except(['show'])->names('admin.positions');
     Route::resource('staff', AdminStaffController::class)->except(['show'])->names('admin.staff');
 
     Route::get('/statistics', [AdminStatisticController::class, 'edit'])->name('admin.statistics.edit');

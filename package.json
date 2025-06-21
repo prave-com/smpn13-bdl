@@ -27,6 +27,7 @@
         "@tailwindcss/postcss": "^4.1.10",
         "font-awesome": "^4.7.0",
         "swiper": "^11.2.8",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "tom-select": "^2.4.3"
     }
 }
