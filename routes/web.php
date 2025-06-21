@@ -24,6 +24,10 @@ Route::get('/visi-misi', function () {
     return view('visi-misi');
 })->name('vision-mission');
 
+Route::get('/sejarah', function () {
+    return view('sejarah');
+})->name('history');
+
 Route::get('/fasilitas', [FacilityController::class, 'index'])->name('facility.index');
 Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('extracurriculars.index');
 Route::get('/guru-pegawai', [StaffController::class, 'index'])->name('staff.index');
