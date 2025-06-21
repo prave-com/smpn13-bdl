@@ -45,6 +45,9 @@
                 <x-dropdown-link :href="route('admin.facilities.index')">
                     Fasilitas dan Layanan
                 </x-dropdown-link>
+                <x-dropdown-link :href="route('admin.achievements.index')">
+                    Prestasi
+                </x-dropdown-link>
                 <x-dropdown-link :href="route('admin.extracurriculars.index')">
                     Ekstrakurikuler
                 </x-dropdown-link>

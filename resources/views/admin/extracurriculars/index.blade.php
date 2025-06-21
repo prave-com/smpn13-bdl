@@ -47,10 +47,16 @@
                             <tbody>
                                 @foreach ($extracurriculars as $extracurricular)
                                     <tr>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($extracurricular->name, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($extracurricular->name, 50) }}
                                         </td>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($extracurricular->description, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($extracurricular->description, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
