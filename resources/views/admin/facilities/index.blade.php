@@ -47,10 +47,16 @@
                             <tbody>
                                 @foreach ($facilities as $facility)
                                     <tr>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($facility->name, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($facility->name, 50) }}
                                         </td>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($facility->description, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($facility->description, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">

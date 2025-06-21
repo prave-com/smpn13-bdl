@@ -47,7 +47,10 @@
                             <tbody>
                                 @foreach ($achievements as $achievement)
                                     <tr>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($achievement->name, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($achievement->name, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">

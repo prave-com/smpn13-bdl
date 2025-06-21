@@ -47,9 +47,17 @@
                             <tbody>
                                 @foreach ($staff as $member)
                                     <tr>
-                                        <td class="px-4 py-2 border-b break-all">{{ Str::limit($member->name, 50) }}
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($member->name, 25) }}
                                         </td>
-                                        <td class="px-4 py-2 border-b break-all">{{ Str::limit($member->position, 50) }}
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
+                                            {{ Str::limit($member->name, 50) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($member->position, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
+                                            {{ Str::limit($member->position, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <img src="{{ $member->avatar ? asset('storage/' . $member->avatar) : asset('images/avatar.png') }}"

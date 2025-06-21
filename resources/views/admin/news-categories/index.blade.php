@@ -46,10 +46,16 @@
                             <tbody>
                                 @foreach ($newsCategories as $newsCategory)
                                     <tr>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($newsCategory->name, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($newsCategory->name, 50) }}
                                         </td>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all md:hidden">
+                                            {{ Str::limit($newsCategory->slug, 25) }}
+                                        </td>
+                                        <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($newsCategory->slug, 50) }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
