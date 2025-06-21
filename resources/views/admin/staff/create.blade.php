@@ -27,15 +27,23 @@
                         </div>
 
                         <div class="mb-6">
-                            <label for="position"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                                Posisi <span class="text-red-500">*</span>
+                            <label for="positions"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Posisi
+                                Staff <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" name="position" id="position" maxlength="255"
-                                value="{{ old('position') }}"
-                                class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
-                                required autofocus>
-                            @error('position')
+                            <select name="positions[]" id="positions" multiple
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500">
+                                @foreach ($positions as $position)
+                                    <option value="{{ $position->id }}"
+                                        {{ in_array($position->id, old('positions', [])) ? 'selected' : '' }}>
+                                        {{ $position->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('positions')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                            @error('positions.*')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -44,7 +52,7 @@
                             <label for="avatar"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
                                 Staff</label>
-                            <input type="file" name="avatar" id="avatar" class="hidden" {{-- Keep hidden --}}
+                            <input type="file" name="avatar" id="avatar" class="hidden"
                                 onchange="previewImage(event)" accept="image/*">
 
                             <div class="mt-1">
@@ -74,7 +82,25 @@
         </div>
     </div>
 
+    {{-- Script untuk inisialisasi Tom Select dan pratinjau gambar --}}
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi Tom Select jika elemen 'positions' ada dan TomSelect sudah dimuat
+            if (typeof window.TomSelect !== 'undefined' && document.getElementById('positions')) {
+                new window.TomSelect("#positions", {
+                    plugins: ['remove_button'], // Memungkinkan penghapusan item yang dipilih
+                    create: false, // Melarang pembuatan opsi baru secara langsung
+                    sortField: { // Opsional: mengurutkan opsi dalam dropdown
+                        field: "text",
+                        direction: "asc"
+                    },
+                    // Anda dapat menambahkan lebih banyak opsi di sini untuk menyesuaikan tampilan dan perilakunya
+                    // Lihat dokumentasi Tom Select untuk opsi lengkap: https://tom-select.js.org/docs/
+                });
+            }
+        });
+
+        // Script pratinjau gambar yang sudah ada
         function previewImage(event) {
             const imagePreview = document.getElementById('image-preview');
             const imagePlaceholder = document.getElementById('image-placeholder');

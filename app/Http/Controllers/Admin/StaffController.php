@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Position;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,8 +14,7 @@ class StaffController extends Controller
     {
         $search = $request->input('search');
         $staff = Staff::when($search, function ($query, $search) {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('position', 'like', "%{$search}%");
+            $query->where('name', 'like', "%{$search}%");
         })->paginate(10)
             ->appends($request->only('search'));
 
@@ -23,44 +23,50 @@ class StaffController extends Controller
 
     public function create()
     {
-        return view('admin.staff.create');
+        $positions = Position::orderBy('ordering')->get();
+
+        return view('admin.staff.create', compact('positions'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
+            'positions' => 'required|array',
+            'positions.*' => 'exists:positions,id',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $imagePath = $request->hasFile('avatar') ? $request->file('avatar')->store('staff', 'public') : null;
 
-        Staff::create([
+        $staff = Staff::create([
             'name' => $request->name,
-            'position' => $request->position,
             'avatar' => $imagePath,
         ]);
+
+        $staff->positions()->sync($request->positions);
 
         return redirect()->route('admin.staff.index')->with('success', 'Staff berhasil dibuat.');
     }
 
     public function edit(Staff $staff)
     {
-        return view('admin.staff.edit', compact('staff'));
+        $positions = Position::orderBy('ordering')->get();
+
+        return view('admin.staff.edit', compact('staff', 'positions'));
     }
 
     public function update(Request $request, Staff $staff)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
+            'positions' => 'required|array',
+            'positions.*' => 'exists:positions,id',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $updateData = [
             'name' => $request->name,
-            'position' => $request->position,
         ];
 
         if ($request->hasFile('avatar')) {
@@ -72,6 +78,7 @@ class StaffController extends Controller
         }
 
         $staff->update($updateData);
+        $staff->positions()->sync($request->positions);
 
         return redirect()->route('admin.staff.index')->with('success', 'Staff berhasil diperbarui.');
     }

@@ -54,6 +54,35 @@
             </div>
         </div>
 
+        {{-- Personalia Dropdown --}}
+        <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
+            x-data="{ open: false }" @click="open = !open">
+            <div class="flex items-center justify-between">
+                <span class="flex items-center">
+                    <i class="fa fa-users w-5 h-5 mr-3"></i>
+                    <span>Personalia</span>
+                </span>
+                <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </div>
+            <div x-show="open" x-cloak class="ml-8 mt-2 space-y-2 text-sm"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95">
+                <x-dropdown-link :href="route('admin.staff.index')">
+                    Guru dan Pegawai
+                </x-dropdown-link>
+                <x-dropdown-link :href="route('admin.positions.index')">
+                    Posisi
+                </x-dropdown-link>
+            </div>
+        </div>
+
         {{-- Direktori Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: false }" @click="open = !open">
@@ -74,9 +103,6 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('admin.staff.index')">
-                    Guru dan Pegawai
-                </x-dropdown-link>
                 <x-dropdown-link :href="route('admin.external-service-links.index')">
                     Link Layanan Eksternal
                 </x-dropdown-link>
