@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\Admin\AchievementController as AdminAchievementController;
 use App\Http\Controllers\Admin\ExternalServiceLinkController as AdminExternalServiceLinkController;
 use App\Http\Controllers\Admin\ExtracurricularController as AdminExtracurricularController;
 use App\Http\Controllers\Admin\FacilityController as AdminFacilityController;
@@ -28,7 +30,8 @@ Route::get('/sejarah', function () {
     return view('sejarah');
 })->name('history');
 
-Route::get('/fasilitas', [FacilityController::class, 'index'])->name('facility.index');
+Route::get('/fasilitas', [FacilityController::class, 'index'])->name('facilities.index');
+Route::get('/prestasi', [AchievementController::class, 'index'])->name('achievements.index');
 Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('extracurriculars.index');
 Route::get('/guru-pegawai', [StaffController::class, 'index'])->name('staff.index');
 Route::get('/link-layanan-eksternal', [ExternalServiceLinkController::class, 'index'])->name('external-service-links.index');
@@ -38,8 +41,6 @@ Route::get('/galeri/{galleryCategory:slug}', [GalleryController::class, 'show'])
 Route::get('/kontak', function () {
     return view('kontak');
 })->name('contact');
-
-Route::get('/galleries/{gallery}/image', [AdminGalleryController::class, 'showImage'])->name('admin.galleries.image.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('achievements', AdminAchievementController::class)->except(['show'])->names('admin.achievements');
     Route::resource('external-service-links', AdminExternalServiceLinkController::class)->except(['show'])->names('admin.external-service-links');
     Route::resource('extracurriculars', AdminExtracurricularController::class)->except(['show'])->names('admin.extracurriculars');
     Route::resource('facilities', AdminFacilityController::class)->except(['show'])->names('admin.facilities');

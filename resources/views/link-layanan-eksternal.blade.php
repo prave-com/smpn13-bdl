@@ -11,7 +11,6 @@
 
     <main class="w-full bg-gray-50 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
-            <!-- Judul -->
             <div class="text-center mb-12">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white">K B M</h1>
                 <p class="mt-2 text-lg text-gray-600 dark:text-gray-300">
@@ -19,7 +18,6 @@
                 </p>
             </div>
 
-            <!-- Daftar Link -->
             <ul
                 class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-10 text-lg text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 list-disc pl-5">
                 @foreach ($externalServiceLink as $link)
