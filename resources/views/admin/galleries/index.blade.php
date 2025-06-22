@@ -20,7 +20,7 @@
                     <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image"
                         class="rounded-lg w-full h-32 object-cover">
 
-                    <form method="POST" action="{{ route('admin.gallery-categories.galleries.destroy', $gallery) }}"
+                    <form method="POST" action="{{ route('admin.galleries.destroy', $gallery) }}"
                         class="absolute top-1 right-1 hidden group-hover:block">
                         @csrf
                         @method('DELETE')

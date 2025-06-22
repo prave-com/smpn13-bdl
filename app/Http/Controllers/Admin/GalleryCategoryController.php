@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GalleryCategoryController extends Controller
 {
@@ -29,7 +30,13 @@ class GalleryCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:App\Models\GalleryCategory,slug|regex:/^[a-z0-9-]+$/',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique(GalleryCategory::class, 'slug'),
+                'regex:/^[a-z0-9-]+$/',
+            ],
         ]);
 
         GalleryCategory::create([
@@ -49,7 +56,13 @@ class GalleryCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:App\Models\GalleryCategory,slug,'.$galleryCategory->id.'|regex:/^[a-z0-9-]+$/',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique(GalleryCategory::class, 'slug')->ignore($galleryCategory->id),
+                'regex:/^[a-z0-9-]+$/',
+            ],
         ]);
 
         $galleryCategory->update([
