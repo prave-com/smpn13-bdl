@@ -27,11 +27,13 @@
                                 </button>
                             </div>
                         </form>
-                        <a href="{{ route('admin.positions.create') }}"
-                            class="w-full md:w-fit bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline flex items-center justify-center space-x-2">
-                            <i class="fa fa-plus"></i>
-                            <span>Tambah Posisi Baru</span>
-                        </a>
+                        @if ($canAddPosition)
+                            <a href="{{ route('admin.positions.create') }}"
+                                class="w-full md:w-fit bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline flex items-center justify-center space-x-2">
+                                <i class="fa fa-plus"></i>
+                                <span>Tambah Posisi Baru</span>
+                            </a>
+                        @endif
                     </div>
 
                     <div class="overflow-x-auto">
@@ -43,16 +45,16 @@
                                     <th class="px-4 py-2 border-b text-left">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($positions as $position)
-                                    <tr>
+                            <tbody id="position-table-body"> {{-- Tambahkan ID ini untuk Sortable.js --}}
+                                @forelse ($positions as $position)
+                                    <tr data-id="{{ $position->id }}"> {{-- Tambahkan data-id untuk Sortable.js --}}
                                         <td class="px-4 py-2 border-b break-all md:hidden">
                                             {{ Str::limit($position->name, 25) }}
                                         </td>
                                         <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($position->name, 50) }}
                                         </td>
-                                        <td class="px-4 py-2 border-b break-all">
+                                        <td class="px-4 py-2 border-b break-all js-ordering-cell"> {{-- Tambahkan class ini --}}
                                             {{ $position->ordering }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
@@ -77,7 +79,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="3"
+                                            class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
+                                            Tidak ada posisi ditemukan.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -87,4 +96,65 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const positionTableBody = document.getElementById('position-table-body');
+
+                if (positionTableBody && typeof Sortable !== 'undefined') {
+                    new Sortable(positionTableBody, {
+                        animation: 150,
+                        ghostClass: 'sortable-ghost',
+                        onEnd: function(evt) {
+                            const newOrder = [];
+                            Array.from(positionTableBody.children).forEach((row, index) => {
+                                const positionId = row.dataset.id;
+                                newOrder.push({
+                                    id: positionId,
+                                    ordering: index
+                                });
+                                const orderingCell = row.querySelector('.js-ordering-cell');
+                                if (orderingCell) {
+                                    orderingCell.textContent = index;
+                                }
+                            });
+
+                            fetch('{{ route('admin.positions.updateOrder') }}', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    body: JSON.stringify({
+                                        positions: newOrder
+                                    })
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.message) {
+                                        console.log(data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error updating position order:', error);
+                                    alert('Gagal memperbarui urutan posisi.');
+                                });
+                        }
+                    });
+                } else if (!positionTableBody) {
+                    console.error('Elemen #position-table-body tidak ditemukan.');
+                } else if (typeof Sortable === 'undefined') {
+                    console.error('Sortable.js tidak ditemukan. Pastikan telah diimpor dan dikompilasi.');
+                }
+            });
+        </script>
+        <style>
+            .sortable-ghost {
+                opacity: 0.4;
+                background-color: #f3f4f6;
+                border: 2px dashed #9ca3af;
+            }
+        </style>
+    @endpush
 </x-app-layout>

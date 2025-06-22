@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class NewsCategoryController extends Controller
 {
@@ -29,7 +30,13 @@ class NewsCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:App\Models\NewsCategory,slug|regex:/^[a-z0-9-]+$/',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique(NewsCategory::class, 'slug'),
+                'regex:/^[a-z0-9-]+$/',
+            ],
         ]);
 
         NewsCategory::create([
@@ -49,7 +56,13 @@ class NewsCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:App\Models\NewsCategory,slug,'.$newsCategory->id.'|regex:/^[a-z0-9-]+$/',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique(NewsCategory::class, 'slug')->ignore($newsCategory->id),
+                'regex:/^[a-z0-9-]+$/',
+            ],
         ]);
 
         $newsCategory->update([
