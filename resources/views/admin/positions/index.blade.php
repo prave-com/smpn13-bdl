@@ -41,7 +41,6 @@
                             <thead>
                                 <tr>
                                     <th class="px-4 py-2 border-b text-left">Nama</th>
-                                    <th class="px-4 py-2 border-b text-left">Urutan</th>
                                     <th class="px-4 py-2 border-b text-left">Aksi</th>
                                 </tr>
                             </thead>
@@ -53,9 +52,6 @@
                                         </td>
                                         <td class="px-4 py-2 border-b break-all hidden md:table-cell">
                                             {{ Str::limit($position->name, 50) }}
-                                        </td>
-                                        <td class="px-4 py-2 border-b break-all js-ordering-cell"> {{-- Tambahkan class ini --}}
-                                            {{ $position->ordering }}
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <div
@@ -90,8 +86,6 @@
                             </tbody>
                         </table>
                     </div>
-
-                    {{ $positions->links() }}
                 </div>
             </div>
         </div>

@@ -28,8 +28,7 @@ class PositionController extends Controller
         $positions = Position::when($search, function ($query, $search) {
             $query->where('name', 'like', "%{$search}%");
         })->orderBy('ordering')
-            ->paginate(10)
-            ->appends($request->only('search'));
+            ->get();
 
         $canAddPosition = true;
         if (Position::max('ordering') + 1 > 255) {
