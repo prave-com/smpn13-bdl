@@ -26,7 +26,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-6">
+                        <div class="mb-6 hidden">
                             <label for="ordering"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                                 Urutan <span class="text-red-500">*</span>
@@ -36,24 +36,17 @@
                                 {{ $suggestedOrdering === null ? '' : 'readonly' }}
                                 class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 {{ $suggestedOrdering === null ? '' : 'bg-gray-100 dark:bg-gray-900 cursor-not-allowed' }}"
                                 required>
-                            @if ($suggestedOrdering === null)
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                                    Maksimum urutan (255) telah tercapai. Harap masukkan urutan secara manual.
-                                </p>
-                            @else
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                                    Urutan ini akan diisi secara otomatis ke urutan selanjutnya.
-                                </p>
-                            @endif
                             @error('ordering')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <div class="flex justify-end mt-8">
-                            <button type="submit"
-                                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition duration-300 ease-in-out">Simpan</button>
-                        </div>
+                        @if ($suggestedOrdering !== null)
+                            <div class="flex justify-end mt-8">
+                                <button type="submit"
+                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition duration-300 ease-in-out">Simpan</button>
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>
