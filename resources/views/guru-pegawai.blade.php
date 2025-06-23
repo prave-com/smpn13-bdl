@@ -33,7 +33,7 @@
                                 class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden text-center p-3 transform hover:scale-105 transition-transform duration-200 ease-in-out">
                                 <img src="{{ $person->avatar ? asset('storage/' . $person->avatar) : asset('images/avatar.png') }}"
                                     alt="{{ $person->name }}"
-                                    class="w-full aspect-[3/4] object-cover object-top rounded-md mb-3 dark:bg-white border border-gray-200 dark:border-gray-700"
+                                    class="w-full aspect-3/4 object-cover object-top rounded-md mb-3 dark:bg-white border border-gray-200 dark:border-gray-700"
                                     loading="lazy">
                                 <div class="text-sm font-semibold text-gray-800 dark:text-white">
                                     {{ $person->name }}
