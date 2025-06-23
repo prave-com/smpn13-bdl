@@ -1,16 +1,18 @@
-@props(['active'])
+@props(['href', 'active']) {{-- Anda tetap bisa menggunakan @props untuk dokumentasi, tapi tidak wajib lagi untuk deklarasi --}}
 
 @php
-    $classes = $active
-        ? 'flex items-center px-4 py-2 text-gray-100 bg-gray-900 rounded-md transition duration-150 ease-in-out'
-        : 'flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md transition duration-150 ease-in-out';
+    $classes =
+        $active ?? false // Gunakan null coalescing operator untuk fallback
+            ? 'bg-gray-700 text-white'
+            : 'text-gray-400 hover:bg-gray-700 hover:text-white';
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }}>
+<a href="{{ $href }}"
+    {{ $attributes->merge(['class' => 'flex items-center space-x-2 px-4 py-2 rounded-md transition duration-150 ease-in-out ' . $classes]) }}>
     @if (isset($icon))
-        <span class="mr-3">
+        <div class="mr-3">
             {{ $icon }}
-        </span>
+        </div>
     @endif
     {{ $slot }}
 </a>
