@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('layouts.navigation')
+    @include('components.navbar')
 
     <!-- Page Heading -->
     @isset($header)
