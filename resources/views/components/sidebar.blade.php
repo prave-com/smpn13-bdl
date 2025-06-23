@@ -1,11 +1,12 @@
 <div id="sidebar"
-    class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
+    class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50 flex flex-col">
+    {{-- Tambah flex flex-col --}}
 
-    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 px-4">
+    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 px-4 mb-6"> {{-- mb-6 untuk spasi --}}
         <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }} Logo" class="h-10 w-auto">
     </a>
 
-    <nav>
+    <nav class="flex-1"> {{-- flex-1 agar nav mengisi sisa ruang --}}
         {{-- Dashboard Link --}}
         <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
@@ -125,27 +126,60 @@
             Statistik
         </x-sidebar-link>
     </nav>
+
+    {{-- Menu Profil & Logout di bagian bawah sidebar --}}
+    @auth
+        <div class="mt-auto pt-4 border-t border-gray-700"> {{-- mt-auto akan mendorongnya ke bawah --}}
+            <div class="px-4">
+                <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-sm text-gray-400">{{ Auth::user()->email }}</div>
+            </div>
+
+            <div class="mt-3 space-y-1">
+                <x-sidebar-link :href="route('profile.edit')"> {{-- Gunakan sidebar-link agar gaya konsisten --}}
+                    <x-slot name="icon">
+                        <i class="fa fa-user w-5 h-5"></i>
+                    </x-slot>
+                    {{ __('Profile') }}
+                </x-sidebar-link>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-sidebar-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                        <x-slot name="icon">
+                            <i class="fa fa-sign-out w-5 h-5"></i>
+                        </x-slot>
+                        {{ __('Log Out') }}
+                    </x-sidebar-link>
+                </form>
+            </div>
+        </div>
+    @endauth
 </div>
 
 <div id="sidebar-backdrop" class="fixed inset-0 bg-black opacity-50 z-40 hidden md:hidden"></div>
 
-<button id="mobile-menu-button" class="md:hidden p-4 fixed top-0 left-0 z-50 text-gray-700">
+{{-- Tombol mobile-menu-button dihapus dari sini karena sudah dipindahkan ke navigation.blade.php --}}
+{{-- <button id="mobile-menu-button" class="md:hidden p-4 fixed top-0 left-0 z-50 text-gray-700">
     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
-</button>
+</button> --}}
 
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');
+            // Tombol mobile-menu-button sekarang ada di navigation.blade.php
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
-            mobileMenuButton.addEventListener('click', function() {
-                sidebar.classList.toggle('-translate-x-full');
-                sidebarBackdrop.classList.toggle('hidden');
-            });
+            if (mobileMenuButton) { // Pastikan tombol ada sebelum menambahkan event listener
+                mobileMenuButton.addEventListener('click', function() {
+                    sidebar.classList.toggle('-translate-x-full');
+                    sidebarBackdrop.classList.toggle('hidden');
+                });
+            }
 
             sidebarBackdrop.addEventListener('click', function() {
                 sidebar.classList.add('-translate-x-full');
