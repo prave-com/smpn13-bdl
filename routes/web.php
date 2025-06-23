@@ -23,9 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/sambutan', function () {
+    return view('sambutan');
+})->name('greeting');
+
 Route::get('/visi-misi', function () {
     return view('visi-misi');
 })->name('vision-mission');
+
+Route::get('/struktur-organisasi', function () {
+    return view('struktur-organisasi');
+})->name('organization-structure');
 
 Route::get('/sejarah', function () {
     return view('sejarah');
