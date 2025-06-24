@@ -1,4 +1,4 @@
-<nav class="bg-[#1B1B1B] dark:bg-gray-900 shadow-md">
+<nav class="bg-[#1D6F42] dark:bg-gray-900 shadow-md"> {{-- Warna hijau cerah di sini --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -14,10 +14,13 @@
             {{-- Desktop Navigation --}}
             <div class="hidden md:flex md:items-center md:ml-6 space-x-8">
                 <a href="{{ route('home') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Beranda</a>
+                    class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Beranda</a>
+                {{-- Sesuaikan warna teks --}}
+
+                {{-- Dropdown Profil --}}
                 <div class="relative group">
                     <button
-                        class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
+                        class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
                         Profil
                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                             fill="currentColor">
@@ -27,35 +30,70 @@
                         </svg>
                     </button>
                     <div
-                        class="absolute z-10 hidden group-hover:block bg-[#2a2a2a] shadow-lg rounded-md w-48 py-2 mt-2 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 mt-2 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        {{-- Sesuaikan warna background dropdown --}}
                         <a href="{{ route('greeting') }}"
-                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-yellow-500">Sambutan</a>
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Sambutan</a>
                         <a href="{{ route('vision-mission') }}"
-                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-yellow-500">Visi &
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Visi &
                             Misi</a>
                         <a href="{{ route('organization-structure') }}"
-                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-yellow-500">Struktur
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Struktur
                             Organisasi</a>
                         <a href="{{ route('history') }}"
-                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-yellow-500">Sejarah</a>
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Sejarah</a>
                     </div>
                 </div>
-                <a href="{{ route('facilities.index') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Fasilitas</a>
-                <a href="{{ route('achievements.index') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Prestasi</a>
-                <a href="{{ route('extracurriculars.index') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Ekstrakurikuler</a>
-                <a href="{{ route('staff.index') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Guru
-                    & Pegawai</a>
+
+                {{-- Dropdown Keunggulan (baru) --}}
+                <div class="relative group">
+                    <button
+                        class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
+                        Keunggulan
+                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 mt-2 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        <a href="{{ route('facilities.index') }}"
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Fasilitas</a>
+                        <a href="{{ route('achievements.index') }}"
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Prestasi</a>
+                        <a href="{{ route('extracurriculars.index') }}"
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Ekstrakurikuler</a>
+                    </div>
+                </div>
+
+                {{-- Dropdown Direktori (baru) --}}
+                <div class="relative group">
+                    <button
+                        class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
+                        Direktori
+                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 mt-2 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        <a href="{{ route('staff.index') }}"
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Guru &
+                            Pegawai</a>
+                        <a href="{{ route('external-service-links.index') }}"
+                            class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Link Eksternal</a>
+                    </div>
+                </div>
+
                 <a href="{{ route('gallery.index') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Galeri</a>
-                <a href="{{ route('external-service-links.index') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Link
-                    Eksternal</a>
+                    class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Galeri</a>
                 <a href="{{ route('contact') }}"
-                    class="text-gray-300 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Kontak</a>
+                    class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Kontak</a>
             </div>
 
             {{-- Mobile menu button --}}
@@ -83,15 +121,15 @@
 
     {{-- Mobile menu, show/hide based on menu state. --}}
     <div class="md:hidden origin-top transition-all ease-in-out duration-300 max-h-0 overflow-hidden" id="mobile-menu">
-        {{-- Added transition classes here --}}
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="{{ route('home') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Beranda</a>
+                class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Beranda</a>
+            {{-- Sesuaikan warna teks --}}
 
             {{-- Mobile Dropdown for Profil --}}
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center justify-between">
+                    class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center justify-between">
                     Profil
                     <svg x-bind:class="{ 'rotate-180': open }"
                         class="ml-2 h-4 w-4 transform transition-transform duration-200"
@@ -102,39 +140,81 @@
                     </svg>
                 </button>
                 <div x-show="open" @click.away="open = false"
-                    class="pl-6 py-1 space-y-1 bg-[#3a3a3a] rounded-md transition-all duration-200"
-                    x-transition:enter="max-h-0 opacity-0" x-transition:enter-start="max-h-0 opacity-0"
-                    x-transition:enter-end="max-h-screen opacity-100" x-transition:leave="max-h-screen opacity-100"
-                    x-transition:leave-end="max-h-0 opacity-0">
+                    class="pl-6 py-1 space-y-1 bg-[#1A5C37] rounded-md transition-all duration-200"
+                    {{-- Warna dropdown mobile --}} x-transition:enter="max-h-0 opacity-0"
+                    x-transition:enter-start="max-h-0 opacity-0" x-transition:enter-end="max-h-screen opacity-100"
+                    x-transition:leave="max-h-screen opacity-100" x-transition:leave-end="max-h-0 opacity-0">
                     <a href="{{ route('greeting') }}"
-                        class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600 hover:text-yellow-500 rounded-md">Sambutan</a>
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Sambutan</a>
                     <a href="{{ route('vision-mission') }}"
-                        class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600 hover:text-yellow-500 rounded-md">Visi
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Visi
                         & Misi</a>
                     <a href="{{ route('organization-structure') }}"
-                        class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600 hover:text-yellow-500 rounded-md">Struktur
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Struktur
                         Organisasi</a>
                     <a href="{{ route('history') }}"
-                        class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-600 hover:text-yellow-500 rounded-md">Sejarah</a>
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Sejarah</a>
                 </div>
             </div>
 
-            <a href="{{ route('facilities.index') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Fasilitas</a>
-            <a href="{{ route('achievements.index') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Prestasi</a>
-            <a href="{{ route('extracurriculars.index') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Ekstrakurikuler</a>
-            <a href="{{ route('staff.index') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Guru
-                & Pegawai</a>
+            {{-- Mobile Dropdown for Keunggulan (baru) --}}
+            <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open"
+                    class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center justify-between">
+                    Keunggulan
+                    <svg x-bind:class="{ 'rotate-180': open }"
+                        class="ml-2 h-4 w-4 transform transition-transform duration-200"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div x-show="open" @click.away="open = false"
+                    class="pl-6 py-1 space-y-1 bg-[#1A5C37] rounded-md transition-all duration-200"
+                    x-transition:enter="max-h-0 opacity-0" x-transition:enter-start="max-h-0 opacity-0"
+                    x-transition:enter-end="max-h-screen opacity-100" x-transition:leave="max-h-screen opacity-100"
+                    x-transition:leave-end="max-h-0 opacity-0">
+                    <a href="{{ route('facilities.index') }}"
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Fasilitas</a>
+                    <a href="{{ route('achievements.index') }}"
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Prestasi</a>
+                    <a href="{{ route('extracurriculars.index') }}"
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Ekstrakurikuler</a>
+                </div>
+            </div>
+
+            {{-- Mobile Dropdown for Direktori (baru) --}}
+            <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open"
+                    class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center justify-between">
+                    Direktori
+                    <svg x-bind:class="{ 'rotate-180': open }"
+                        class="ml-2 h-4 w-4 transform transition-transform duration-200"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div x-show="open" @click.away="open = false"
+                    class="pl-6 py-1 space-y-1 bg-[#1A5C37] rounded-md transition-all duration-200"
+                    x-transition:enter="max-h-0 opacity-0" x-transition:enter-start="max-h-0 opacity-0"
+                    x-transition:enter-end="max-h-screen opacity-100" x-transition:leave="max-h-screen opacity-100"
+                    x-transition:leave-end="max-h-0 opacity-0">
+                    <a href="{{ route('staff.index') }}"
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Guru &
+                        Pegawai</a>
+                    <a href="{{ route('external-service-links.index') }}"
+                        class="block px-3 py-2 text-white hover:bg-green-600 hover:text-white rounded-md">Link
+                        Eksternal</a>
+                </div>
+            </div>
+
             <a href="{{ route('gallery.index') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Galeri</a>
-            <a href="{{ route('external-service-links.index') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Link
-                Eksternal</a>
+                class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Galeri</a>
             <a href="{{ route('contact') }}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Kontak</a>
+                class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Kontak</a>
         </div>
     </div>
 </nav>
@@ -149,9 +229,8 @@
         const menuIconOpen = document.getElementById('menu-icon-open');
 
         // Initially hide the mobile menu and ensure correct icon is shown
-        // We'll manage display based on max-height for smooth transitions
         mobileMenu.classList.add('max-h-0');
-        mobileMenu.classList.remove('max-h-screen'); // Ensure it starts collapsed
+        mobileMenu.classList.remove('max-h-screen');
         menuIconClosed.classList.add('block');
         menuIconClosed.classList.remove('hidden');
         menuIconOpen.classList.add('hidden');
@@ -159,18 +238,17 @@
 
 
         mobileMenuButton.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true'; // Get current state
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
-            // Toggle aria-expanded attribute
             this.setAttribute('aria-expanded', !isExpanded);
 
             // Toggle icon visibility
-            if (!isExpanded) { // If menu is now open
+            if (!isExpanded) {
                 menuIconClosed.classList.add('hidden');
                 menuIconClosed.classList.remove('block');
                 menuIconOpen.classList.add('block');
                 menuIconOpen.classList.remove('hidden');
-            } else { // If menu is now closed
+            } else {
                 menuIconClosed.classList.add('block');
                 menuIconClosed.classList.remove('hidden');
                 menuIconOpen.classList.add('hidden');
@@ -178,12 +256,12 @@
             }
 
             // Toggle mobile menu visibility with max-height for smooth transition
-            if (!isExpanded) { // If menu is now open
+            if (!isExpanded) {
                 mobileMenu.classList.remove('max-h-0');
-                mobileMenu.classList.add('max-h-screen'); // Expand
-            } else { // If menu is now closed
+                mobileMenu.classList.add('max-h-screen');
+            } else {
                 mobileMenu.classList.remove('max-h-screen');
-                mobileMenu.classList.add('max-h-0'); // Collapse
+                mobileMenu.classList.add('max-h-0');
             }
         });
     });
