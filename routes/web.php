@@ -15,13 +15,13 @@ use App\Http\Controllers\ExternalServiceLinkController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsPublicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/sambutan', function () {
     return view('sambutan');
@@ -39,6 +39,8 @@ Route::get('/sejarah', function () {
     return view('sejarah');
 })->name('history');
 
+Route::get('/berita', [NewsPublicController::class, 'index'])->name('news.index');
+Route::get('/berita/{news:slug}', [NewsPublicController::class, 'show'])->name('news.show');
 Route::get('/fasilitas', [FacilityController::class, 'index'])->name('facilities.index');
 Route::get('/prestasi', [AchievementController::class, 'index'])->name('achievements.index');
 Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('extracurriculars.index');
