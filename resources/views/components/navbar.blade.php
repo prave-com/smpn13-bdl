@@ -30,8 +30,9 @@
                         </svg>
                     </button>
                     <div
-                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 mt-2 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 top-full transition-opacity duration-200 opacity-0 group-hover:opacity-100">
                         {{-- Sesuaikan warna background dropdown --}}
+                        {{-- **PERBAIKAN: mt-2 diganti top-full** --}}
                         <a href="{{ route('greeting') }}"
                             class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Sambutan</a>
                         <a href="{{ route('vision-mission') }}"
@@ -58,7 +59,8 @@
                         </svg>
                     </button>
                     <div
-                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 mt-2 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 top-full transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        {{-- **PERBAIKAN: mt-2 diganti top-full** --}}
                         <a href="{{ route('facilities.index') }}"
                             class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Fasilitas</a>
                         <a href="{{ route('achievements.index') }}"
@@ -81,7 +83,8 @@
                         </svg>
                     </button>
                     <div
-                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 mt-2 transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 top-full transition-opacity duration-200 opacity-0 group-hover:opacity-100">
+                        {{-- **PERBAIKAN: mt-2 diganti top-full** --}}
                         <a href="{{ route('staff.index') }}"
                             class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Guru &
                             Pegawai</a>
