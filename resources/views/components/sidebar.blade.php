@@ -10,7 +10,7 @@
         {{-- Dashboard Link --}}
         <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
-                <i class="fa fa-home w-5 h-5"></i>
+                <i class="fa-solid fa-house w-5 h-5"></i> {{-- FA 6: fa-solid fa-house --}}
             </x-slot>
             Dashboard
         </x-sidebar-link>
@@ -18,7 +18,7 @@
         {{-- Berita Link --}}
         <x-sidebar-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
             <x-slot name="icon">
-                <i class="fa fa-newspaper-o w-5 h-5"></i>
+                <i class="fa-solid fa-newspaper w-5 h-5"></i> {{-- FA 6: fa-solid fa-newspaper --}}
             </x-slot>
             Berita
         </x-sidebar-link>
@@ -28,7 +28,7 @@
             x-data="{ open: false }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa fa-star w-5 h-5 mr-3"></i>
+                    <i class="fa-solid fa-star w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-star --}}
                     <span>Keunggulan</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -60,7 +60,7 @@
             x-data="{ open: false }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa fa-users w-5 h-5 mr-3"></i>
+                    <i class="fa-solid fa-users w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-users --}}
                     <span>Personalia</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -89,7 +89,7 @@
             x-data="{ open: false }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa fa-folder w-5 h-5 mr-3"></i>
+                    <i class="fa-solid fa-folder w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-folder --}}
                     <span>Direktori</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -113,7 +113,7 @@
         {{-- Galeri Link --}}
         <x-sidebar-link :href="route('admin.gallery-categories.index')" :active="request()->routeIs('gallery-categories.index')">
             <x-slot name="icon">
-                <i class="fa fa-picture-o w-5 h-5"></i>
+                <i class="fa-solid fa-image w-5 h-5"></i> {{-- FA 6: fa-solid fa-image (alternatif: fa-images) --}}
             </x-slot>
             Galeri
         </x-sidebar-link>
@@ -121,7 +121,7 @@
         {{-- Statistik Link --}}
         <x-sidebar-link :href="route('admin.statistics.edit')" :active="request()->routeIs('statistics.edit')">
             <x-slot name="icon">
-                <i class="fa fa-bar-chart w-5 h-5"></i>
+                <i class="fa-solid fa-chart-bar w-5 h-5"></i> {{-- FA 6: fa-solid fa-chart-bar --}}
             </x-slot>
             Statistik
         </x-sidebar-link>
@@ -138,7 +138,7 @@
             <div class="mt-3 space-y-1">
                 <x-sidebar-link :href="route('profile.edit')"> {{-- Gunakan sidebar-link agar gaya konsisten --}}
                     <x-slot name="icon">
-                        <i class="fa fa-user w-5 h-5"></i>
+                        <i class="fa-solid fa-user w-5 h-5"></i> {{-- FA 6: fa-solid fa-user --}}
                     </x-slot>
                     {{ __('Profile') }}
                 </x-sidebar-link>
@@ -147,7 +147,7 @@
                     @csrf
                     <x-sidebar-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                         <x-slot name="icon">
-                            <i class="fa fa-sign-out w-5 h-5"></i>
+                            <i class="fa-solid fa-right-from-bracket w-5 h-5"></i> {{-- FA 6: fa-solid fa-right-from-bracket --}}
                         </x-slot>
                         {{ __('Log Out') }}
                     </x-sidebar-link>
@@ -158,13 +158,6 @@
 </div>
 
 <div id="sidebar-backdrop" class="fixed inset-0 bg-black opacity-50 z-40 hidden md:hidden"></div>
-
-{{-- Tombol mobile-menu-button dihapus dari sini karena sudah dipindahkan ke navigation.blade.php --}}
-{{-- <button id="mobile-menu-button" class="md:hidden p-4 fixed top-0 left-0 z-50 text-gray-700">
-    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-</button> --}}
 
 @push('scripts')
     <script>
