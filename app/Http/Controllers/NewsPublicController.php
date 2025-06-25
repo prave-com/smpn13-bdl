@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use Illuminate\Http\Request;
 
 class NewsPublicController extends Controller
 {
@@ -13,9 +12,9 @@ class NewsPublicController extends Controller
     public function index()
     {
         $allNews = News::with(['images', 'category'])
-                       ->latest('published_at')
-                       ->whereNotNull('published_at')
-                       ->paginate(9); // Contoh paginasi 9 berita per halaman
+            ->latest('published_at')
+            ->whereNotNull('published_at')
+            ->paginate(9); // Contoh paginasi 9 berita per halaman
 
         return view('news.index', compact('allNews'));
     }
