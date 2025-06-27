@@ -10,22 +10,44 @@
         {{-- Dashboard Link --}}
         <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
-                <i class="fa-solid fa-house w-5 h-5"></i> {{-- FA 6: fa-solid fa-house --}}
+                <i class="fa-solid fa-house w-5 h-5"></i>
             </x-slot>
             Dashboard
         </x-sidebar-link>
 
-        {{-- Berita Link --}}
-        <x-sidebar-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-            <x-slot name="icon">
-                <i class="fa-solid fa-newspaper w-5 h-5"></i> {{-- FA 6: fa-solid fa-newspaper --}}
-            </x-slot>
-            Berita
-        </x-sidebar-link>
+        {{-- Berita Dropdown --}}
+        <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
+            x-data="{ open: {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.news-categories.*') ? 'true' : 'false' }} }" @click="open = !open">
+            <div class="flex items-center justify-between">
+                <span class="flex items-center">
+                    <i class="fa-solid fa-newspaper w-5 h-5 mr-3"></i>
+                    <span>Berita</span>
+                </span>
+                <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </div>
+            <div x-show="open" x-cloak class="ml-8 mt-2 space-y-2 text-sm"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95">
+                <x-dropdown-link :href="route('admin.news.index')" :active="request()->routeIs('admin.news.index', 'admin.news.create', 'admin.news.edit')">
+                    Kelola Berita
+                </x-dropdown-link>
+                <x-dropdown-link :href="route('admin.news-categories.index')" :active="request()->routeIs('admin.news-categories.*')">
+                    Kategori Berita
+                </x-dropdown-link>
+            </div>
+        </div>
+        {{-- Akhir Berita Dropdown --}}
 
         {{-- Keunggulan Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
-            x-data="{ open: false }" @click="open = !open">
+            x-data="{ open: {{ request()->routeIs('admin.facilities.*', 'admin.achievements.*', 'admin.extracurriculars.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
                     <i class="fa-solid fa-star w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-star --}}
@@ -43,13 +65,13 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('admin.facilities.index')">
+                <x-dropdown-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">
                     Fasilitas dan Layanan
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('admin.achievements.index')">
+                <x-dropdown-link :href="route('admin.achievements.index')" :active="request()->routeIs('admin.achievements.*')">
                     Prestasi
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('admin.extracurriculars.index')">
+                <x-dropdown-link :href="route('admin.extracurriculars.index')" :active="request()->routeIs('admin.extracurriculars.*')">
                     Ekstrakurikuler
                 </x-dropdown-link>
             </div>
@@ -57,7 +79,7 @@
 
         {{-- Personalia Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
-            x-data="{ open: false }" @click="open = !open">
+            x-data="{ open: {{ request()->routeIs('admin.staff.*', 'admin.positions.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
                     <i class="fa-solid fa-users w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-users --}}
@@ -75,10 +97,10 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('admin.staff.index')">
+                <x-dropdown-link :href="route('admin.staff.index')" :active="request()->routeIs('admin.staff.*')">
                     Guru dan Pegawai
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('admin.positions.index')">
+                <x-dropdown-link :href="route('admin.positions.index')" :active="request()->routeIs('admin.positions.*')">
                     Posisi
                 </x-dropdown-link>
             </div>
@@ -86,7 +108,7 @@
 
         {{-- Direktori Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
-            x-data="{ open: false }" @click="open = !open">
+            x-data="{ open: {{ request()->routeIs('admin.external-service-links.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
                     <i class="fa-solid fa-folder w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-folder --}}
@@ -104,24 +126,24 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95">
-                <x-dropdown-link :href="route('admin.external-service-links.index')">
+                <x-dropdown-link :href="route('admin.external-service-links.index')" :active="request()->routeIs('admin.external-service-links.*')">
                     Link Layanan Eksternal
                 </x-dropdown-link>
             </div>
         </div>
 
         {{-- Galeri Link --}}
-        <x-sidebar-link :href="route('admin.gallery-categories.index')" :active="request()->routeIs('gallery-categories.index')">
+        <x-sidebar-link :href="route('admin.gallery-categories.index')" :active="request()->routeIs('admin.gallery-categories.*', 'admin.gallery-categories.galleries.*')">
             <x-slot name="icon">
-                <i class="fa-solid fa-image w-5 h-5"></i> {{-- FA 6: fa-solid fa-image (alternatif: fa-images) --}}
+                <i class="fa-solid fa-image w-5 h-5"></i>
             </x-slot>
             Galeri
         </x-sidebar-link>
 
         {{-- Statistik Link --}}
-        <x-sidebar-link :href="route('admin.statistics.edit')" :active="request()->routeIs('statistics.edit')">
+        <x-sidebar-link :href="route('admin.statistics.edit')" :active="request()->routeIs('admin.statistics.edit')">
             <x-slot name="icon">
-                <i class="fa-solid fa-chart-bar w-5 h-5"></i> {{-- FA 6: fa-solid fa-chart-bar --}}
+                <i class="fa-solid fa-chart-bar w-5 h-5"></i>
             </x-slot>
             Statistik
         </x-sidebar-link>
@@ -129,16 +151,16 @@
 
     {{-- Menu Profil & Logout di bagian bawah sidebar --}}
     @auth
-        <div class="mt-auto pt-4 border-t border-gray-700"> {{-- mt-auto akan mendorongnya ke bawah --}}
+        <div class="mt-auto pt-4 border-t border-gray-700">
             <div class="px-4">
                 <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-400">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-sidebar-link :href="route('profile.edit')"> {{-- Gunakan sidebar-link agar gaya konsisten --}}
+                <x-sidebar-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                     <x-slot name="icon">
-                        <i class="fa-solid fa-user w-5 h-5"></i> {{-- FA 6: fa-solid fa-user --}}
+                        <i class="fa-solid fa-user w-5 h-5"></i>
                     </x-slot>
                     {{ __('Profile') }}
                 </x-sidebar-link>
@@ -147,7 +169,7 @@
                     @csrf
                     <x-sidebar-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                         <x-slot name="icon">
-                            <i class="fa-solid fa-right-from-bracket w-5 h-5"></i> {{-- FA 6: fa-solid fa-right-from-bracket --}}
+                            <i class="fa-solid fa-right-from-bracket w-5 h-5"></i>
                         </x-slot>
                         {{ __('Log Out') }}
                     </x-sidebar-link>
@@ -163,11 +185,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');
-            // Tombol mobile-menu-button sekarang ada di navigation.blade.php
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
-            if (mobileMenuButton) { // Pastikan tombol ada sebelum menambahkan event listener
+            if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', function() {
                     sidebar.classList.toggle('-translate-x-full');
                     sidebarBackdrop.classList.toggle('hidden');
@@ -179,9 +200,8 @@
                 sidebarBackdrop.classList.add('hidden');
             });
 
-            // Close sidebar on larger screens
             window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768) { // md breakpoint
+                if (window.innerWidth >= 768) {
                     sidebar.classList.remove('-translate-x-full');
                     sidebarBackdrop.classList.add('hidden');
                 } else {
