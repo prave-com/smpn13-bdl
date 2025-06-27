@@ -64,7 +64,8 @@
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
 
-                        <div class="mb-4">
+                        {{-- HAPUS BAGIAN INI: Gambar Saat Ini --}}
+                        {{-- <div class="mb-4">
                             <x-input-label for="current_images" :value="__('Gambar Saat Ini')" />
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-2">
                                 @forelse ($news->images as $image)
@@ -83,9 +84,10 @@
                             </div>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Centang kotak untuk menghapus
                                 gambar yang ada.</p>
-                        </div>
+                        </div> --}}
 
-                        <div class="mb-4">
+                        {{-- HAPUS BAGIAN INI: Tambahkan Gambar Baru --}}
+                        {{-- <div class="mb-4">
                             <x-input-label for="new_images" :value="__('Tambahkan Gambar Baru (Bisa Pilih Beberapa)')" />
                             <input id="new_images"
                                 class="block mt-1 w-full text-sm text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-700 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 focus:outline-none"
@@ -93,7 +95,7 @@
                             <x-input-error :messages="$errors->get('images.*')" class="mt-2" />
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Format: JPG, PNG, GIF, SVG. Max 2MB
                                 per gambar.</p>
-                        </div>
+                        </div> --}}
 
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button>

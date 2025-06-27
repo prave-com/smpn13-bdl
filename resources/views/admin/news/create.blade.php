@@ -9,6 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{-- Hapus enctype="multipart/form-data" jika form ini tidak lagi upload file non-CKEditor --}}
+                    {{-- Tapi untuk jaga-jaga (jika nanti ada fitur upload lain), bisa tetap dipertahankan --}}
                     <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
@@ -55,12 +57,14 @@
 
                         <div class="mb-4">
                             <x-input-label for="content" :value="__('Konten Berita')" />
+                            {{-- ID 'content' ini yang akan diinisialisasi oleh CKEditor --}}
                             <textarea id="content" name="content"
                                 class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ old('content') }}</textarea>
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
 
-                        <div class="mb-4">
+                        {{-- HAPUS BAGIAN INI: Gambar Berita (Bisa Pilih Beberapa) --}}
+                        {{-- <div class="mb-4">
                             <x-input-label for="images" :value="__('Gambar Berita (Bisa Pilih Beberapa)')" />
                             <input id="images"
                                 class="block mt-1 w-full text-sm text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-700 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 focus:outline-none"
@@ -68,7 +72,7 @@
                             <x-input-error :messages="$errors->get('images.*')" class="mt-2" />
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Format: JPG, PNG, GIF, SVG. Max 2MB
                                 per gambar.</p>
-                        </div>
+                        </div> --}}
 
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button>
