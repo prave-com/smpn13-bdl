@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('layouts.navigation')
+    @include('components.navbar')
 
     @isset($header)
         <header class="bg-white dark:bg-gray-800 shadow">
@@ -11,7 +11,6 @@
 
     <main class="w-full bg-gray-50 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
-            <!-- Logo & Judul -->
             <div class="text-center mb-12">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo SMPN 13 Bandar Lampung"
                     class="mx-auto h-32 md:h-64 w-auto">
@@ -20,7 +19,6 @@
                 </h1>
             </div>
 
-            <!-- Foto Kepala Sekolah dan Sambutan -->
             <div class="flex flex-col md:flex-row gap-8 items-start mb-16">
                 <div class="flex-shrink-0 mx-auto">
                     <img src="{{ asset('images/kepala-sekolah.jpeg') }}" alt="Foto Kepala Sekolah"

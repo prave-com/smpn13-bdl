@@ -45,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($staff as $member)
+                                @forelse ($staff as $member)
                                     <tr>
                                         <td class="px-4 py-2 border-b break-all md:hidden">
                                             {{ Str::limit($member->name, 25) }}
@@ -84,7 +84,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="4"
+                                            class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
+                                            Tidak ada guru dan pegawai ditemukan.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

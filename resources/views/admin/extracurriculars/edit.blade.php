@@ -37,7 +37,6 @@
                             @enderror
                         </div>
 
-                        {{-- Gambar 1 --}}
                         <div class="mb-6">
                             <label for="image1"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Gambar
@@ -62,7 +61,6 @@
                             @enderror
                         </div>
 
-                        {{-- Gambar 2 - Gambar 5 --}}
                         @foreach (['image2', 'image3', 'image4', 'image5'] as $image)
                             <div class="mb-6">
                                 <label for="{{ $image }}"

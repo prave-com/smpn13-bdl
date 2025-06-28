@@ -5,19 +5,18 @@
         </h2>
     </x-slot>
 
-    <div class="py-6"> {{-- Kurangi padding agar tidak terlalu jauh dari header --}}
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> {{-- Grid responsif untuk kartu analitik --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                {{-- Kartu Analitik: Jumlah Guru --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center justify-between">
                     <div>
                         <div class="text-gray-500 text-sm font-medium">Jumlah Guru</div>
                         <div class="text-3xl font-bold text-gray-900 mt-2">
-                            120 {{-- Dummy data --}}
+                            120
                         </div>
                     </div>
-                    <div class="text-blue-500"> {{-- Ikon Guru --}}
+                    <div class="text-blue-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-10 h-10">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -26,15 +25,14 @@
                     </div>
                 </div>
 
-                {{-- Kartu Analitik: Jumlah Artikel/Berita --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center justify-between">
                     <div>
                         <div class="text-gray-500 text-sm font-medium">Jumlah Artikel</div>
                         <div class="text-3xl font-bold text-gray-900 mt-2">
-                            450 {{-- Dummy data --}}
+                            450
                         </div>
                     </div>
-                    <div class="text-green-500"> {{-- Ikon Artikel/Berita --}}
+                    <div class="text-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-10 h-10">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -43,15 +41,14 @@
                     </div>
                 </div>
 
-                {{-- Kartu Analitik: Jumlah Siswa --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center justify-between">
                     <div>
                         <div class="text-gray-500 text-sm font-medium">Jumlah Siswa</div>
                         <div class="text-3xl font-bold text-gray-900 mt-2">
-                            1500 {{-- Dummy data --}}
+                            1500
                         </div>
                     </div>
-                    <div class="text-yellow-500"> {{-- Ikon Siswa (Users) --}}
+                    <div class="text-yellow-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-10 h-10">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -60,15 +57,14 @@
                     </div>
                 </div>
 
-                {{-- Kartu Analitik Tambahan: Contoh 1 --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center justify-between">
                     <div>
                         <div class="text-gray-500 text-sm font-medium">Pengunjung Bulan Ini</div>
                         <div class="text-3xl font-bold text-gray-900 mt-2">
-                            7,890 {{-- Dummy data --}}
+                            7,890
                         </div>
                     </div>
-                    <div class="text-purple-500"> {{-- Ikon Eye/View --}}
+                    <div class="text-purple-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-10 h-10">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -78,15 +74,14 @@
                     </div>
                 </div>
 
-                {{-- Kartu Analitik Tambahan: Contoh 2 --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center justify-between">
                     <div>
                         <div class="text-gray-500 text-sm font-medium">Agenda Mendatang</div>
                         <div class="text-3xl font-bold text-gray-900 mt-2">
-                            12 {{-- Dummy data --}}
+                            12
                         </div>
                     </div>
-                    <div class="text-red-500"> {{-- Ikon Calendar --}}
+                    <div class="text-red-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-10 h-10">
                             <path stroke-linecap="round" stroke-linejoin="round"

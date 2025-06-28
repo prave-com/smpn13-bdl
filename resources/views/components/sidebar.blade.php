@@ -1,13 +1,11 @@
 <div id="sidebar"
     class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50 flex flex-col">
-    {{-- Tambah flex flex-col --}}
 
-    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 px-4 mb-6"> {{-- mb-6 untuk spasi --}}
+    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 px-4 mb-6">
         <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }} Logo" class="h-10 w-auto">
     </a>
 
-    <nav class="flex-1"> {{-- flex-1 agar nav mengisi sisa ruang --}}
-        {{-- Dashboard Link --}}
+    <nav class="flex-1">
         <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
                 <i class="fa fa-home w-5 h-5"></i>
@@ -15,15 +13,13 @@
             Dashboard
         </x-sidebar-link>
 
-        {{-- Berita Link --}}
         <x-sidebar-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
             <x-slot name="icon">
-                <i class="fa fa-newspaper-o w-5 h-5"></i>
+                <i class="fas fa-newspaper w-5 h-5"></i>
             </x-slot>
             Berita
         </x-sidebar-link>
 
-        {{-- Keunggulan Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: false }" @click="open = !open">
             <div class="flex items-center justify-between">
@@ -55,7 +51,6 @@
             </div>
         </div>
 
-        {{-- Personalia Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: false }" @click="open = !open">
             <div class="flex items-center justify-between">
@@ -84,7 +79,6 @@
             </div>
         </div>
 
-        {{-- Direktori Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: false }" @click="open = !open">
             <div class="flex items-center justify-between">
@@ -110,15 +104,13 @@
             </div>
         </div>
 
-        {{-- Galeri Link --}}
         <x-sidebar-link :href="route('admin.gallery-categories.index')" :active="request()->routeIs('gallery-categories.index')">
             <x-slot name="icon">
-                <i class="fa fa-picture-o w-5 h-5"></i>
+                <i class="fas fa-image w-5 h-5"></i>
             </x-slot>
             Galeri
         </x-sidebar-link>
 
-        {{-- Statistik Link --}}
         <x-sidebar-link :href="route('admin.statistics.edit')" :active="request()->routeIs('statistics.edit')">
             <x-slot name="icon">
                 <i class="fa fa-bar-chart w-5 h-5"></i>
@@ -127,16 +119,15 @@
         </x-sidebar-link>
     </nav>
 
-    {{-- Menu Profil & Logout di bagian bawah sidebar --}}
     @auth
-        <div class="mt-auto pt-4 border-t border-gray-700"> {{-- mt-auto akan mendorongnya ke bawah --}}
+        <div class="mt-auto pt-4 border-t border-gray-700">
             <div class="px-4">
                 <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-400">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-sidebar-link :href="route('profile.edit')"> {{-- Gunakan sidebar-link agar gaya konsisten --}}
+                <x-sidebar-link :href="route('profile.edit')">
                     <x-slot name="icon">
                         <i class="fa fa-user w-5 h-5"></i>
                     </x-slot>
@@ -159,22 +150,14 @@
 
 <div id="sidebar-backdrop" class="fixed inset-0 bg-black opacity-50 z-40 hidden md:hidden"></div>
 
-{{-- Tombol mobile-menu-button dihapus dari sini karena sudah dipindahkan ke navigation.blade.php --}}
-{{-- <button id="mobile-menu-button" class="md:hidden p-4 fixed top-0 left-0 z-50 text-gray-700">
-    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-</button> --}}
-
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');
-            // Tombol mobile-menu-button sekarang ada di navigation.blade.php
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
-            if (mobileMenuButton) { // Pastikan tombol ada sebelum menambahkan event listener
+            if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', function() {
                     sidebar.classList.toggle('-translate-x-full');
                     sidebarBackdrop.classList.toggle('hidden');
@@ -186,9 +169,8 @@
                 sidebarBackdrop.classList.add('hidden');
             });
 
-            // Close sidebar on larger screens
             window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768) { // md breakpoint
+                if (window.innerWidth >= 768) {
                     sidebar.classList.remove('-translate-x-full');
                     sidebarBackdrop.classList.add('hidden');
                 } else {

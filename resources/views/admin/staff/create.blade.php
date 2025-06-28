@@ -85,22 +85,18 @@
     {{-- Script untuk inisialisasi Tom Select dan pratinjau gambar --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Inisialisasi Tom Select jika elemen 'positions' ada dan TomSelect sudah dimuat
             if (typeof window.TomSelect !== 'undefined' && document.getElementById('positions')) {
                 new window.TomSelect("#positions", {
-                    plugins: ['remove_button'], // Memungkinkan penghapusan item yang dipilih
-                    create: false, // Melarang pembuatan opsi baru secara langsung
-                    sortField: { // Opsional: mengurutkan opsi dalam dropdown
+                    plugins: ['remove_button'],
+                    create: false,
+                    sortField: {
                         field: "text",
                         direction: "asc"
                     },
-                    // Anda dapat menambahkan lebih banyak opsi di sini untuk menyesuaikan tampilan dan perilakunya
-                    // Lihat dokumentasi Tom Select untuk opsi lengkap: https://tom-select.js.org/docs/
                 });
             }
         });
 
-        // Script pratinjau gambar yang sudah ada
         function previewImage(event) {
             const imagePreview = document.getElementById('image-preview');
             const imagePlaceholder = document.getElementById('image-placeholder');

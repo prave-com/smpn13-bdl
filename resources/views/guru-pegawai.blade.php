@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('layouts.navigation')
+    @include('components.navbar')
 
     @isset($header)
         <header class="bg-white dark:bg-gray-800 shadow">
@@ -39,7 +39,6 @@
                                     {{ $person->name }}
                                 </div>
                                 <div class="text-xs text-gray-700 dark:text-gray-300 mt-1">
-                                    {{-- Tampilkan semua posisi yang dimiliki orang ini --}}
                                     {{ $person->positions->pluck('name')->join(', ') }}
                                 </div>
                             </div>
