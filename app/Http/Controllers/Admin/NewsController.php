@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\NewsImage;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB; // Tambahkan ini
-use Illuminate\Support\Facades\Log; // Tambahkan ini
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage; // Tambahkan ini
+use Illuminate\Validation\Rule; // Tambahkan ini
 
 class NewsController extends Controller
 {
@@ -43,6 +43,7 @@ class NewsController extends Controller
     public function create()
     {
         $categories = NewsCategory::orderBy('name')->get();
+
         return view('admin.news.create', compact('categories'));
     }
 
@@ -88,7 +89,7 @@ class NewsController extends Controller
                 // Pastikan file tersebut benar-benar ada di folder ckeditor_images
                 if (Storage::disk('public')->exists($relativePath)) {
                     // Pindahkan file dari ckeditor_images ke news_images
-                    $newPath = 'news_images/' . basename($relativePath);
+                    $newPath = 'news_images/'.basename($relativePath);
                     Storage::disk('public')->move($relativePath, $newPath);
 
                     // Simpan ke tabel news_images
@@ -108,12 +109,14 @@ class NewsController extends Controller
             $news->save();
 
             DB::commit(); // Komit transaksi
+
             return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dibuat.');
 
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback jika ada error
-            Log::error('Error creating news and processing CKEditor images: ' . $e->getMessage(), ['exception' => $e]);
-            return redirect()->back()->with('error', 'Gagal membuat berita. Terjadi kesalahan: ' . $e->getMessage())->withInput();
+            Log::error('Error creating news and processing CKEditor images: '.$e->getMessage(), ['exception' => $e]);
+
+            return redirect()->back()->with('error', 'Gagal membuat berita. Terjadi kesalahan: '.$e->getMessage())->withInput();
         }
     }
 
@@ -124,6 +127,7 @@ class NewsController extends Controller
     {
         $categories = NewsCategory::orderBy('name')->get();
         $news->load('images');
+
         return view('admin.news.edit', compact('news', 'categories'));
     }
 
@@ -169,19 +173,19 @@ class NewsController extends Controller
             // --- Logika untuk menghapus gambar yang tidak lagi ada di konten CKEditor ---
             foreach ($existingNewsImages as $existingUrl) {
                 // Periksa apakah URL gambar lama tidak ada di konten CKEditor yang baru
-                if (!in_array($existingUrl, $currentCkeditorImageUrls)) {
+                if (! in_array($existingUrl, $currentCkeditorImageUrls)) {
                     // Dapatkan path internal dari URL
                     $relativePath = str_replace(Storage::url(''), '', $existingUrl);
-                    
+
                     // Hapus file fisik jika masih ada
                     if (Storage::disk('public')->exists($relativePath)) {
                         Storage::disk('public')->delete($relativePath);
-                        Log::info("Deleted old news image file: " . $relativePath);
+                        Log::info('Deleted old news image file: '.$relativePath);
                     }
-                    
+
                     // Hapus dari tabel NewsImage
                     NewsImage::where('news_id', $news->id)->where('image', $relativePath)->delete();
-                    Log::info("Deleted old news image record from DB: " . $relativePath);
+                    Log::info('Deleted old news image record from DB: '.$relativePath);
                 }
             }
 
@@ -194,8 +198,8 @@ class NewsController extends Controller
                 // Asumsi: Gambar baru dari CKEditor akan berada di folder 'ckeditor_images'
                 // Gambar lama yang sudah di news_images akan memiliki path 'news_images/...'
                 if (str_starts_with($relativePath, 'ckeditor_images/') && Storage::disk('public')->exists($relativePath)) {
-                    $newPath = 'news_images/' . basename($relativePath);
-                    
+                    $newPath = 'news_images/'.basename($relativePath);
+
                     // Pindahkan file dari ckeditor_images ke news_images
                     Storage::disk('public')->move($relativePath, $newPath);
 
@@ -209,18 +213,20 @@ class NewsController extends Controller
                     $validatedData['content'] = str_replace($url, Storage::url($newPath), $validatedData['content']);
                 }
             }
-            
+
             // Update konten berita dengan URL gambar yang sudah diperbarui (path baru)
             $news->content = $validatedData['content'];
             $news->save();
 
             DB::commit();
+
             return redirect()->route('admin.news.index')->with('success', 'Berita berhasil diperbarui.');
 
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Error updating news and processing CKEditor images: ' . $e->getMessage(), ['exception' => $e]);
-            return redirect()->back()->with('error', 'Gagal memperbarui berita. Terjadi kesalahan: ' . $e->getMessage())->withInput();
+            Log::error('Error updating news and processing CKEditor images: '.$e->getMessage(), ['exception' => $e]);
+
+            return redirect()->back()->with('error', 'Gagal memperbarui berita. Terjadi kesalahan: '.$e->getMessage())->withInput();
         }
     }
 
@@ -240,11 +246,13 @@ class NewsController extends Controller
             $news->delete();
 
             DB::commit();
+
             return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus.');
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Error deleting news and its images: ' . $e->getMessage(), ['exception' => $e]);
-            return redirect()->back()->with('error', 'Gagal menghapus berita. Terjadi kesalahan: ' . $e->getMessage());
+            Log::error('Error deleting news and its images: '.$e->getMessage(), ['exception' => $e]);
+
+            return redirect()->back()->with('error', 'Gagal menghapus berita. Terjadi kesalahan: '.$e->getMessage());
         }
     }
 
@@ -259,18 +267,18 @@ class NewsController extends Controller
         Log::info('X-CSRF-TOKEN Header:', ['token' => $request->header('X-CSRF-TOKEN')]);
         Log::info('ckCsrfToken in Payload (if any):', ['token' => $request->input('ckCsrfToken')]);
 
-
         // Validasi token jika dikirim via URL parameter (dari ckeditor_initializer.js)
         if ($request->has('_token') && $request->input('_token') !== csrf_token()) {
-             Log::error('CSRF Token mismatch via URL parameter in uploadCkeditorImage!', [
+            Log::error('CSRF Token mismatch via URL parameter in uploadCkeditorImage!', [
                 'received_token' => $request->input('_token'),
-                'expected_token' => csrf_token()
+                'expected_token' => csrf_token(),
             ]);
+
             return response()->json([
                 'uploaded' => 0,
                 'error' => [
-                    'message' => 'CSRF token mismatch.'
-                ]
+                    'message' => 'CSRF token mismatch.',
+                ],
             ], 419); // Atau 400
         }
 
@@ -298,11 +306,12 @@ class NewsController extends Controller
         }
 
         Log::error('CKEditor File upload failed.', ['request_has_file' => $request->hasFile('upload')]);
+
         return response()->json([
             'uploaded' => 0,
             'error' => [
-                'message' => 'File upload failed.'
-            ]
+                'message' => 'File upload failed.',
+            ],
         ], 400);
     }
 
@@ -312,6 +321,7 @@ class NewsController extends Controller
     private function extractCkeditorImageUrls(string $htmlContent): array
     {
         preg_match_all('/<img[^>]+src="([^">]+)"/', $htmlContent, $matches);
+
         return $matches[1] ?? [];
     }
 }

@@ -76,7 +76,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->group(function () {
         ])
         ->shallow()
         ->only(['index', 'store', 'destroy']);
-        
+
     Route::resource('news', AdminNewsController::class)->except(['show']);
     Route::resource('news-categories', AdminNewsCategoryController::class)->except(['show']);
     Route::post('/upload-ckeditor-image', [AdminNewsController::class, 'uploadCkeditorImage'])->name('upload-ckeditor-image');
