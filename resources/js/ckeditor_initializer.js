@@ -1,4 +1,3 @@
-// resources/js/ckeditor_initializer.js
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,16 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
         ClassicEditor.create(document.querySelector("#content"), {
             ckfinder: {
                 uploadUrl: uploadUrl,
-                // Kita tidak perlu options.headers di sini karena token dikirim via URL
             },
         })
             .then((editor) => {
+                // Tambahkan tinggi minimum 500px ke elemen editor
+                editor.ui.view.editable.element.style.minHeight = "500px";
+
                 window.editor = editor;
                 console.log("CKEditor initialized successfully on this page!");
             })
             .catch((error) => {
                 console.error("Error while initializing CKEditor:", error);
-                // Log error detail dari CKEditor (misal: response dari server)
                 if (error.response) {
                     console.error("Server response:", error.response);
                 }

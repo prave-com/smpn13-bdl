@@ -211,52 +211,10 @@
                 <div class="max-w-7xl mx-auto text-center">
                     <h2 class="text-3xl sm:text-4xl font-bold text-[#1B1B18] dark:text-white mb-10">Berita Terbaru</h2>
 
-                    <!-- Swiper untuk berita, menggunakan class unik -->
-                    <div class="swiper swiper-news-homepage"> {{-- Class diubah di sini --}}
-                        <div class="swiper-wrapper">
-                            @foreach ($latestNews as $newsItem)
-                                <div class="swiper-slide h-auto">
-                                    <div
-                                        class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                                        <a href="{{ route('news.show', $newsItem->slug) }}" class="block h-full">
-                                            @if ($newsItem->images->first())
-                                                <img src="{{ asset('storage/' . $newsItem->images->first()->image) }}"
-                                                    alt="{{ $newsItem->title }}" class="w-full h-48 object-cover">
-                                            @else
-                                                <img src="{{ asset('images/default-news.jpg') }}"
-                                                    alt="Default News Image" class="w-full h-48 object-cover">
-                                            @endif
-                                            <div class="p-6 flex flex-col flex-grow">
-                                                <h3
-                                                    class="text-xl font-semibold text-[#1B1B18] dark:text-white mb-2 leading-tight">
-                                                    {{ Str::limit($newsItem->title, 70) }}
-                                                </h3>
-                                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                                                    {{ $newsItem->published_at ? \Carbon\Carbon::parse($newsItem->published_at)->locale('id')->isoFormat('D MMMM Y') : 'Tanggal Tidak Tersedia' }}
-                                                    | {{ $newsItem->category->name ?? 'Tanpa Kategori' }}
-                                                </p>
-                                                <p
-                                                    class="text-gray-700 dark:text-gray-300 text-sm flex-grow line-clamp-3">
-                                                    {{ Str::limit(strip_tags($newsItem->content), 120) }}
-                                                </p>
-                                                <div class="mt-4 text-center">
-                                                    <span
-                                                        class="text-[#1D6F42] hover:text-[#1A5C37] font-medium text-sm inline-flex items-center">
-                                                        Baca Selengkapnya
-                                                        <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination mt-8"></div>
-                        <!-- Add Navigation -->
-                        <div class="swiper-button-next text-[#1D6F42] dark:text-green-200"></div>
-                        <div class="swiper-button-prev text-[#1D6F42] dark:text-green-200"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                        @foreach ($latestNews as $newsItem)
+                            <x-news-card :news="$newsItem" />
+                        @endforeach
                     </div>
 
                     <div class="mt-10">
