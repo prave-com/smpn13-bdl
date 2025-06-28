@@ -73,26 +73,17 @@
                                                 Tidak Ada
                                             @endif
                                         </td>
-                                        <td class="px-4 py-2 border-b">
-                                            <div
-                                                class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-1 md:space-y-0">
-                                                <a href="{{ route('admin.news.edit', $item) }}"
-                                                    class="text-yellow-500 hover:text-yellow-700 flex items-center space-x-1">
-                                                    <i class="fa fa-edit"></i>
-                                                    <span>Edit</span>
-                                                </a>
-                                                <form action="{{ route('admin.news.destroy', $item) }}" method="POST"
-                                                    class="inline-block"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini? Semua gambar terkait juga akan terhapus.')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="text-red-500 hover:text-red-700 flex items-center space-x-1">
-                                                        <i class="fa fa-trash"></i>
-                                                        <span>Hapus</span>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="{{ route('admin.news.edit', $item) }}"
+                                                class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600 mr-3">Edit</a>
+                                            <form action="{{ route('admin.news.destroy', $item) }}" method="POST"
+                                                class="inline-block"
+                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini? Semua gambar terkait juga akan terhapus.')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600">Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty
@@ -115,3 +106,4 @@
         </div>
     </div>
 </x-app-layout>
+
