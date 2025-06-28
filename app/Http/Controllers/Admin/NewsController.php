@@ -11,8 +11,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage; // Tambahkan ini
-use Illuminate\Validation\Rule; // Tambahkan ini
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class NewsController extends Controller
 {
