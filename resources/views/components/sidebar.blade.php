@@ -208,7 +208,7 @@
                     sidebar.classList.remove('-translate-x-full');
                     sidebarBackdrop.classList.add('hidden');
                     document.body.classList.remove(
-                    'overflow-hidden'); // Ensure no overflow-hidden on desktop
+                        'overflow-hidden'); // Ensure no overflow-hidden on desktop
                 } else {
                     // Only add -translate-x-full if sidebar is not currently open
                     if (!sidebar.classList.contains('-translate-x-full')) {
