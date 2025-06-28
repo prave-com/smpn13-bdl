@@ -44,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($newsCategories as $newsCategory)
+                                @forelse ($newsCategories as $newsCategory)
                                     <tr>
                                         <td class="px-4 py-2 border-b break-all md:hidden">
                                             {{ Str::limit($newsCategory->name, 25) }}
@@ -81,7 +81,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="3"
+                                            class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
+                                            Tidak ada kategori berita ditemukan.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

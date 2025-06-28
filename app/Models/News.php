@@ -21,9 +21,18 @@ class News extends Model
         'published_at',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'published_at' => 'datetime', // <-- Tambahkan baris ini
+    ];
+
     public function category(): BelongsTo
     {
-        return $this->belongsTo(NewsCategory::class);
+        return $this->belongsTo(NewsCategory::class, 'news_category_id');
     }
 
     public function images(): HasMany

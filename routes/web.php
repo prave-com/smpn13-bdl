@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\FacilityController as AdminFacilityController;
 use App\Http\Controllers\Admin\GalleryCategoryController as AdminGalleryCategoryController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\NewsCategoryController as AdminNewsCategoryController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\PositionController as AdminPositionController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
@@ -75,7 +76,11 @@ Route::middleware(['auth', 'verified'])->name('admin.')->group(function () {
         ])
         ->shallow()
         ->only(['index', 'store', 'destroy']);
+
+    Route::resource('news', AdminNewsController::class)->except(['show']);
     Route::resource('news-categories', AdminNewsCategoryController::class)->except(['show']);
+    Route::post('/upload-ckeditor-image', [AdminNewsController::class, 'uploadCkeditorImage'])->name('upload-ckeditor-image');
+
     Route::resource('positions', AdminPositionController::class)->except(['show']);
     Route::post('/positions/update-order', [AdminPositionController::class, 'updateOrder'])->name('positions.updateOrder');
     Route::resource('staff', AdminStaffController::class)->except(['show']);
