@@ -1,12 +1,12 @@
 <div id="sidebar"
-    class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50 flex flex-col">
-    {{-- Tambah flex flex-col --}}
+    class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute left-0 transform -translate-x-full transition duration-200 ease-in-out z-50 flex flex-col h-screen md:relative md:translate-x-0 md:sticky md:top-0">
+    {{-- Perubahan utama ada di sini: h-screen untuk mobile, dan md:h-screen, md:sticky, md:top-0 untuk desktop --}}
 
-    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 px-4 mb-6"> {{-- mb-6 untuk spasi --}}
+    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 px-4 mb-6">
         <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }} Logo" class="h-10 w-auto">
     </a>
 
-    <nav class="flex-1"> {{-- flex-1 agar nav mengisi sisa ruang --}}
+    <nav class="flex-1 overflow-y-auto"> {{-- flex-1 agar nav mengisi sisa ruang, tambahkan overflow-y-auto --}}
         {{-- Dashboard Link --}}
         <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
@@ -50,7 +50,7 @@
             x-data="{ open: {{ request()->routeIs('admin.facilities.*', 'admin.achievements.*', 'admin.extracurriculars.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa-solid fa-star w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-star --}}
+                    <i class="fa-solid fa-star w-5 h-5 mr-3"></i>
                     <span>Keunggulan</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -82,7 +82,7 @@
             x-data="{ open: {{ request()->routeIs('admin.staff.*', 'admin.positions.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa-solid fa-users w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-users --}}
+                    <i class="fa-solid fa-users w-5 h-5 mr-3"></i>
                     <span>Personalia</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -111,7 +111,7 @@
             x-data="{ open: {{ request()->routeIs('admin.external-service-links.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa-solid fa-folder w-5 h-5 mr-3"></i> {{-- FA 6: fa-solid fa-folder --}}
+                    <i class="fa-solid fa-folder w-5 h-5 mr-3"></i>
                     <span>Direktori</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -192,20 +192,31 @@
                 mobileMenuButton.addEventListener('click', function() {
                     sidebar.classList.toggle('-translate-x-full');
                     sidebarBackdrop.classList.toggle('hidden');
+                    // Add/remove overflow-hidden to body to prevent scrolling when sidebar is open
+                    document.body.classList.toggle('overflow-hidden');
                 });
             }
 
             sidebarBackdrop.addEventListener('click', function() {
                 sidebar.classList.add('-translate-x-full');
                 sidebarBackdrop.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
             });
 
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 768) {
                     sidebar.classList.remove('-translate-x-full');
                     sidebarBackdrop.classList.add('hidden');
+                    document.body.classList.remove(
+                        'overflow-hidden'); // Ensure no overflow-hidden on desktop
                 } else {
-                    sidebar.classList.add('-translate-x-full');
+                    // Only add -translate-x-full if sidebar is not currently open
+                    if (!sidebar.classList.contains('-translate-x-full')) {
+                        sidebar.classList.add('-translate-x-full');
+                        sidebarBackdrop.classList.add('hidden');
+                    }
+                    // For mobile, ensure overflow-hidden is removed when resizing from desktop
+                    document.body.classList.remove('overflow-hidden');
                 }
             });
         });
