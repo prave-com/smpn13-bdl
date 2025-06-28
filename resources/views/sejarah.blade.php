@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('layouts.navigation')
+    @include('components.navbar')
 
     @isset($header)
         <header class="bg-white dark:bg-gray-800 shadow">
@@ -11,18 +11,15 @@
 
     <main class="w-full bg-gray-50 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
-            <!-- Judul -->
             <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                 SEJARAH SMP NEGERI 13 BANDAR LAMPUNG
             </h1>
 
-            <!-- Gambar -->
             <div class="mb-8">
                 <img src="{{ asset('images/gerbang-sekolah.jpg') }}" alt="Gerbang Sekolah"
                     class="w-full rounded-md shadow-md object-cover max-h-[400px] mx-auto">
             </div>
 
-            <!-- Isi Sejarah -->
             <div class="prose dark:prose-invert max-w-none prose-lg dark:text-gray-300">
                 <p><strong>SMP Negeri 13 Bandar Lampung</strong> berdiri pada tahun <strong>1984</strong> berdasarkan
                     Surat Keputusan Menteri Pendidikan dan Kebudayaan Republik Indonesia Nomor:

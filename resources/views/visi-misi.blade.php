@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('layouts.navigation')
+    @include('components.navbar')
 
     @isset($header)
         <header class="bg-white dark:bg-gray-800 shadow">
@@ -11,14 +11,12 @@
 
     <main class="w-full bg-gray-50 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
-            <!-- Logo -->
             <div class="text-center mb-12">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo SMPN 13 Bandar Lampung"
                     class="mx-auto h-32 md:h-64 w-auto">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white mt-6">VISI & MISI</h1>
             </div>
 
-            <!-- Visi -->
             <section class="mb-16">
                 <h2
                     class="text-2xl font-semibold text-gray-800 dark:text-gray-100 border-b-2 border-green-500 inline-block pb-1 mb-4">
@@ -29,7 +27,6 @@
                 </p>
             </section>
 
-            <!-- Misi -->
             <section class="mb-16">
                 <h2
                     class="text-2xl font-semibold text-gray-800 dark:text-gray-100 border-b-2 border-green-500 inline-block pb-1 mb-4">

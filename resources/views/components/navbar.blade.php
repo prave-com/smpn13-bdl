@@ -1,8 +1,7 @@
-<nav class="bg-[#1D6F42] dark:bg-gray-900 shadow-md"> {{-- Warna hijau cerah di sini --}}
+<nav class="bg-[#1D6F42] dark:bg-gray-900 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                {{-- Logo --}}
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
                         <img class="h-10 w-auto" src="{{ asset('images/logo.png') }}"
@@ -11,13 +10,10 @@
                 </div>
             </div>
 
-            {{-- Desktop Navigation --}}
             <div class="hidden md:flex md:items-center md:ml-6 space-x-8">
                 <a href="{{ route('home') }}"
                     class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Beranda</a>
-                {{-- Sesuaikan warna teks --}}
 
-                {{-- Dropdown Profil --}}
                 <div class="relative group">
                     <button
                         class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
@@ -31,8 +27,6 @@
                     </button>
                     <div
                         class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 top-full transition-opacity duration-200 opacity-0 group-hover:opacity-100">
-                        {{-- Sesuaikan warna background dropdown --}}
-                        {{-- **PERBAIKAN: mt-2 diganti top-full** --}}
                         <a href="{{ route('greeting') }}"
                             class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Sambutan</a>
                         <a href="{{ route('vision-mission') }}"
@@ -46,7 +40,6 @@
                     </div>
                 </div>
 
-                {{-- Dropdown Keunggulan (baru) --}}
                 <div class="relative group">
                     <button
                         class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
@@ -60,7 +53,6 @@
                     </button>
                     <div
                         class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 top-full transition-opacity duration-200 opacity-0 group-hover:opacity-100">
-                        {{-- **PERBAIKAN: mt-2 diganti top-full** --}}
                         <a href="{{ route('facilities.index') }}"
                             class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Fasilitas</a>
                         <a href="{{ route('achievements.index') }}"
@@ -70,7 +62,6 @@
                     </div>
                 </div>
 
-                {{-- Dropdown Direktori (baru) --}}
                 <div class="relative group">
                     <button
                         class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center">
@@ -84,7 +75,6 @@
                     </button>
                     <div
                         class="absolute z-10 hidden group-hover:block bg-[#104710] shadow-lg rounded-md w-48 py-2 top-full transition-opacity duration-200 opacity-0 group-hover:opacity-100">
-                        {{-- **PERBAIKAN: mt-2 diganti top-full** --}}
                         <a href="{{ route('staff.index') }}"
                             class="block px-4 py-2 text-white hover:bg-green-700 hover:text-white">Guru &
                             Pegawai</a>
@@ -99,19 +89,16 @@
                     class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Kontak</a>
             </div>
 
-            {{-- Mobile menu button --}}
             <div class="-mr-2 flex items-center md:hidden">
                 <button type="button"
                     class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
                     <span class="sr-only">Open main menu</span>
-                    {{-- Icon when menu is closed. --}}
                     <svg class="block h-6 w-6" id="menu-icon-closed" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    {{-- Icon when menu is open. --}}
                     <svg class="hidden h-6 w-6" id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -122,14 +109,11 @@
         </div>
     </div>
 
-    {{-- Mobile menu, show/hide based on menu state. --}}
     <div class="md:hidden origin-top transition-all ease-in-out duration-300 max-h-0 overflow-hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="{{ route('home') }}"
                 class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Beranda</a>
-            {{-- Sesuaikan warna teks --}}
 
-            {{-- Mobile Dropdown for Profil --}}
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
                     class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center justify-between">
@@ -160,7 +144,6 @@
                 </div>
             </div>
 
-            {{-- Mobile Dropdown for Keunggulan (baru) --}}
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
                     class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center justify-between">
@@ -187,7 +170,6 @@
                 </div>
             </div>
 
-            {{-- Mobile Dropdown for Direktori (baru) --}}
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
                     class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center justify-between">
@@ -222,8 +204,6 @@
     </div>
 </nav>
 
-{{-- JavaScript for Mobile Menu Toggle (add this script to your main layout file or a dedicated JS file) --}}
-{{-- If you're using Alpine.js, the mobile dropdown will work automatically. --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -231,7 +211,6 @@
         const menuIconClosed = document.getElementById('menu-icon-closed');
         const menuIconOpen = document.getElementById('menu-icon-open');
 
-        // Initially hide the mobile menu and ensure correct icon is shown
         mobileMenu.classList.add('max-h-0');
         mobileMenu.classList.remove('max-h-screen');
         menuIconClosed.classList.add('block');
@@ -239,13 +218,11 @@
         menuIconOpen.classList.add('hidden');
         menuIconOpen.classList.remove('block');
 
-
         mobileMenuButton.addEventListener('click', function() {
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
             this.setAttribute('aria-expanded', !isExpanded);
 
-            // Toggle icon visibility
             if (!isExpanded) {
                 menuIconClosed.classList.add('hidden');
                 menuIconClosed.classList.remove('block');
@@ -258,7 +235,6 @@
                 menuIconOpen.classList.remove('block');
             }
 
-            // Toggle mobile menu visibility with max-height for smooth transition
             if (!isExpanded) {
                 mobileMenu.classList.remove('max-h-0');
                 mobileMenu.classList.add('max-h-screen');

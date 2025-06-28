@@ -1,9 +1,6 @@
 <footer
     class="bg-gradient-to-r from-[#1D6F42] to-[#1A5C37] dark:from-gray-900 dark:to-gray-800 text-white py-12 shadow-inner">
-    {{-- Green gradient theme --}}
     <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-
-        {{-- Column 1: Logo and Info --}}
         <div class="flex flex-col items-center md:items-start text-center md:text-left">
             <a href="{{ route('home') }}" class="mb-6 block">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo SMP Negeri 13 Bandar Lampung"
@@ -13,13 +10,11 @@
                 "Menumbuhkan sikap ulet, gigih serta siap berkompetisi meraih prestasi belajar."
             </p>
             <div class="flex space-x-6">
-                {{-- Link to TikTok --}}
                 <a href="https://www.tiktok.com/@spantiglasbalam" target="_blank"
                     class="text-green-200 hover:text-white transform hover:scale-110 transition-all duration-300"
                     aria-label="TikTok">
                     <i class="fab fa-tiktok text-3xl"></i>
                 </a>
-                {{-- Link to YouTube --}}
                 <a href="https://www.youtube.com/@smpn13bandarlampung" target="_blank"
                     class="text-green-200 hover:text-red-400 transform hover:scale-110 transition-all duration-300"
                     aria-label="YouTube">
@@ -28,10 +23,9 @@
             </div>
         </div>
 
-        {{-- Column 2: Sitemap Navigation Links --}}
         <div class="text-center md:text-left">
             <h4 class="text-xl font-bold text-white mb-6 border-b-2 border-green-300 pb-2 inline-block">Sitemap</h4>
-            <ul class="space-y-3 text-white text-base"> {{-- Default text color is now white --}}
+            <ul class="space-y-3 text-white text-base">
                 <li><a href="{{ route('home') }}"
                         class="hover:text-green-300 transition-colors duration-200 block">Beranda</a></li>
                 <li><a href="{{ route('greeting') }}"
@@ -46,7 +40,6 @@
             </ul>
         </div>
 
-        {{-- Column 3: Contact Us --}}
         <div class="text-center md:text-left">
             <h4 class="text-xl font-bold text-white mb-6 border-b-2 border-green-300 pb-2 inline-block">Hubungi Kami
             </h4>
@@ -58,14 +51,13 @@
                 </p>
                 <p class="flex items-center justify-center md:justify-start">
                     <i class="fas fa-phone-alt text-lg mr-3 text-green-300"></i>
-                    <span>Telepon/Fax: (0721) 271054</span>
+                    <span>Telepon/Fax: (0721) 271054/271054</span>
                 </p>
             </address>
         </div>
 
     </div>
 
-    {{-- Copyright --}}
     <div class="text-center text-green-200 text-sm border-t border-green-700 pt-8 mt-12">
         © {{ date('Y') }} SMP Negeri 13 Bandar Lampung. All rights reserved.
     </div>

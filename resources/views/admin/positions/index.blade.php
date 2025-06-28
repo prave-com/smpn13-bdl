@@ -44,9 +44,9 @@
                                     <th class="px-4 py-2 border-b text-left">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody id="position-table-body"> {{-- Tambahkan ID ini untuk Sortable.js --}}
+                            <tbody id="position-table-body">
                                 @forelse ($positions as $position)
-                                    <tr data-id="{{ $position->id }}"> {{-- Tambahkan data-id untuk Sortable.js --}}
+                                    <tr data-id="{{ $position->id }}">
                                         <td class="px-4 py-2 border-b break-all md:hidden">
                                             {{ Str::limit($position->name, 25) }}
                                         </td>
@@ -77,7 +77,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="3"
+                                        <td colspan="2"
                                             class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
                                             Tidak ada posisi ditemukan.
                                         </td>

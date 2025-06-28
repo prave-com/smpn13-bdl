@@ -1,10 +1,7 @@
-@props(['href', 'active']) {{-- Anda tetap bisa menggunakan @props untuk dokumentasi, tapi tidak wajib lagi untuk deklarasi --}}
+@props(['href', 'active'])
 
 @php
-    $classes =
-        $active ?? false // Gunakan null coalescing operator untuk fallback
-            ? 'bg-gray-700 text-white'
-            : 'text-gray-400 hover:bg-gray-700 hover:text-white';
+    $classes = $active ?? false ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white';
 @endphp
 
 <a href="{{ $href }}"

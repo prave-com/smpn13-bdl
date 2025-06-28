@@ -1,26 +1,23 @@
 <div id="sidebar"
-    class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute left-0 transform -translate-x-full transition duration-200 ease-in-out z-50 flex flex-col h-screen md:relative md:translate-x-0 md:sticky md:top-0">
-    {{-- Perubahan utama ada di sini: h-screen untuk mobile, dan md:h-screen, md:sticky, md:top-0 untuk desktop --}}
+    class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute left-0 transform -translate-x-full transition duration-200 ease-in-out z-50 flex flex-col h-screen md:translate-x-0 md:sticky md:top-0">
 
     <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 px-4 mb-6">
         <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }} Logo" class="h-10 w-auto">
     </a>
 
-    <nav class="flex-1 overflow-y-auto"> {{-- flex-1 agar nav mengisi sisa ruang, tambahkan overflow-y-auto --}}
-        {{-- Dashboard Link --}}
+    <nav class="flex-1 overflow-y-auto">
         <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
-                <i class="fa-solid fa-house w-5 h-5"></i>
+                <i class="fas fa-house w-5 h-5"></i>
             </x-slot>
             Dashboard
         </x-sidebar-link>
 
-        {{-- Berita Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.news-categories.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa-solid fa-newspaper w-5 h-5 mr-3"></i>
+                    <i class="fas fa-newspaper w-5 h-5 mr-3"></i>
                     <span>Berita</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -43,14 +40,12 @@
                 </x-dropdown-link>
             </div>
         </div>
-        {{-- Akhir Berita Dropdown --}}
 
-        {{-- Keunggulan Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: {{ request()->routeIs('admin.facilities.*', 'admin.achievements.*', 'admin.extracurriculars.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa-solid fa-star w-5 h-5 mr-3"></i>
+                    <i class="fas fa-star w-5 h-5 mr-3"></i>
                     <span>Keunggulan</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -77,12 +72,11 @@
             </div>
         </div>
 
-        {{-- Personalia Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: {{ request()->routeIs('admin.staff.*', 'admin.positions.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa-solid fa-users w-5 h-5 mr-3"></i>
+                    <i class="fas fa-users w-5 h-5 mr-3"></i>
                     <span>Personalia</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -106,12 +100,11 @@
             </div>
         </div>
 
-        {{-- Direktori Dropdown --}}
         <div class="relative px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer transition duration-150 ease-in-out"
             x-data="{ open: {{ request()->routeIs('admin.external-service-links.*') ? 'true' : 'false' }} }" @click="open = !open">
             <div class="flex items-center justify-between">
                 <span class="flex items-center">
-                    <i class="fa-solid fa-folder w-5 h-5 mr-3"></i>
+                    <i class="fas fa-folder w-5 h-5 mr-3"></i>
                     <span>Direktori</span>
                 </span>
                 <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-90': open }"
@@ -132,24 +125,21 @@
             </div>
         </div>
 
-        {{-- Galeri Link --}}
         <x-sidebar-link :href="route('admin.gallery-categories.index')" :active="request()->routeIs('admin.gallery-categories.*', 'admin.gallery-categories.galleries.*')">
             <x-slot name="icon">
-                <i class="fa-solid fa-image w-5 h-5"></i>
+                <i class="fas fa-image w-5 h-5"></i>
             </x-slot>
             Galeri
         </x-sidebar-link>
 
-        {{-- Statistik Link --}}
         <x-sidebar-link :href="route('admin.statistics.edit')" :active="request()->routeIs('admin.statistics.edit')">
             <x-slot name="icon">
-                <i class="fa-solid fa-chart-bar w-5 h-5"></i>
+                <i class="fas fa-chart-bar w-5 h-5"></i>
             </x-slot>
             Statistik
         </x-sidebar-link>
     </nav>
 
-    {{-- Menu Profil & Logout di bagian bawah sidebar --}}
     @auth
         <div class="mt-auto pt-4 border-t border-gray-700">
             <div class="px-4">
@@ -160,7 +150,7 @@
             <div class="mt-3 space-y-1">
                 <x-sidebar-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                     <x-slot name="icon">
-                        <i class="fa-solid fa-user w-5 h-5"></i>
+                        <i class="fas fa-user w-5 h-5"></i>
                     </x-slot>
                     {{ __('Profile') }}
                 </x-sidebar-link>
@@ -169,7 +159,7 @@
                     @csrf
                     <x-sidebar-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                         <x-slot name="icon">
-                            <i class="fa-solid fa-right-from-bracket w-5 h-5"></i>
+                            <i class="fas fa-right-from-bracket w-5 h-5"></i>
                         </x-slot>
                         {{ __('Log Out') }}
                     </x-sidebar-link>
@@ -192,7 +182,6 @@
                 mobileMenuButton.addEventListener('click', function() {
                     sidebar.classList.toggle('-translate-x-full');
                     sidebarBackdrop.classList.toggle('hidden');
-                    // Add/remove overflow-hidden to body to prevent scrolling when sidebar is open
                     document.body.classList.toggle('overflow-hidden');
                 });
             }
@@ -208,14 +197,12 @@
                     sidebar.classList.remove('-translate-x-full');
                     sidebarBackdrop.classList.add('hidden');
                     document.body.classList.remove(
-                        'overflow-hidden'); // Ensure no overflow-hidden on desktop
+                        'overflow-hidden');
                 } else {
-                    // Only add -translate-x-full if sidebar is not currently open
                     if (!sidebar.classList.contains('-translate-x-full')) {
                         sidebar.classList.add('-translate-x-full');
                         sidebarBackdrop.classList.add('hidden');
                     }
-                    // For mobile, ensure overflow-hidden is removed when resizing from desktop
                     document.body.classList.remove('overflow-hidden');
                 }
             });

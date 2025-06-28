@@ -45,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($galleryCategories as $galleryCategory)
+                                @forelse ($galleryCategories as $galleryCategory)
                                     <tr>
                                         <td class="px-4 py-2 border-b break-all md:hidden">
                                             {{ Str::limit($galleryCategory->name, 25) }}</td>
@@ -84,7 +84,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="3"
+                                            class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
+                                            Tidak ada kategori galeri ditemukan.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

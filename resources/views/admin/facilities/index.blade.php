@@ -45,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($facilities as $facility)
+                                @forelse ($facilities as $facility)
                                     <tr>
                                         <td class="px-4 py-2 border-b break-all md:hidden">
                                             {{ Str::limit($facility->name, 25) }}
@@ -61,7 +61,6 @@
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <div class="flex flex-wrap flex-col gap-2 md:flex-row">
-                                                {{-- Gambar 1 --}}
                                                 @if ($facility->image1)
                                                     <img src="{{ asset('storage/' . $facility->image1) }}"
                                                         alt="{{ $facility->name }} Gambar 1"
@@ -69,7 +68,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 2 --}}
                                                 @if ($facility->image2)
                                                     <img src="{{ asset('storage/' . $facility->image2) }}"
                                                         alt="{{ $facility->name }} Gambar 2"
@@ -77,7 +75,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 3 --}}
                                                 @if ($facility->image3)
                                                     <img src="{{ asset('storage/' . $facility->image3) }}"
                                                         alt="{{ $facility->name }} Gambar 3"
@@ -85,7 +82,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 4 --}}
                                                 @if ($facility->image4)
                                                     <img src="{{ asset('storage/' . $facility->image4) }}"
                                                         alt="{{ $facility->name }} Gambar 4"
@@ -93,7 +89,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 5 --}}
                                                 @if ($facility->image5)
                                                     <img src="{{ asset('storage/' . $facility->image5) }}"
                                                         alt="{{ $facility->name }} Gambar 5"
@@ -124,7 +119,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="4"
+                                            class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
+                                            Tidak ada fasilitas ditemukan.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('layouts.navigation')
+    @include('components.navbar')
 
     @isset($header)
         <header class="bg-white dark:bg-gray-800 shadow">
@@ -11,7 +11,6 @@
 
     <main class="w-full bg-gray-50 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
-            <!-- Judul -->
             <div class="text-center mb-12">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white">Prestasi</h1>
                 <p class="mt-2 text-lg text-gray-600 dark:text-gray-300">

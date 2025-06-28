@@ -45,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($extracurriculars as $extracurricular)
+                                @forelse ($extracurriculars as $extracurricular)
                                     <tr>
                                         <td class="px-4 py-2 border-b break-all md:hidden">
                                             {{ Str::limit($extracurricular->name, 25) }}
@@ -61,7 +61,6 @@
                                         </td>
                                         <td class="px-4 py-2 border-b">
                                             <div class="flex flex-wrap flex-col gap-2 md:flex-row">
-                                                {{-- Gambar 1 --}}
                                                 @if ($extracurricular->image1)
                                                     <img src="{{ asset('storage/' . $extracurricular->image1) }}"
                                                         alt="{{ $extracurricular->name }} Gambar 1"
@@ -69,7 +68,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 2 --}}
                                                 @if ($extracurricular->image2)
                                                     <img src="{{ asset('storage/' . $extracurricular->image2) }}"
                                                         alt="{{ $extracurricular->name }} Gambar 2"
@@ -77,7 +75,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 3 --}}
                                                 @if ($extracurricular->image3)
                                                     <img src="{{ asset('storage/' . $extracurricular->image3) }}"
                                                         alt="{{ $extracurricular->name }} Gambar 3"
@@ -85,7 +82,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 4 --}}
                                                 @if ($extracurricular->image4)
                                                     <img src="{{ asset('storage/' . $extracurricular->image4) }}"
                                                         alt="{{ $extracurricular->name }} Gambar 4"
@@ -93,7 +89,6 @@
                                                         loading="lazy">
                                                 @endif
 
-                                                {{-- Gambar 5 --}}
                                                 @if ($extracurricular->image5)
                                                     <img src="{{ asset('storage/' . $extracurricular->image5) }}"
                                                         alt="{{ $extracurricular->name }} Gambar 5"
@@ -125,7 +120,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="4"
+                                            class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
+                                            Tidak ada ekstrakurikuler ditemukan.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
