@@ -27,7 +27,7 @@ class News extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'published_at' => 'datetime', // <-- Tambahkan baris ini
+        'published_at' => 'datetime',
     ];
 
     public function category(): BelongsTo
