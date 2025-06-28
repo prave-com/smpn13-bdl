@@ -8,7 +8,7 @@
     <nav class="flex-1 overflow-y-auto">
         <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
-                <i class="fas fa-house w-5 h-5"></i>
+                <i class="fas fa-dashboard w-5 h-5"></i>
             </x-slot>
             Dashboard
         </x-sidebar-link>

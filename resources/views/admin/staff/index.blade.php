@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Staff
-        </h2>
+        Staff
     </x-slot>
 
     <div class="md:py-12">
@@ -88,7 +86,7 @@
                                     <tr>
                                         <td colspan="4"
                                             class="px-4 py-2 text-center text-gray-500 dark:text-gray-400">
-                                            Tidak ada guru dan pegawai ditemukan.
+                                            Tidak ada staff ditemukan.
                                         </td>
                                     </tr>
                                 @endforelse

@@ -27,6 +27,6 @@ class StatisticController extends Controller
         $statistic = Statistic::first();
         $statistic->update($validated);
 
-        return redirect()->route('admin.statistics.edit')->with('success', 'Statistics data has been successfully updated!');
+        return redirect()->route('admin.statistics.edit')->with('success', 'Data statistik berhasil diperbarui.');
     }
 }
