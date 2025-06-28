@@ -16,7 +16,8 @@
                             class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                             <a href="{{ route('news.show', $newsItem->slug) }}" class="block">
                                 @if ($newsItem->images->first())
-                                    <img src="{{ asset($newsItem->images->first()->image) }}"
+                                    {{-- PERUBAHAN DI SINI: tambahkan 'storage/' --}}
+                                    <img src="{{ asset('storage/' . $newsItem->images->first()->image) }}"
                                         alt="{{ $newsItem->title }}" class="w-full h-56 object-cover">
                                 @else
                                     <img src="{{ asset('images/default-news.jpg') }}" alt="Default News Image"

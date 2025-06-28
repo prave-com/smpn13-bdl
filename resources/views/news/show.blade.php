@@ -12,17 +12,18 @@
                 {{ $news->published_at ? \Carbon\Carbon::parse($news->published_at)->locale('id')->isoFormat('dddd, D MMMM YYYY, HH:mm') : 'Tanggal Tidak Tersedia' }}
             </p>
 
-            @if ($news->images->count() > 0)
+            {{-- HAPUS BAGIAN INI KARENA GAMBAR SEKARANG DIKELOLA OLEH CKEDITOR DI DALAM KONTEN --}}
+            {{-- @if ($news->images->count() > 0)
                 <div class="mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach ($news->images as $image)
-                        <img src="{{ asset($image->image) }}" alt="{{ $news->title }}"
+                        <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $news->title }}"
                             class="w-full h-48 object-cover rounded-lg shadow-md">
                     @endforeach
                 </div>
-            @endif
+            @endif --}}
 
             <div class="prose dark:prose-invert max-w-none text-gray-800 dark:text-gray-200">
-                {{-- Konten berita yang berasal dari TinyMCE akan dirender di sini --}}
+                {{-- Konten berita yang berasal dari CKEditor akan dirender di sini --}}
                 {{-- Penting: Gunakan {!! !!} untuk merender HTML dari database.
                      Pastikan hanya admin terpercaya yang bisa memasukkan konten HTML untuk menghindari XSS. --}}
                 {!! $news->content !!}
