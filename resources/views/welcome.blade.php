@@ -100,40 +100,6 @@
             </section>
         @endif
 
-        {{-- Section: Prestasi Kami --}}
-        @if ($achievements->count() > 0)
-            <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-gray-100 dark:bg-gray-800">
-                <div class="max-w-7xl mx-auto text-center">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1B1B18] dark:text-white mb-10">Prestasi Kami</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        @foreach ($achievements as $achievement)
-                            <div
-                                class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                                @if ($achievement->attachment)
-                                    <img src="{{ asset('storage/' . $achievement->attachment) }}"
-                                        alt="{{ $achievement->name }}" class="w-full h-48 object-cover">
-                                @else
-                                    <img src="{{ asset('images/default-achievement.jpg') }}"
-                                        alt="Default Achievement Image" class="w-full h-48 object-cover">
-                                @endif
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-[#1B1B18] dark:text-white mb-2">
-                                        {{ $achievement->name }}</h3>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="mt-10">
-                        <a href="{{ route('achievements.index') }}"
-                            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#1D6F42] hover:bg-[#1A5C37] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1D6F42] transition-colors duration-200">
-                            Lihat Semua Prestasi
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        @endif
-
         {{-- Section: Program Ekstrakurikuler --}}
         @if ($extracurriculars->count() > 0)
             <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-white dark:bg-gray-900">
