@@ -109,20 +109,24 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         @foreach ($extracurriculars as $extra)
                             <div
-                                class="bg-gray-100 dark:bg-gray-700 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
+                                class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center overflow-hidden">
+                                {{-- Added overflow-hidden here --}}
                                 @if ($extra->image1)
                                     <img src="{{ asset('storage/' . $extra->image1) }}" alt="{{ $extra->name }}"
-                                        class="w-32 h-32 object-cover rounded-full mb-4 border-4 border-[#1D6F42]">
+                                        class="w-full h-48 object-cover"> {{-- Changed w-32 h-32 object-cover rounded-full mb-4 border-4 border-[#1D6F42] to w-full h-48 object-cover --}}
                                 @else
                                     <div
-                                        class="w-32 h-32 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center mb-4 border-4 border-[#1D6F42]">
+                                        class="w-full h-48 bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
+                                        {{-- Changed w-32 h-32 rounded-full to w-full h-48 --}}
                                         <i class="fas fa-question text-4xl text-gray-500"></i>
                                     </div>
                                 @endif
-                                <h3 class="text-xl font-semibold text-[#1B1B18] dark:text-white mb-2">
-                                    {{ $extra->name }}</h3>
-                                <p class="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">
-                                    {{ $extra->description }}</p>
+                                <div class="p-8 flex flex-col items-center"> {{-- Wrapped content below image in a div with padding --}}
+                                    <h3 class="text-xl font-semibold text-[#1B1B18] dark:text-white mb-2">
+                                        {{ $extra->name }}</h3>
+                                    <p class="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">
+                                        {{ $extra->description }}</p>
+                                </div>
                             </div>
                         @endforeach
                     </div>
