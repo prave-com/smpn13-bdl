@@ -87,6 +87,8 @@
                     class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Galeri</a>
                 <a href="{{ route('contact') }}"
                     class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Kontak</a>
+                <a href="{{ route('news.index') }}"
+                    class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Berita</a>
             </div>
 
             <div class="-mr-2 flex items-center md:hidden">
@@ -200,6 +202,8 @@
                 class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Galeri</a>
             <a href="{{ route('contact') }}"
                 class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Kontak</a>
+            <a href="{{ route('news.index') }}"
+                class="text-white hover:bg-green-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Berita</a>
         </div>
     </div>
 </nav>
