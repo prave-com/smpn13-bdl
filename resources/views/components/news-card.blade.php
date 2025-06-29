@@ -1,6 +1,6 @@
 @props(['news'])
 
-<div
+<a href="{{ route('news.show', [$news->category->slug, $news->slug]) }}"
     class="bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
     @if ($news->images->first())
         <img src="{{ asset('storage/' . $news->images->first()->image) }}" alt="{{ $news->title }}"
@@ -22,11 +22,11 @@
             {{ Str::limit(strip_tags($news->content), 120) }}
         </p>
 
+        {{-- The "Baca Selengkapnya" link can be removed or kept as a visual cue --}}
         <div class="mt-4 text-right">
-            <a href="{{ route('news.show', $news->slug) }}"
-                class="text-sm text-[#1D6F42] hover:text-[#1A5C37] font-medium">
+            <span class="text-sm text-[#1D6F42] hover:text-[#1A5C37] font-medium">
                 Baca Selengkapnya <i class="fas fa-arrow-right ml-1 text-xs"></i>
-            </a>
+            </span>
         </div>
     </div>
-</div>
+</a>

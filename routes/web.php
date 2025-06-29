@@ -40,8 +40,12 @@ Route::get('/sejarah', function () {
     return view('sejarah');
 })->name('history');
 
-Route::get('/berita', [NewsPublicController::class, 'index'])->name('news.index');
-Route::get('/berita/{news:slug}', [NewsPublicController::class, 'show'])->name('news.show');
+Route::prefix('berita')->name('news.')->group(function () {
+    Route::get('/', [NewsPublicController::class, 'index'])->name('index');
+    Route::get('/{category:slug}', [NewsPublicController::class, 'category'])->name('category');
+    Route::get('/{category:slug}/{news:slug}', [NewsPublicController::class, 'show'])->name('show');
+});
+
 Route::get('/fasilitas', [FacilityController::class, 'index'])->name('facilities.index');
 Route::get('/prestasi', [AchievementController::class, 'index'])->name('achievements.index');
 Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('extracurriculars.index');
