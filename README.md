@@ -10,11 +10,21 @@
   <img src="public/images/logo.png" alt="SMPN 13 Bandar Lampung Logo" width="120">
 </p>
 
-PinterIn is a web-based e-courses platform designed for simplicity and accessibility. Users can browse, purchase, and read lessons directly within the application. The main goal of PinterIn is to provide an intuitive environment for exploring educational content—making learning convenient, engaging, and straightforward.
+Aplikasi web Profil Sekolah SMPN 13 Bandar Lampung dibuat menggunakan Laravel untuk memberikan informasi lengkap mengenai sejarah, visi dan misi, fasilitas, kegiatan, serta prestasi yang dimiliki oleh SMPN 13 Bandar Lampung. Web ini bertujuan untuk memperkenalkan sekolah kepada masyarakat umum, orang tua siswa, dan calon siswa yang ingin mengetahui lebih banyak tentang sekolah ini.
 
 ## ✨ Features
 
-> _Coming soon!_
+- **Halaman Profil Sekolah**: Menampilkan informasi lengkap tentang sejarah, struktur organisasi, visi, dan misi sekolah.
+
+- **Daftar Fasilitas**: Menginformasikan fasilitas yang tersedia di sekolah, seperti ruang kelas, laboratorium, dan area olahraga.
+
+- **Berita Sekolah**: Menampilkan berita terkini terkait dengan kegiatan, acara, dan informasi penting lainnya seputar SMPN 13 Bandar Lampung. Pengguna dapat membaca artikel, melihat gambar terkait, dan mengetahui perkembangan terbaru di sekolah.
+
+- **Kegiatan Sekolah**: Menyediakan informasi tentang berbagai kegiatan yang diadakan di sekolah, baik itu kegiatan akademik maupun ekstrakurikuler.
+
+- **Prestasi Sekolah**: Menampilkan daftar prestasi yang telah diraih oleh siswa dan sekolah di berbagai bidang.
+
+- **Kontak dan Lokasi**: Memberikan informasi kontak dan lokasi sekolah untuk memudahkan pengunjung yang ingin berkunjung atau berkomunikasi.
 
 ## 🚀 Demo
 

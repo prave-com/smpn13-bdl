@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="w-full lg:w-1/2">
-                    <img src="{{ asset('images/school-hero.png') }}" alt="Ilustrasi Gedung Sekolah"
+                    <img src="{{ asset('images/gerbang-sekolah.jpg') }}" alt="Ilustrasi Gerbang Sekolah"
                         class="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto rounded-lg shadow-2xl transition-transform duration-500 hover:scale-105">
                 </div>
             </div>
