@@ -10,15 +10,30 @@
                 "Menumbuhkan sikap ulet, gigih serta siap berkompetisi meraih prestasi belajar."
             </p>
             <div class="flex space-x-6">
+                {{-- Instagram --}}
+                <a href="https://www.instagram.com/smpn13_bdl/" target="_blank"
+                    class="text-green-200 hover:text-white transform hover:scale-110 transition-all duration-300"
+                    aria-label="Instagram">
+                    <i class="fab fa-instagram text-3xl"></i>
+                </a>
+                {{-- Facebook --}}
+                <a href="https://www.facebook.com/people/Spantiglas-Balam/pfbid0mTGWWgYCpFAzkfPJq7FxQcNTmGuJih8HsMvnWQR7n4GKgtq2EZQc1ewSD2LvuLhcl/"
+                    target="_blank"
+                    class="text-green-200 hover:text-blue-400 transform hover:scale-110 transition-all duration-300"
+                    aria-label="Facebook">
+                    <i class="fab fa-facebook text-3xl"></i>
+                </a>
+                {{-- YouTube --}}
+                <a href="https://www.youtube.com/@SMPN13BandarLampung" target="_blank"
+                    class="text-green-200 hover:text-red-400 transform hover:scale-110 transition-all duration-300"
+                    aria-label="YouTube">
+                    <i class="fab fa-youtube text-3xl"></i>
+                </a>
+                {{-- TikTok --}}
                 <a href="https://www.tiktok.com/@spantiglasbalam" target="_blank"
                     class="text-green-200 hover:text-white transform hover:scale-110 transition-all duration-300"
                     aria-label="TikTok">
                     <i class="fab fa-tiktok text-3xl"></i>
-                </a>
-                <a href="https://www.youtube.com/@smpn13bandarlampung" target="_blank"
-                    class="text-green-200 hover:text-red-400 transform hover:scale-110 transition-all duration-300"
-                    aria-label="YouTube">
-                    <i class="fab fa-youtube text-3xl"></i>
                 </a>
             </div>
         </div>
