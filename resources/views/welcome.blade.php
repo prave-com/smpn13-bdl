@@ -102,30 +102,35 @@
 
         {{-- Section: Program Ekstrakurikuler --}}
         @if ($extracurriculars->count() > 0)
-            <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-white dark:bg-gray-900">
+            <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-gray-50 dark:bg-gray-900">
                 <div class="max-w-7xl mx-auto text-center">
                     <h2 class="text-3xl sm:text-4xl font-bold text-[#1B1B18] dark:text-white mb-10">Program
                         Ekstrakurikuler</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         @foreach ($extracurriculars as $extra)
                             <div
-                                class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center overflow-hidden">
-                                {{-- Added overflow-hidden here --}}
+                                class="relative bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden
+                                transform transition-all duration-300 hover:scale-105 hover:shadow-xl
+                                cursor-pointer group">
+
                                 @if ($extra->image1)
                                     <img src="{{ asset('storage/' . $extra->image1) }}" alt="{{ $extra->name }}"
-                                        class="w-full h-48 object-cover"> {{-- Changed w-32 h-32 object-cover rounded-full mb-4 border-4 border-[#1D6F42] to w-full h-48 object-cover --}}
+                                        class="w-full h-64 object-cover object-center transition-transform duration-330 group-hover:scale-110">
                                 @else
                                     <div
-                                        class="w-full h-48 bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
-                                        {{-- Changed w-32 h-32 rounded-full to w-full h-48 --}}
-                                        <i class="fas fa-question text-4xl text-gray-500"></i>
+                                        class="w-full h-64 bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
+                                        <i class="fas fa-question text-5xl text-gray-500"></i>
                                     </div>
                                 @endif
-                                <div class="p-8 flex flex-col items-center"> {{-- Wrapped content below image in a div with padding --}}
-                                    <h3 class="text-xl font-semibold text-[#1B1B18] dark:text-white mb-2">
-                                        {{ $extra->name }}</h3>
-                                    <p class="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">
-                                        {{ $extra->description }}</p>
+
+                                <div
+                                    class="absolute bottom-0 right-0 bg-gradient-to-tl from-[#1D6F42] to-transparent p-4
+                                            rounded-tl-lg text-right text-white
+                                            opacity-90 group-hover:opacity-100 transition-opacity duration-300 ease-out
+                                            group-hover:from-[#1A5C37] transition-colors duration-300">
+                                    <h3 class="text-lg font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+                                        {{ $extra->name }}
+                                    </h3>
                                 </div>
                             </div>
                         @endforeach
@@ -176,22 +181,92 @@
         @endif
 
         {{-- Section: Berita Terbaru --}}
-        @if ($latestNews->count() > 0)
-            <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-white dark:bg-gray-800">
-                <div class="max-w-7xl mx-auto text-center">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1B1B18] dark:text-white mb-10">Berita Terbaru</h2>
+        <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-white dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold text-[#1B1B18] dark:text-white mb-10">Berita Terbaru</h2>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                        @foreach ($latestNews as $newsItem)
-                            <x-news-card :news="$newsItem" />
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    @foreach ($latestNews as $newsItem)
+                        <x-news-card :news="$newsItem" />
+                    @endforeach
+                </div>
+
+                <div class="mt-10">
+                    <a href="{{ route('news.index') }}"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#1D6F42] hover:bg-[#1A5C37] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1D6F42] transition-colors duration-200">
+                        Lihat Semua Berita
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        {{-- Section: Prestasi Gemilang (Tombol diselaraskan warnanya) --}}
+        @if ($achievements->count() > 0)
+            <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-gray-50 dark:bg-gray-900">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1B1B18] dark:text-white mb-10">PRESTASI KAMI</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        @foreach ($achievements as $achievement)
+                            @if ($achievement->attachment)
+                                <a href="{{ asset('storage/' . $achievement->attachment) }}" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col p-6 text-center group">
+                                    {{-- Fixed height for the visual placeholder --}}
+                                    <div
+                                        class="w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4 rounded-md flex-shrink-0">
+                                        <i
+                                            class="fas fa-trophy text-5xl text-[#1D6F42] group-hover:text-[#1A5C37] transition-colors duration-300"></i>
+                                    </div>
+
+                                    {{-- Content area that will take available space --}}
+                                    <div class="flex flex-col flex-grow">
+                                        <h3
+                                            class="text-xl font-bold text-[#1B1B18] dark:text-white mb-2 uppercase group-hover:text-[#1D6F42] transition-colors duration-300 line-clamp-2">
+                                            {{ $achievement->name }}
+                                        </h3>
+
+                                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+                                            Informasi detail terkait prestasi ini dapat dilihat pada lampiran.
+                                        </p>
+                                        {{-- PDF hint at the bottom, pushed by mt-auto --}}
+                                        <p
+                                            class="text-gray-500 dark:text-gray-400 text-xs mt-auto pt-2 border-t border-gray-200 dark:border-gray-700">
+                                            Klik untuk mengunduh lampiran <i class="fas fa-file-pdf ml-1"></i>
+                                        </p>
+                                    </div>
+                                </a>
+                            @else
+                                <div
+                                    class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col p-6 text-center">
+                                    {{-- Fixed height for the visual placeholder --}}
+                                    <div
+                                        class="w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4 rounded-md flex-shrink-0">
+                                        <i class="fas fa-trophy text-5xl text-gray-500"></i>
+                                    </div>
+
+                                    {{-- Content area with a fixed height or max height for consistency --}}
+                                    <div class="flex flex-col flex-grow">
+                                        <h3
+                                            class="text-xl font-bold text-[#1B1B18] dark:text-white mb-2 uppercase line-clamp-2">
+                                            {{ $achievement->name }}
+                                        </h3>
+                                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+                                            Detail prestasi tidak tersedia sebagai lampiran.
+                                        </p>
+                                        <p
+                                            class="text-gray-500 dark:text-gray-400 text-sm mt-auto pt-2 border-t border-gray-200 dark:border-gray-700">
+                                            Lampiran tidak tersedia.</p>
+                                    </div>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
-
                     <div class="mt-10">
-                        <a href="{{ route('news.index') }}"
+                        {{-- DISINI PENYESUAIAN WARNA TOMBOL PRESTASI --}}
+                        <a href="{{ route('achievements.index') }}"
                             class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#1D6F42] hover:bg-[#1A5C37] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1D6F42] transition-colors duration-200">
-                            Lihat Semua Berita
-                            <i class="fas fa-arrow-right ml-2"></i>
+                            TAMPILKAN SEMUA PRESTASI
                         </a>
                     </div>
                 </div>
