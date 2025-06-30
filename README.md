@@ -171,7 +171,7 @@ Untuk melakukan deploy aplikasi ini ke server hosting (misalnya shared hosting),
     Karena server hosting membatasi penggunaan fungsi `exec()` sehingga `php artisan storage:link` tidak berjalan dengan semestinya. Untuk membuat file di `storage/app/public` dapat diakses secara publik, buat symbolic link secara manual dengan ssh menggunakan perintah:
 
     ```bash
-    ln -s public_html/folder-project/storage/app/public public_html
+    ln -s folder-project/storage/app/public storage
     ```
 
 ## 🧑‍💻 Contributing
