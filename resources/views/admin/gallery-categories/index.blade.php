@@ -70,7 +70,7 @@
                                                 <form
                                                     action="{{ route('admin.gallery-categories.destroy', $galleryCategory) }}"
                                                     method="POST" class="inline-block"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori galeri ini?')">
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori galeri ini? Menghapus kategori galeri akan menghapus semua galeri yang terkait dengan kategori ini.');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
