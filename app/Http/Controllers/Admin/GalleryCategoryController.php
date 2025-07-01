@@ -78,7 +78,6 @@ class GalleryCategoryController extends Controller
     {
         foreach ($galleryCategory->galleries as $gallery) {
             Storage::disk('public')->delete($gallery->image);
-            $gallery->delete();
         }
 
         $galleryCategory->delete();
