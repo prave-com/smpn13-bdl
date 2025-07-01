@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class GalleryCategoryController extends Controller
@@ -75,6 +76,11 @@ class GalleryCategoryController extends Controller
 
     public function destroy(GalleryCategory $galleryCategory)
     {
+        foreach ($galleryCategory->galleries as $gallery) {
+            Storage::disk('public')->delete($gallery->image);
+            $gallery->delete();
+        }
+
         $galleryCategory->delete();
 
         return redirect()->route('admin.gallery-categories.index')->with('success', 'Kategori galeri berhasil dihapus.');
