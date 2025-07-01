@@ -58,6 +58,34 @@
                             </p>
                         </div>
                     </div>
+
+                    {{-- Slide 4 --}}
+                    <div class="swiper-slide relative">
+                        <img src="{{ asset('images/slide4.jpg') }}" alt="Paskibra SMPN 13"
+                            class="w-full h-full object-cover object-center">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 lg:px-20">
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">
+                                Semangat Paskibra
+                            </h2>
+                            <p class="text-white text-lg md:text-xl max-w-2xl mb-6">
+                                Disiplin dan berdedikasi tinggi, membentuk generasi pemimpin bangsa.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Slide 5 --}}
+                    <div class="swiper-slide relative">
+                        <img src="{{ asset('images/slide5.jpg') }}" alt="Lapangan Futsal SMPN 13"
+                            class="w-full h-full object-cover object-center">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 lg:px-20">
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">
+                                Arena Olahraga Unggulan
+                            </h2>
+                            <p class="text-white text-lg md:text-xl max-w-2xl mb-6">
+                                Salurkan bakat dan raih prestasi di lapangan futsal modern kami.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 {{-- Navigasi & Pagination --}}
