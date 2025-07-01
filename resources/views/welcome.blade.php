@@ -2,35 +2,68 @@
     @include('components.navbar')
 
     <main class="w-full">
-        {{-- Hero Section --}}
-        <section class="py-16 px-4 sm:px-6 lg:px-8 w-full mx-auto bg-white dark:bg-gray-800 shadow-inner">
-            <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 max-w-7xl mx-auto">
-                <div class="w-full lg:w-1/2 text-center lg:text-left px-4 sm:px-8 lg:px-12">
-                    <h1
-                        class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1B1B18] dark:text-white mb-4 leading-tight">
-                        Selamat Datang di <br>
-                        <span class="text-[#1D6F42]">SMP Negeri 13 Bandar Lampung</span>
-                    </h1>
-                    <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6">
-                        "Menumbuhkan sikap ulet, gigih serta siap berkompetisi meraih prestasi belajar."
-                        <br>Kami berkomitmen untuk mendidik generasi muda berprestasi dan berkarakter.
-                    </p>
-                    <div class="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                        <a href="{{ route('vision-mission') }}"
-                            class="bg-[#1D6F42] hover:bg-[#1A5C37] text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            Visi & Misi Kami
-                        </a>
-                        <a href="{{ route('contact') }}"
-                            class="border border-[#1D6F42] text-[#1D6F42] hover:bg-[#1D6F42] hover:text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            Hubungi Kami
-                        </a>
+        {{-- Hero Section Swiper --}}
+        <section class="relative w-full">
+            <div class="swiper homepage-hero-swiper h-[32rem] sm:h-[36rem] md:h-[40rem] lg:h-[44rem] xl:h-[48rem]">
+                <div class="swiper-wrapper">
+                    {{-- Slide 1 --}}
+                    <div class="swiper-slide relative">
+                        <img src="{{ asset('images/slide1.jpeg') }}" alt="Slide 1"
+                            class="w-full h-full object-cover object-center">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 lg:px-20">
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">
+                                Selamat Datang di <br><span class="text-green-400">SMP Negeri 13 Bandar Lampung</span>
+                            </h2>
+                            <p class="text-white text-lg md:text-xl max-w-2xl mb-6">
+                                "Menumbuhkan sikap ulet, gigih serta siap berkompetisi meraih prestasi belajar."
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="{{ route('vision-mission') }}"
+                                    class="bg-[#1D6F42] hover:bg-[#1A5C37] text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    Visi & Misi Kami
+                                </a>
+                                <a href="{{ route('contact') }}"
+                                    class="border border-white text-white hover:bg-white hover:text-[#1D6F42] font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    Hubungi Kami
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Slide 2 --}}
+                    <div class="swiper-slide relative">
+                        <img src="{{ asset('images/slide2.jpeg') }}" alt="Slide 2"
+                            class="w-full h-full object-cover object-center">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 lg:px-20">
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">
+                                Sekolah Ramah Anak
+                            </h2>
+                            <p class="text-white text-lg md:text-xl max-w-2xl mb-6">
+                                SMPN 13 berkomitmen sebagai lingkungan belajar yang aman, nyaman, dan inklusif untuk
+                                semua siswa.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Slide 3 --}}
+                    <div class="swiper-slide relative">
+                        <img src="{{ asset('images/slide3.jpeg') }}" alt="Slide 3"
+                            class="w-full h-full object-cover object-center">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 lg:px-20">
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">
+                                Sekolah Berprestasi
+                            </h2>
+                            <p class="text-white text-lg md:text-xl max-w-2xl mb-6">
+                                Raih masa depan cerah bersama SMP Negeri 13 Bandar Lampung.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="w-full lg:w-1/2">
-                    <img src="{{ asset('images/gerbang-sekolah.jpg') }}" alt="Ilustrasi Gerbang Sekolah"
-                        class="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto rounded-lg shadow-2xl transition-transform duration-500 hover:scale-105">
-                </div>
+                {{-- Navigasi & Pagination --}}
+                <div class="swiper-button-prev text-white"></div>
+                <div class="swiper-button-next text-white"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </section>
 
@@ -127,7 +160,7 @@
                                     class="absolute bottom-0 right-0 bg-gradient-to-tl from-[#1D6F42] to-transparent p-4
                                             rounded-tl-lg text-right text-white
                                             opacity-90 group-hover:opacity-100 transition-opacity duration-300 ease-out
-                                            group-hover:from-[#1A5C37] transition-colors duration-300">
+                                            group-hover:from-[#1A5C37]">
                                     <h3 class="text-lg font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
                                         {{ $extra->name }}
                                     </h3>
@@ -154,17 +187,16 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         @foreach ($staffs as $staff)
                             <div
-                                class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                                @if ($staff->avatar)
-                                    <img src="{{ asset('storage/' . $staff->avatar) }}" alt="{{ $staff->name }}"
-                                        class="w-full h-64 object-cover">
-                                @else
-                                    <img src="{{ asset('images/default-avatar.jpg') }}" alt="Default Avatar"
-                                        class="w-full h-64 object-cover">
-                                @endif
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-[#1B1B18] dark:text-white mb-2">
-                                        {{ $staff->name }}</h3>
+                                class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden text-center p-3 transform hover:scale-105 transition-transform duration-200 ease-in-out">
+                                <img src="{{ $staff->avatar ? asset('storage/' . $staff->avatar) : asset('images/avatar.png') }}"
+                                    alt="{{ $staff->name }}"
+                                    class="w-full aspect-3/4 object-cover object-top rounded-md mb-3 dark:bg-white border border-gray-200 dark:border-gray-700"
+                                    loading="lazy">
+                                <div class="text-sm font-semibold text-gray-800 dark:text-white">
+                                    {{ $staff->name }}
+                                </div>
+                                <div class="text-xs text-gray-700 dark:text-gray-300 mt-1">
+                                    {{ $staff->positions->pluck('name')->join(', ') }}
                                 </div>
                             </div>
                         @endforeach
