@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('layouts.navigation')
+    @include('components.navbar')
 
     {{-- Header with Breadcrumb --}}
     <header class="bg-white dark:bg-gray-800 shadow">
