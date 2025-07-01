@@ -49,6 +49,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Swiper untuk Hero Section di homepage
+    const homepageHeroSwiperElement = document.querySelector(
+        ".homepage-hero-swiper",
+    );
+    if (homepageHeroSwiperElement) {
+        new Swiper(homepageHeroSwiperElement, {
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: homepageHeroSwiperElement.querySelector(
+                    ".swiper-button-next",
+                ),
+                prevEl: homepageHeroSwiperElement.querySelector(
+                    ".swiper-button-prev",
+                ),
+            },
+            pagination: {
+                el: homepageHeroSwiperElement.querySelector(
+                    ".swiper-pagination",
+                ),
+                clickable: true,
+            },
+        });
+    }
+
     // Inisialisasi Swiper untuk Gambar Ekstrakurikuler di Halaman Ekstrakurikuler (bisa ada beberapa)
     // Gunakan forEach karena ada banyak ekstrakurikuler, dan setiap ekstrakurikuler punya slider sendiri
     const extracurricularPageSwiperElements = document.querySelectorAll(
