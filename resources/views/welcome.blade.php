@@ -32,15 +32,15 @@
 
                     {{-- Slide 2 --}}
                     <div class="swiper-slide relative">
-                        <img src="{{ asset('images/slide2.jpeg') }}" alt="Slide 2"
+                        <img src="{{ asset('images/slide2.jpg') }}" alt="Slide 2"
                             class="w-full h-full object-cover object-center">
                         <div class="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 lg:px-20">
                             <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">
-                                Sekolah Ramah Anak
+                                Meraih Prestasi Gemilang
                             </h2>
                             <p class="text-white text-lg md:text-xl max-w-2xl mb-6">
-                                SMPN 13 berkomitmen sebagai lingkungan belajar yang aman, nyaman, dan inklusif untuk
-                                semua siswa.
+                                Bersama guru pembimbing, siswa/i kami siap mengukir sejarah dengan bakat dan kerja keras
+                                mereka.
                             </p>
                         </div>
                     </div>
@@ -79,10 +79,11 @@
                             class="w-full h-full object-cover object-center">
                         <div class="absolute inset-0 bg-black/40 flex flex-col justify-center px-6 lg:px-20">
                             <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">
-                                Arena Olahraga Unggulan
+                                Tenaga Pendidik Berdedikasi
                             </h2>
                             <p class="text-white text-lg md:text-xl max-w-2xl mb-6">
-                                Salurkan bakat dan raih prestasi di lapangan futsal modern kami.
+                                Dapatkan bimbingan terbaik dari para guru profesional kami yang berpengalaman dan
+                                berdedikasi.
                             </p>
                         </div>
                     </div>
