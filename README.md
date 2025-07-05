@@ -1,8 +1,8 @@
 # SMPN 13 Bandar Lampung
 
-[![License](https://img.shields.io/github/license/kiraware/smpn13-bdl)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/kiraware/smpn13-bdl)](https://github.com/kiraware/smpn13-bdl/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/kiraware/smpn13-bdl)](https://github.com/kiraware/smpn13-bdl/pulls)
+[![License](https://img.shields.io/github/license/prave-com/smpn13-bdl)](LICENSE)
+[![Issues](https://img.shields.io/github/issues/prave-com/smpn13-bdl)](https://github.com/prave-com/smpn13-bdl/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/prave-com/smpn13-bdl)](https://github.com/prave-com/smpn13-bdl/pulls)
 
 ---
 
@@ -130,7 +130,7 @@ Untuk melakukan deploy aplikasi ini ke server hosting (misalnya shared hosting),
     npm run build
     ```
 
-    Setelah proses build selesai, upload folder `build` hasilnya (biasanya dalam folder `public/build`) ke dalam `public_html` dan `folder-project`.
+    Setelah proses build selesai, upload isi folder `build` (biasanya dalam folder `public/build`) ke dalam `public_html` dan `folder-project/public/build` pada hosting.
 
 4. **Upload Folder vendor**
 
