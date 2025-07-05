@@ -186,7 +186,7 @@ We welcome contributions!
 
 ## 🗣️ Community & Support
 
-- [Issues](https://github.com/kiraware/smpn13-bdl/issues) — for bug reports and feature requests
+- [Issues](https://github.com/prave-com/smpn13-bdl/issues) — for bug reports and feature requests
 
 ## 📄 License
 
