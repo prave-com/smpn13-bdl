@@ -13,6 +13,12 @@
                         </div>
                     @endif
 
+                    @if (session('error'))
+                        <div class="bg-red-500 text-white p-2 rounded mb-4">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     <div class="mb-4 gap-2 flex flex-col-reverse md:flex-row justify-between items-center">
                         <form action="{{ route('admin.news-categories.index') }}" method="GET" class="w-full max-w-sm">
                             <div class="flex items-center space-x-2">
