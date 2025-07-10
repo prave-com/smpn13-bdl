@@ -75,6 +75,10 @@ class NewsCategoryController extends Controller
 
     public function destroy(NewsCategory $newsCategory)
     {
+        if ($newsCategory->news()->exists()) {
+            return redirect()->route('admin.news-categories.index')->with('error', 'Kategori berita ini tidak dapat dihapus karena masih ada berita yang terkait.');
+        }
+
         $newsCategory->delete();
 
         return redirect()->route('admin.news-categories.index')->with('success', 'Kategori berita berhasil dihapus.');
