@@ -130,7 +130,7 @@ Untuk melakukan deploy aplikasi ini ke server hosting (misalnya shared hosting),
     npm run build
     ```
 
-    Setelah proses build selesai, upload isi folder `build` (biasanya dalam folder `public/build`) ke dalam `public_html` dan `folder-project/public/build` pada hosting.
+    Setelah proses build selesai, upload folder `build` (biasanya dalam folder `public/build`) pada komputer lokal ke dalam folder `public_html` dan folder `folder-project/public` pada hosting.
 
 4. **Upload Folder vendor**
 
