@@ -16,19 +16,19 @@
         "autoprefixer": "^10.4.2",
         "axios": "^1.8.2",
         "concurrently": "^9.0.1",
-        "laravel-vite-plugin": "^1.2.0",
+        "laravel-vite-plugin": "^2.1.0",
         "postcss": "^8.4.31",
         "prettier": "^3.5.3",
-        "prettier-plugin-tailwindcss": "^0.6.13",
+        "prettier-plugin-tailwindcss": "^0.7.2",
         "tailwindcss": "^4.1.10",
-        "vite": "^6.2.4"
+        "vite": "^7.3.1"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^41.4.2",
-        "@fortawesome/fontawesome-free": "^6.7.2",
+        "@ckeditor/ckeditor5-build-classic": "^44.3.0",
+        "@fortawesome/fontawesome-free": "^7.2.0",
         "@tailwindcss/postcss": "^4.1.10",
         "sortablejs": "^1.15.6",
-        "swiper": "^11.2.8",
+        "swiper": "^12.1.2",
         "tailwindcss-animate": "^1.0.7",
         "tom-select": "^2.4.3"
     }
